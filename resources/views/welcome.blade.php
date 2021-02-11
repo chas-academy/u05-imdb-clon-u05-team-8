@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>U05</title>
 
         <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -24,9 +24,10 @@
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <br>
-                        <h1 class="text-2xl">Users</h1>
+                        <h1 class="text-2xl">Routes</h1>
 
                         @if (Route::has('login'))
+                          <!--hidden fixed top-0 right-0 -->
                             <div class="hidden fixed top-0 right-0 px-4 py-2 sm:block">
                                 @auth
                                     <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
@@ -62,7 +63,7 @@
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                               http://u05.test/user
+                                               /user
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
@@ -81,7 +82,7 @@
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                               http://u05.test/title
+                                                /title
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
