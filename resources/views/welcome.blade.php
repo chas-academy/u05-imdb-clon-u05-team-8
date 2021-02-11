@@ -20,8 +20,9 @@
                         <h1 class="text-2xl">Routes</h1>
 
                         @if (Route::has('login'))
-                          <!--hidden fixed top-0 right-0 -->
-                            <div class="hidden fixed top-0 right-0 px-4 py-2 sm:block">
+                           <!-- hidden fixed top-0 right-0 px-4 py-2 sm:block -->
+                            <div class="fixed top-0 right-0 px-4 py-2">
+                             <a class="underline pr-4 "  href=" <?php echo( URL::to('/'));  ?> ">Home</a>
                                 @auth
                                     <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
                                 @else
@@ -51,8 +52,6 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-
-
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
@@ -61,7 +60,7 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                                <a href="http://u05.test/user">http://u05.test/user</a>
+                                                <a href="<?php echo( URL::to('/'));?>/user"><?php echo( URL::to('/'));?>/user</a>
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
@@ -70,8 +69,6 @@
                                             </span>
                                         </td>
                                     </tr>
-
-
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
@@ -80,7 +77,7 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                                <a href="http://u05.test/title">http://u05.test/title</a>
+                                                <a href="<?php echo( URL::to('/'));?>/title"><?php echo( URL::to('/'));?>/title</a>
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
@@ -92,8 +89,6 @@
                             </tbody>
                             </table>
                         </div>
-                        <br>
-                        <a href="http://u05.test">http://u05.test</a>
                     </div>
                 </div>
             </div>

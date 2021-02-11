@@ -17,9 +17,10 @@
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <br>
                         <h1 class="text-2xl">Titles</h1>
-
+                        <!-- <div class="hidden fixed top-0 right-0 px-4 py-2 sm:block"> -->
                         @if (Route::has('login'))
-                            <div class="hidden fixed top-0 right-0 px-4 py-2 sm:block">
+                            <div class="fixed top-0 right-0 px-4 py-2">
+                             <a class="underline pr-4 "  href=" <?php echo( URL::to('/'));  ?> ">Home</a>
                                 @auth
                                     <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
                                 @else
@@ -50,12 +51,12 @@
                                 @foreach($titles as $title)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                            <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             {{$title['id']}}
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                        <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             {{$title['name']}}
                                             </span>
                                         </td>
@@ -65,8 +66,6 @@
                             </tbody>
                             </table>
                         </div>
-                        <br>
-                        <a href="http://u05.test">http://u05.test</a>
                     </div>
                 </div>
             </div>
