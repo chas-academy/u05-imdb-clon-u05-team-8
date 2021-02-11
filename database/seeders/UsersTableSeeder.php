@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
         //
         User::create(array('name' => 'Jonas Lund',
         'email' => 'jonas.lund@chasacademy.se',
-        'password' => '$2y$10$zvznGC34MxPZGUaEgBHinOcSHc9jYLaSDZMbAho8GSYsbpReRr/2m',
+        'password' => '$2y$10$0BWMMQX6HSL4shgY9m2AcO947qwstH8pERG/XaqaSHF3YGcpQ0e1u',
          ));
 
         User::create(array('name' => 'Admin1 Admin1',
@@ -32,18 +32,25 @@ class UsersTableSeeder extends Seeder
         'password' => '$2y$10$zvznGC34MxPZGUaEgBHinOcSHc9jYLaSDZMbAho8GSYsbpReRr/2m',
         ));
 
+        /*  ----- */
+
         User::create(array('name' => 'Erik Sandstedt',
         'email' => 'erik.sandstedt@chasacademy.se',
         'password' => '$2y$10$zvznGC34MxPZGUaEgBHinOcSHc9jYLaSDZMbAho8GSYsbpReRr/2m',
          ));
 
-        User::create(array('name' => 'Guihong Cao',
+        User::create(array('name' => 'Gui Hong Cao',
         'email' => 'guihong.cao@chasacademy.se',
         'password' => '$2y$10$zvznGC34MxPZGUaEgBHinOcSHc9jYLaSDZMbAho8GSYsbpReRr/2m',
          ));
 
         User::create(array('name' => 'Khaled Ibrahim',
         'email' => 'khaled.ibrahim@chasacademy.se',
+        'password' => '$2y$10$zvznGC34MxPZGUaEgBHinOcSHc9jYLaSDZMbAho8GSYsbpReRr/2m',
+         ));
+
+        User::create(array('name' => 'Anders Lilienberg',
+        'email' => 'anders.lilienberg@chasacademy.se',
         'password' => '$2y$10$zvznGC34MxPZGUaEgBHinOcSHc9jYLaSDZMbAho8GSYsbpReRr/2m',
          ));
 

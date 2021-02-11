@@ -39,7 +39,7 @@
             </div>
         @endif
 
-        <h1>http://u05.test/</h1>
+        <h1>http://u05.test/ - Grupp 10</h1>
 
          <table>
         <thead>
