@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Users</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,63 +15,59 @@
         </style>
 
         <style>
-            body{  width: 800px;
-                  margin: 0 auto;
-                }
 
+            body{
+                width: 800px;
+                margin: 0 auto;
+            }
             table, th, td {
                 border: 1px solid black;
             }
+
         </style>
+    </head>
     <body>
 
-        @if (Route::has('login'))
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                @auth
-                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-                @else
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+    @if (Route::has('login'))
+        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+            @auth
+                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+            @else
+                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
 
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                    @endif
-                @endauth
-            </div>
-        @endif
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                @endif
+            @endauth
+        </div>
+    @endif
 
-        <h1>http://u05.test/</h1>
+    <h1>Users</h1>
 
-         <table>
+    <table>
         <thead>
             <tr>
-                <th>Route</th>
-                <th>Link</th>
-                <th>Controller</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
             </tr>
         <thead>
         <tbody>
             <tr>
-                <td>
-                    http://u05.test/user
-                </td>
-                <td>
-                    <a href="http://u05.test/user">http://u05.test/user</a>
-                </td>
-                 <td>
-                    index
-                </td>
-            </tr>
 
-            <tr>
-                <td>
-                        http://u05.test/title
-                </td>
-                <td>
-                        <a href="http://u05.test/title">http://u05.test/title</a>
-                </td>
-                <td>
-                    index
-                </td>
+                @foreach($users as $user)
+                    <tr>
+                    <td>
+                            {{$user['id']}}
+                    </td>
+                    <td>
+                            {{$user['name']}}
+                    </td>
+                     <td>
+                            {{$user['email']}}
+                    </td>
+                    </tr>
+                @endforeach
             </tr>
         </tbody>
     </table>

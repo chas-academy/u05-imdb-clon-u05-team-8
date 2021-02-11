@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Title;
+use App\Models\User;
 
-class TitleController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +15,10 @@ class TitleController extends Controller
     public function index()
     {
         //
-        // echo "<pre>";
-        // var_dump(Title::all());
-        // echo "</pre>";
+        // echo(User::all());
 
-
-        $titles = Title::all();
-        return view('titles', compact('titles'));
+        $users = User::all();
+        return view('users', compact('users'));
     }
 
     /**
@@ -48,10 +45,10 @@ class TitleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Title  $title
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Title $title)
+    public function show($id)
     {
         //
     }
@@ -59,10 +56,10 @@ class TitleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Title  $title
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Title $title)
+    public function edit($id)
     {
         //
     }
@@ -71,10 +68,10 @@ class TitleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Title  $title
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Title $title)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -82,10 +79,10 @@ class TitleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Title  $title
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Title $title)
+    public function destroy($id)
     {
         //
     }
