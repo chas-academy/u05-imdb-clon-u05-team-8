@@ -22,7 +22,7 @@
                         <!-- hidden fixed top-0 right-0 px-4 py-2 sm:block -->
                         @if (Route::has('login'))
                             <div class="fixed top-0 right-0 px-4 py-2">
-                             <a class="underline pr-4 "  href=" <?php echo( URL::to('/'));  ?> ">Home</a>
+                            <a class="pr-4 text-sm text-gray-700 underline"  href="{{ url('/') }}">Home</a>
                                 @auth
                                     <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
                                 @else
