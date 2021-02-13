@@ -17,6 +17,6 @@ class TitlesTableSeeder extends Seeder
         //
         Title::create(array('name' =>'La Jetee'));
         Title::create(array('name' =>'Forrest Gump'));
-        Title::create(array('name' =>'Matrix'));
+        Title::create(array('name' =>'Cast Away'));
     }
 }

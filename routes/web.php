@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TitleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ Route::get('/', function () {
 });
 
 Route::resource('title', TitleController::class);
+
+Route::resource('user', UserController::class);
 
 Route::resource('user', UserController::class);
 

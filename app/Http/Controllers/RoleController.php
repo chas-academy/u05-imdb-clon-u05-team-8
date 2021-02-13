@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
-use App\Models\Title;
 
-class TitleController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +15,6 @@ class TitleController extends Controller
     public function index()
     {
         //
-        // echo "<pre>";
-        // var_dump(Title::all());
-        // echo "</pre>";
-
-
-        $titles = Title::all();
-        return view('titles', compact('titles'));
     }
 
     /**
@@ -48,10 +41,10 @@ class TitleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Title  $title
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(Title $title)
+    public function show(Role $role)
     {
         //
     }
@@ -59,23 +52,22 @@ class TitleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Title  $title
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(Title $title)
+    public function edit(Role $role)
     {
         //
-        echo("edit:".$title->name);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Title  $title
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Title $title)
+    public function update(Request $request, Role $role)
     {
         //
     }
@@ -83,13 +75,11 @@ class TitleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Title  $title
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Title $title)
+    public function destroy(Role $role)
     {
         //
-        Title::destroy($title->id);
-        return redirect()->back()->with('message', $title->name.' removed!');
     }
 }
