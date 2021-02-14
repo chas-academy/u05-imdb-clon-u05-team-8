@@ -54,6 +54,9 @@ class TitleController extends Controller
     public function show(Title $title)
     {
         //
+
+        // echo("Show: ".$title->name);
+        return view('titles-show', compact('title'));
     }
 
     /**
@@ -65,7 +68,12 @@ class TitleController extends Controller
     public function edit(Title $title)
     {
         //
-        echo("edit:".$title->name);
+        //  echo("edit:".$title->name);
+        //   return view('edit.title', compact('title'));
+        //  return view('titles', compact('title'));
+
+        //  $titles = Title::all();
+        return view('titles-edit', compact('title'));
     }
 
     /**
@@ -78,6 +86,14 @@ class TitleController extends Controller
     public function update(Request $request, Title $title)
     {
         //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $title->update($request->all());
+
+        return redirect()->route('title.index')
+                        ->with('success', 'Title updated successfully');
     }
 
     /**

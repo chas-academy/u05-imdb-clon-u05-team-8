@@ -22,22 +22,7 @@
                         <br>
                         <h1 class="text-2xl">Titles</h1>
                         @include('menu')
-                        <!-- <div class="hidden fixed top-0 right-0 px-4 py-2 sm:block"> -->
-                        {{-- @if (Route::has('login'))
-                            <div class="fixed top-0 border-l border-b border-bottom border-green-500  bg-green-200  right-0 px-4 py-2">
-                          <a class="pr-4 text-sm text-gray-700 underline"  href="{{ url('/') }}">Home</a>
-                                @auth
-                                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-                                @else
-                                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
 
-                                    @if (Route::has('register'))
-                                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                                    @endif
-                                @endauth
-                            </div>
-
-                        @endif --}}
 
                         @if(session()->has('message'))
                             <div class="alert alert-success p-6 bg-green-50">
@@ -54,8 +39,6 @@
                         @endif --}}
 
 <br />
-@foreach($titles as $title)
-
 
 <div class="bg-green-100 border border-green-200 overflow-hidden rounded-md">
   <div class="px-4 py-5 sm:px-6">
@@ -116,7 +99,7 @@
   </div>
 </div>
 <br /><br />
-  @endforeach
+
 
                         </div>
                     </div>

@@ -24,7 +24,6 @@ Route::resource('title', TitleController::class);
 
 Route::resource('user', UserController::class);
 
-Route::resource('user', UserController::class);
 
 
 Route::get('/dashboard', function () {

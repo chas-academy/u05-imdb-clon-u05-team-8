@@ -8,8 +8,8 @@
                     <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
-                    <a class="pl-6 text-sm text-gray-700 underline"  href="{{ url('/') }}">Home</a>
-
+                    <!-- Added Home link u05 -->
+                    <a class="pl-6 text-sm text-gray-700 underline" href="{{ url('/') }}">Home</a>
                 </div>
 
                 <!-- Navigation Links -->
