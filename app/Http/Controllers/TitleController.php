@@ -14,12 +14,6 @@ class TitleController extends Controller
      */
     public function index()
     {
-        //
-        // echo "<pre>";
-        // var_dump(Title::all());
-        // echo "</pre>";
-
-
         $titles = Title::all();
         return view('titles', compact('titles'));
     }
@@ -31,7 +25,7 @@ class TitleController extends Controller
      */
     public function create()
     {
-        //
+        return view('titles-create', );
     }
 
     /**
@@ -40,9 +34,17 @@ class TitleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        Title::create($request->all());
+
+        return redirect()->route('title.index')
+                ->with('message', $request->input('name').' - created.');
     }
 
     /**
@@ -53,9 +55,6 @@ class TitleController extends Controller
      */
     public function show(Title $title)
     {
-        //
-
-        // echo("Show: ".$title->name);
         return view('titles-show', compact('title'));
     }
 
@@ -67,12 +66,6 @@ class TitleController extends Controller
      */
     public function edit(Title $title)
     {
-        //
-        //  echo("edit:".$title->name);
-        //   return view('edit.title', compact('title'));
-        //  return view('titles', compact('title'));
-
-        //  $titles = Title::all();
         return view('titles-edit', compact('title'));
     }
 
@@ -93,7 +86,7 @@ class TitleController extends Controller
         $title->update($request->all());
 
         return redirect()->route('title.index')
-                        ->with('success', 'Title updated successfully');
+                            ->with('message', $title->name.' - updated.');
     }
 
     /**
@@ -106,6 +99,6 @@ class TitleController extends Controller
     {
         //
         Title::destroy($title->id);
-        return redirect()->back()->with('message', $title->name.' removed!');
+        return redirect()->back()->with('message', $title->name.' - removed.');
     }
 }

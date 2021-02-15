@@ -37,7 +37,10 @@
 
                             </div>
                         @endif --}}
-
+<div class="text-sm">
+    <a href="{{action([App\Http\Controllers\TitleController::class, 'create'])}}"
+        class="text-sm text-green-700 underline">[Create]</a> new Title.
+</div>
 <br />
 
 <div class="bg-green-100 border border-green-200 overflow-hidden rounded-md">
@@ -51,6 +54,16 @@
 
     <div class="flex justify-end">
 
+        <div class="text-sm">
+            <a href="{{action([App\Http\Controllers\TitleController::class, 'index'])}}"
+                class="text-sm text-grey-700 underline">[Index]</a>
+        </div>
+        &nbsp;&nbsp;
+        <div class="text-sm">
+            <a href="{{action([App\Http\Controllers\TitleController::class, 'edit'], ['title'=>$title])}}"
+                class="text-sm text-blue-700 underline">[Update]</a>
+        </div>
+        &nbsp;&nbsp;
         <form  class="text-sm font-medium"
                 action="{{ action([App\Http\Controllers\TitleController::class, 'destroy'], ['title'=>$title])}}"
                 method="POST">
@@ -60,10 +73,6 @@
                     <button type="submit" class="focus:outline-none   text-red-700 underline">[Delete]</button>
                 </span>
         </form>
-        &nbsp;&nbsp;
-        <div class="text-sm">
-            <a href="{{action([App\Http\Controllers\TitleController::class, 'edit'], ['title'=>$title])}}" class="text-sm text-blue-700 underline">[Edit]</a>
-        </div>
     </div>
 
   </div>

@@ -22,22 +22,6 @@
                         <br>
                         <h1 class="text-2xl">Titles</h1>
                         @include('menu')
-                        <!-- <div class="hidden fixed top-0 right-0 px-4 py-2 sm:block"> -->
-                        {{-- @if (Route::has('login'))
-                            <div class="fixed top-0 border-l border-b border-bottom border-green-500  bg-green-200  right-0 px-4 py-2">
-                          <a class="pr-4 text-sm text-gray-700 underline"  href="{{ url('/') }}">Home</a>
-                                @auth
-                                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-                                @else
-                                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
-
-                                    @if (Route::has('register'))
-                                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                                    @endif
-                                @endauth
-                            </div>
-
-                        @endif --}}
 
                         @if(session()->has('message'))
                             <div class="alert alert-success p-6 bg-green-50">
@@ -45,14 +29,16 @@
                             </div>
                         @endif
 
-
                         {{-- @if ( session('status') == 'success_delete')
                             <div class="p-6 bg-green-50">
                                 {{ __('Title successfully deleted')}}
 
                             </div>
                         @endif --}}
-
+<div class="text-sm">
+    <a href="{{action([App\Http\Controllers\TitleController::class, 'create'])}}"
+        class="text-sm text-green-700 underline">[Create]</a> new Title.
+</div>
 <br />
 @foreach($titles as $title)
 
@@ -68,6 +54,16 @@
 
     <div class="flex justify-end">
 
+        <div class="text-sm">
+            <a href="{{action([App\Http\Controllers\TitleController::class, 'show'], ['title'=>$title])}}"
+                class="text-sm text-grey-700 underline">[Read]</a>
+        </div>
+        &nbsp;&nbsp;
+        <div class="text-sm">
+            <a href="{{action([App\Http\Controllers\TitleController::class, 'edit'], ['title'=>$title])}}"
+                class="text-sm text-blue-700 underline">[Update]</a>
+        </div>
+        &nbsp;&nbsp;
         <form  class="text-sm font-medium"
                 action="{{ action([App\Http\Controllers\TitleController::class, 'destroy'], ['title'=>$title])}}"
                 method="POST">
@@ -77,10 +73,7 @@
                     <button type="submit" class="focus:outline-none   text-red-700 underline">[Delete]</button>
                 </span>
         </form>
-        &nbsp;&nbsp;
-        <div class="text-sm">
-            <a href="{{action([App\Http\Controllers\TitleController::class, 'edit'], ['title'=>$title])}}" class="text-sm text-blue-700 underline">[Edit]</a>
-        </div>
+
     </div>
 
   </div>
