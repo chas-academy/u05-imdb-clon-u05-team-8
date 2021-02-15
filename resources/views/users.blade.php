@@ -50,8 +50,14 @@
      Id:{{$user['id']}}
     </p>
 
-    <div class="flex justify-end">
+    {{-- <div class="flex justify-end">
 
+
+        <div class="text-sm">
+            <a href="{{action([App\Http\Controllers\UserController::class, 'edit'], ['user'=>$user])}}"
+             class="text-sm text-blue-700 underline">[Update]</a>
+        </div>
+        &nbsp;&nbsp;
         <form  class="text-sm font-medium"
                 action="{{ action([App\Http\Controllers\UserController::class, 'destroy'], ['user'=>$user])}}"
                 method="POST">
@@ -61,11 +67,8 @@
                     <button type="submit" class="focus:outline-none   text-red-700 underline">[Delete]</button>
                 </span>
         </form>
-        &nbsp;&nbsp;
-        <div class="text-sm">
-            <a href="{{action([App\Http\Controllers\UserController::class, 'edit'], ['user'=>$user])}}" class="text-sm text-blue-700 underline">[Edit]</a>
-        </div>
-    </div>
+
+    </div> --}}
 
   </div>
   <div class="border-t border-gray-400">

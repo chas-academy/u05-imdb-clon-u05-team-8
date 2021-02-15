@@ -28,7 +28,7 @@ $appRoutes = array (
   array("title/1","show()"), //show
   array("title/1/edit", "edit() -> update() -> index()"), //edit
   array("title/create","create() -> store() -> index()"), //create
-  array("title/1/delete","destroy() -> index()        // Not implemented!"), //delete
+  array("title/1/delete","destroy() -> index()        //   Not implemented here."), //delete
 
 );
 
