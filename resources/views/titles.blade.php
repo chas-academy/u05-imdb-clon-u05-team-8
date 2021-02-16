@@ -35,6 +35,7 @@
 
                             </div>
                         @endif --}}
+<br />
 <div class="text-sm">
     <a href="{{action([App\Http\Controllers\TitleController::class, 'create'])}}"
         class="text-sm text-green-700 underline">[Create]</a> new Title.
@@ -64,7 +65,9 @@
                 class="text-sm text-blue-700 underline">[Update]</a>
         </div>
         &nbsp;&nbsp;
-        <form  class="text-sm font-medium"
+
+       <form  class="text-sm font-medium"
+                onsubmit="return confirm('Do you really want to delete? ({{$title['name']}})');"
                 action="{{ action([App\Http\Controllers\TitleController::class, 'destroy'], ['title'=>$title])}}"
                 method="POST">
                 @method('DELETE')
@@ -73,6 +76,8 @@
                     <button type="submit" class="focus:outline-none   text-red-700 underline">[Delete]</button>
                 </span>
         </form>
+
+
 
     </div>
 

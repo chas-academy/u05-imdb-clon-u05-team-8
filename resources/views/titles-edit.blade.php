@@ -69,7 +69,7 @@
             <div class="text-sm">
                 <a class=" text-blue-700 underline" href="{{ route('title.index') }}">[Back]</a>
             </div>
-            &nbsp;
+            &nbsp;&nbsp;&nbsp;
 
           </div>
 

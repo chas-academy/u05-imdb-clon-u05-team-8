@@ -58,6 +58,8 @@ class TitleController extends Controller
         return view('titles-show', compact('title'));
     }
 
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -99,6 +101,8 @@ class TitleController extends Controller
     {
         //
         Title::destroy($title->id);
-        return redirect()->back()->with('message', $title->name.' - removed.');
+        //   return redirect()->back()->with('message', $title->name.' - removed.');
+        return redirect()->route('title.index')
+                            ->with('message', $title->name.' - removed.');
     }
 }
