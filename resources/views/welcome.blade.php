@@ -20,15 +20,28 @@
                         <h1 class="text-2xl">Routes</h1>
                         @include('menu')
 <?php
+$res = DB::select('select MIN(id) as id from titles');
+//var_dump($res);
+
+$id = $res[0]->id;
+if(empty($id)){
+
+     DB::insert('INSERT INTO titles (name) VALUES ("Test Title") ');
+
+    $res = DB::select('select MIN(id) as id from titles');
+    $id = $res[0]->id;
+}
+
+
 $appRoutes = array (
   /*   route, controller method  */
 
   array("user","index()"), //index
   array("title","index()"), //index
-  array("title/1","show()"), //show
-  array("title/1/edit", "edit() -> update() -> index()"), //edit
+  array("title/".$id,"show()"), //show
+  array("title/".$id."/edit", "edit() -> update() -> index()"), //edit
   array("title/create","create() -> store() -> index()"), //create
-  array("title/1/delete","destroy() -> index()        //   Not implemented here."), //delete
+  array("title/".$id."/delete","destroy() -> index()"), //delete
 
 );
 
@@ -48,7 +61,25 @@ for ( $i=0; $i< count($appRoutes);$i++){  ?>
           Url
         </dt>
         <dd class="mt-1 underline text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <a  href="{{ url('/').'/'.$appRoutes [$i][0] }}"> {{ url('/').'/'.$appRoutes [$i][0] }}</a>
+            <?php $del = strpos($appRoutes [$i][0],"delete");
+                if($del === false){ ?>
+                    <a  href="{{ url('/').'/'.$appRoutes [$i][0] }}"> {{ url('/').'/'.$appRoutes [$i][0] }}</a>
+            <?php
+                } else { ?>
+
+                <form  class="text-sm font-medium"
+                    onsubmit="return confirm('Do you really want to delete?');"
+                    action="{{ action([App\Http\Controllers\TitleController::class, 'destroy'], $id )}}"
+                    method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <span class=" text-sm text-gray-700">
+                        <button type="submit" class="focus:outline-none  underline">
+                         {{ url('/').'/'.$appRoutes [$i][0] }}
+                        </button>
+                    </span>
+                </form>
+            <?php  } ?>
         </dd>
       </div>
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -67,61 +98,6 @@ for ( $i=0; $i< count($appRoutes);$i++){  ?>
 <?php } // end for loop over routes array ?>
 
 
-                        {{-- <div class="shadow overflow-hidden border-b border-gray-300 sm:rounded-lg">
-                            <table class="min-w-full divide-y divide-gray-300">
-                            <thead class="bg-blue-100">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider">
-                                        Route
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider">
-                                        Link
-                                    </th>
-                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider">
-                                        Controller method
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                    <!-- User (index) -->
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                               /user
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                                <a href="<?php /*echo( URL::to('/'));?>/user"><?php echo( URL::to('/')); */?>/user</a>
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                                index()
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <!-- Title (index) -->
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                                /title
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                                <a href="<?php /*echo( URL::to('/'));?>/title"><?php echo( URL::to('/')); */?>/title</a>
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                                index()
-                                            </span>
-                                        </td>
-                                    </tr>
-                            </tbody>
-                            </table>
-                        </div> --}}
                     </div>
                 </div>
             </div>
