@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 {{-- <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"> --}}
-
 <html lang="zxx">
 
 
@@ -55,11 +54,6 @@
 
     <div class="flex justify-end">
 
-        {{-- <div class="text-sm">
-            <a href="{{action([App\Http\Controllers\TitleController::class, 'index'])}}"
-                class="text-sm text-grey-700 underline">[Index]</a>
-        </div>
-        &nbsp;&nbsp; --}}
         <div class="text-sm">
             <a href="{{action([App\Http\Controllers\TitleController::class, 'edit'], ['title'=>$title])}}"
                 class="text-sm text-blue-700 underline">[Update]</a>

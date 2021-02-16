@@ -26,16 +26,15 @@ $res = DB::select('select MIN(id) as id from titles');
 $id = $res[0]->id;
 if(empty($id)){
 
-     DB::insert('INSERT INTO titles (name) VALUES ("Test Title") ');
+    DB::insert('INSERT INTO titles (name) VALUES ("Test Title") ');
 
     $res = DB::select('select MIN(id) as id from titles');
     $id = $res[0]->id;
 }
 
-
 $appRoutes = array (
-  /*   route, controller method  */
 
+  /*   route, controller method  */
   array("user","index()"), //index
   array("title","index()"), //index
   array("title/".$id,"show()"), //show

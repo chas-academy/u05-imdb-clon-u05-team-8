@@ -20,23 +20,7 @@
                         <br>
                         <h1 class="text-2xl">Users</h1>
                         @include('menu')
-                        <!-- hidden fixed top-0 right-0 px-4 py-2 sm:block -->
-                        {{-- @if (Route::has('login'))
-                            <div class="fixed top-0 border-l border-b border-bottom border-green-500  bg-green-200 right-0 px-4 py-2">
-                            <a class="pr-4 text-sm  text-gray-700 underline"  href="{{ url('/') }}">Home</a>
-                                @auth
-                                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-                                @else
-                                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
 
-                                    @if (Route::has('register'))
-                                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                                    @endif
-                                @endauth
-                            </div>
-
-                        @endif
-                        <br> --}}
 
 @foreach($users as $user)
 
@@ -49,26 +33,6 @@
     <p class="mt-1 max-w-2xl text-sm text-gray-500">
      Id:{{$user['id']}}
     </p>
-
-    {{-- <div class="flex justify-end">
-
-
-        <div class="text-sm">
-            <a href="{{action([App\Http\Controllers\UserController::class, 'edit'], ['user'=>$user])}}"
-             class="text-sm text-blue-700 underline">[Update]</a>
-        </div>
-        &nbsp;&nbsp;
-        <form  class="text-sm font-medium"
-                action="{{ action([App\Http\Controllers\UserController::class, 'destroy'], ['user'=>$user])}}"
-                method="POST">
-                @method('DELETE')
-                @csrf
-                <span class=" text-sm text-gray-700">
-                    <button type="submit" class="focus:outline-none   text-red-700 underline">[Delete]</button>
-                </span>
-        </form>
-
-    </div> --}}
 
   </div>
   <div class="border-t border-gray-400">
@@ -96,47 +60,7 @@
 <br /><br />
   @endforeach
 
-{{--
-                        <div class="shadow overflow-hidden border-b border-gray-300 sm:rounded-lg">
-                            <table class="min-w-full divide-y divide-gray-300">
-                            <thead class="bg-blue-100">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider">
-                                        Id
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider">
-                                        Name
-                                    </th>
-                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider">
-                                        Email
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
 
-                                @foreach($users as $user)
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                            {{$user['id']}}
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                            {{$user['name']}}
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                            {{$user['email']}}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                @endforeach
-
-                            </tbody>
-                            </table>
-                        </div> --}}
                     </div>
                 </div>
             </div>

@@ -47,10 +47,7 @@
             <div class="grid grid-cols-6 gap-6">
 
               <div class="col-span-6 sm:col-span-3">
-<!--
-                <strong>Title:</strong>
-                    <input type="text" name="name" value="{{ $title->name }}" class="form-control" placeholder="Title">
--->
+
                 <label for="name" class="block text-sm font-medium text-gray-700">Title</label>
                 <input type="text" name="name" id="name" value="{{ $title->name }}" autocomplete=""
                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded">
@@ -100,23 +97,6 @@
     <p class="mt-1 max-w-2xl text-sm text-gray-500">
      Id:{{$title['id']}}
     </p>
-{{--
-    <div class="flex justify-end">
-
-        <form  class="text-sm font-medium"
-                action="{{ action([App\Http\Controllers\TitleController::class, 'destroy'], ['title'=>$title])}}"
-                method="POST">
-                @method('DELETE')
-                @csrf
-                <span class=" text-sm text-gray-700">
-                    <button type="submit" class="focus:outline-none   text-red-700 underline">[Delete]</button>
-                </span>
-        </form>
-        &nbsp;&nbsp;
-        <div class="text-sm">
-            <a href="{{action([App\Http\Controllers\TitleController::class, 'edit'], ['title'=>$title])}}" class="text-sm text-blue-700 underline">[Edit]</a>
-        </div>
-    </div> --}}
 
   </div>
   <div class="border-t border-gray-400">
