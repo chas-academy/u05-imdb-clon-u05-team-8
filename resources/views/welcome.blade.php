@@ -19,6 +19,18 @@
                         <br>
                         <h1 class="text-2xl">Routes</h1>
                         @include('menu')
+<p>
+@auth
+
+    <?php
+    $user = auth()->user();
+    echo ($user->name." - You are logged in now!");
+    ?>
+
+@else
+    You are not logged in!
+@endauth
+</p><br />
 <?php
 $res = DB::select('select MIN(id) as id from titles');
 //var_dump($res);
@@ -45,6 +57,7 @@ $appRoutes = array (
 );
 
 for ( $i=0; $i< count($appRoutes);$i++){  ?>
+
 
 <div class="bg-green-100 border border-green-200 overflow-hidden rounded-md">
   <div class="px-4 py-5 sm:px-6">
