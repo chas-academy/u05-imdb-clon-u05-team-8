@@ -16,13 +16,12 @@ class Title extends Model
     */
     protected $fillable = [
         'name',
+        'user_id',
 
     ];
 
     public function user()
     {
-        //return $this->name;
-        //return var_dump($this->belongsTo('App\Models\User'));
         return $this->belongsTo('App\Models\User');
     }
 }

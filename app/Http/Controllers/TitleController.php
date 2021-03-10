@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Title;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class TitleController extends Controller
 {
@@ -39,12 +41,23 @@ class TitleController extends Controller
     {
         $request->validate([
             'name' => 'required',
+          //'user_id' =>'required',
         ]);
 
-        Title::create($request->all());
+        // Title::create($request->all());
 
-        return redirect()->route('title.index')
+        if (Auth::check()) {
+            $title = new Title;
+            $title->name = $request->name;
+            $title->user_id = Auth::user()->id;
+            $title->save();
+
+            return redirect()->route('title.index')
                 ->with('message', $request->input('name').' - created.');
+        } else {
+            return redirect()->route('title.index')
+                ->with('message', "You have to be logged in when creating records");
+        }
     }
 
     /**
