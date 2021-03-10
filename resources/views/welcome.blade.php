@@ -38,7 +38,7 @@ $res = DB::select('select MIN(id) as id from titles');
 $id = $res[0]->id;
 if(empty($id)){
 
-    DB::insert('INSERT INTO titles (name) VALUES ("Test Title") ');
+    DB::insert('INSERT INTO titles (name,user_id) VALUES ("Test Title",2) ');
 
     $res = DB::select('select MIN(id) as id from titles');
     $id = $res[0]->id;

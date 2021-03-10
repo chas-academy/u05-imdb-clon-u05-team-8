@@ -47,7 +47,8 @@
       {{$title['name']}}
     </h3>
     <p class="mt-1 max-w-2xl text-sm text-gray-500">
-     Id:{{$title['id']}}
+     Id: {{$title['id']}}<br />
+     Created by User:&nbsp;&nbsp;{{$title->user()->first()->name}}
     </p>
 
     <div class="flex justify-end">

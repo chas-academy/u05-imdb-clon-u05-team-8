@@ -33,7 +33,28 @@
     <p class="mt-1 max-w-2xl text-sm text-gray-500">
      Id:{{$user['id']}}
     </p>
+    <p>
 
+    @if ($user->titles()->get()->first())
+
+        {{ $user->titles()->get()->count() }}
+        Added titles:
+        @if ( count($user->titles()->get()) > 1)
+            @php $counter = 0; $delim = "";  @endphp
+
+            @foreach  ($user->titles()->get() as $title )
+                @if ($counter > 0 ) @php $delim = "| ";@endphp @endif
+
+               {{$delim}}{{Str::of($title->name)->trim()}}
+
+                @php $counter++; @endphp
+            @endforeach
+        @else
+            {{ $user->titles()->get()->first()->name }}
+        @endif
+    @endif
+
+    </p>
   </div>
   <div class="border-t border-gray-400">
     <dl>
