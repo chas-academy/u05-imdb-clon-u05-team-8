@@ -28,13 +28,6 @@ class Title extends Model
 
     public function genres()
     {
-        // return "hej";
         return $this->belongsToMany(Genre::class);
-        //return $this->belongsToMany('App\Models\Genre');
     }
-
-    // Flyyta genre
-
-
-    //   protected $table = "genre_title";  till genretitle
 }
