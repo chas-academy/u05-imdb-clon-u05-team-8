@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TitleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\GenreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,8 @@ Route::resource('title', TitleController::class);
 
 Route::resource('user', UserController::class);
 
+
+Route::resource('genre', GenreController::class);
 
 
 Route::get('/dashboard', function () {

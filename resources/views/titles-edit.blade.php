@@ -102,11 +102,27 @@
   <div class="border-t border-gray-400">
     <dl>
       <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">
-          Genre
+         <dt class="text-sm font-medium text-gray-500">
+          Genre ({{ $title->genres()->get()->count() }}):
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          Comedy
+
+    @if ($title->genres()->get()->first())
+
+        @if ( count($title->genres()->get()) > 1)
+            @php $counter = 0; $delim = "";  @endphp
+
+            @foreach  ($title->genres()->get() as $genre )
+                @if ($counter > 0 ) @php $delim = "| ";@endphp @endif
+
+               {{$delim}}{{Str::of($genre->name)->trim()}}
+
+                @php $counter++; @endphp
+            @endforeach
+        @else
+            {{ $title->genres()->get()->first()->name }}
+        @endif
+    @endif
         </dd>
       </div>
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

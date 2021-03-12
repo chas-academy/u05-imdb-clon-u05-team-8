@@ -48,7 +48,6 @@
     </h3>
     <p class="mt-1 max-w-2xl text-sm text-gray-500">
      Id: {{$title['id']}}<br />
-     Created by User:&nbsp;&nbsp;{{$title->user()->first()->name}}
     </p>
 
     <div class="flex justify-end">
@@ -84,24 +83,43 @@
     <dl>
       <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          Genre
+          Genre ({{ $title->genres()->get()->count() }}):
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          Comedy
+
+    @if ($title->genres()->get()->first())
+
+        @if ( count($title->genres()->get()) > 1)
+            @php $counter = 0; $delim = "";  @endphp
+
+            @foreach  ($title->genres()->get() as $genre )
+                @if ($counter > 0 ) @php $delim = "| ";@endphp @endif
+
+               {{$delim}}{{Str::of($genre->name)->trim()}}
+
+                @php $counter++; @endphp
+            @endforeach
+        @else
+            {{ $title->genres()->get()->first()->name }}
+        @endif
+    @endif
         </dd>
       </div>
+
+
+
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          Published
+          Added to database by:
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          2020-01-01
+         {{$title->user()->first()->name}}
         </dd>
       </div>
 
       <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          About
+          About:
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.

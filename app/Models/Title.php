@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Genre;
 
 class Title extends Model
 {
@@ -24,4 +25,16 @@ class Title extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function genres()
+    {
+        // return "hej";
+        return $this->belongsToMany(Genre::class);
+        //return $this->belongsToMany('App\Models\Genre');
+    }
+
+    // Flyyta genre
+
+
+    //   protected $table = "genre_title";  till genretitle
 }

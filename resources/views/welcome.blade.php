@@ -40,14 +40,17 @@ if(empty($id)){
 
     DB::insert('INSERT INTO titles (name,user_id) VALUES ("Test Title",2) ');
 
+
     $res = DB::select('select MIN(id) as id from titles');
     $id = $res[0]->id;
+    DB::insert('INSERT INTO genre_title (title_id,genre_id) VALUES ('.$id.',5) ');
 }
 
 $appRoutes = array (
 
   /*   route, controller method  */
   array("user","index()"), //index
+  array("genre","index()"), //index
   array("title","index()"), //index
   array("title/".$id,"show()"), //show
   array("title/".$id."/edit", "edit() -> update() -> index()"), //edit
