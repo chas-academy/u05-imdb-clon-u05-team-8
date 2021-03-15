@@ -64,10 +64,10 @@ class UsersTableSeeder extends Seeder
         'password' => '$2y$10$zvznGC34MxPZGUaEgBHinOcSHc9jYLaSDZMbAho8GSYsbpReRr/2m',
          ));
 
-        User::create(array('name' => 'Vande Nikolovski',
-        'email' => 'vande.nikolovski@chasacademy.se',
-        'password' => '$2y$10$zvznGC34MxPZGUaEgBHinOcSHc9jYLaSDZMbAho8GSYsbpReRr/2m',
-         ));
+        // User::create(array('name' => 'Vande Nikolovski',
+        // 'email' => 'vande.nikolovski@chasacademy.se',
+        // 'password' => '$2y$10$zvznGC34MxPZGUaEgBHinOcSHc9jYLaSDZMbAho8GSYsbpReRr/2m',
+        //  ));
 
         User::create(array('name' => 'Zannatul Chowdhury',
         'email' => 'zannatul.chowdhury@chasacademy.se',

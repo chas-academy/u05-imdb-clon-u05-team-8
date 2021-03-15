@@ -95,12 +95,15 @@
             @foreach  ($title->genres()->get() as $genre )
                 @if ($counter > 0 ) @php $delim = "| ";@endphp @endif
 
-               {{$delim}}{{Str::of($genre->name)->trim()}}
+               {{-- {{$delim}}{{Str::of($genre->name)->trim()}} --}}
+                 {{$delim}}<a class=" text-blue-700 underline" href="{{ url('/').'/genre/'.$genre->id}}">{{$genre->name}}</a>
 
                 @php $counter++; @endphp
             @endforeach
         @else
-            {{ $title->genres()->get()->first()->name }}
+            {{-- {{ $title->genres()->get()->first()->name }} --}}
+             <a class=" text-blue-700 underline" href="{{ url('/').'/genre/'.$title->genres()->get()->first()->id}}">{{$title->genres()->get()->first()->name}}</a>
+
         @endif
     @endif
         </dd>
