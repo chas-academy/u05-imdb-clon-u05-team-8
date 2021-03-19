@@ -16,6 +16,8 @@ class CreateTitlesTable extends Migration
         Schema::create('titles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->date('publ_date');
+
             $table->foreignId('user_id')
                 ->constrained()
                 ->onUpdate('cascade')
