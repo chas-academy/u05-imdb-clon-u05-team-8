@@ -22,6 +22,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/start', function () {
+    return view('index');
+});
+
+
 Route::resource('title', TitleController::class);
 
 Route::resource('user', UserController::class);
