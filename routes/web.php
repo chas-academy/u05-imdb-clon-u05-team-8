@@ -5,6 +5,7 @@ use App\Http\Controllers\TitleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::resource('user', UserController::class);
 
 Route::resource('genre', GenreController::class);
 
+Route::get('/reviews', [ReviewController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -15,14 +15,14 @@ class GenresTableSeeder extends Seeder
     public function run()
     {
         //
-        Genre::create(array('name' => 'Action',));
-        Genre::create(array('name' => 'Comedy',));
-        Genre::create(array('name' => 'Drama',));
-        Genre::create(array('name' => 'Fantasy',));
-        Genre::create(array('name' => 'Horror',));
-        Genre::create(array('name' => 'Mystery',));
-        Genre::create(array('name' => 'Romance',));
-        Genre::create(array('name' => 'Thriller',));
-        Genre::create(array('name' => 'Western',));
+        Genre::create(array('name' => 'Action',  'user_id' => '1',));
+        Genre::create(array('name' => 'Comedy',  'user_id' => '1',));
+        Genre::create(array('name' => 'Drama',   'user_id' => '1',));
+        Genre::create(array('name' => 'Fantasy', 'user_id' => '1',));
+        Genre::create(array('name' => 'Horror',  'user_id' => '1',));
+        Genre::create(array('name' => 'Mystery', 'user_id' => '1',));
+        Genre::create(array('name' => 'Romance', 'user_id' => '1',));
+        Genre::create(array('name' => 'Thriller','user_id' => '1',));
+        Genre::create(array('name' => 'Western', 'user_id' => '1',));
     }
 }

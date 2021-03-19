@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Title;
+use App\Models\Review;
 
 class User extends Authenticatable
 {
@@ -46,5 +47,10 @@ class User extends Authenticatable
     public function titles()
     {
         return $this->hasMany('App\Models\Title');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }
