@@ -18,7 +18,7 @@
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <br>
-                        <h1 class="text-2xl">Titles</h1>
+                        <h1 class="text-2xl">Reviews</h1>
                         @include('menu')
 
                         @if(session()->has('message'))
@@ -42,7 +42,7 @@
     <dl>
       <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          Movie: 
+          Movie:
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
             {{ $review->title->name }}
@@ -79,7 +79,7 @@
       </div>
 
     </dl>
-  </div>
+  </div><br /><br />
   @endforeach
 
   @else
