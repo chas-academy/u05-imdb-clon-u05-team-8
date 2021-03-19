@@ -15,6 +15,12 @@ class RoleController extends Controller
     public function index()
     {
         //
+        $roles = Role::all();
+
+        foreach ($roles as $role) {
+            echo("<br />Role: ".$role->name);
+        }
+        echo('<br /><br /><a class="pr-4 text-sm text-gray-700 underline"  href="http://u05.test/">Home</a>');
     }
 
     /**
