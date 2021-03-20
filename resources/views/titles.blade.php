@@ -44,10 +44,10 @@
 <div class="bg-green-100 border border-green-200 overflow-hidden rounded-md">
   <div class="px-4 py-5 sm:px-6">
     <h3 class="text-lg leading-6 font-medium text-gray-900">
-      {{$title['name']}}
-    </h3>
+      {{$title['name']}}</h3>
     <p class="mt-1 max-w-2xl text-sm text-gray-500">
      Id: {{$title['id']}}<br />
+     Published: {{$title->publ_date}}
     </p>
 
     <div class="flex justify-end">
@@ -116,7 +116,7 @@
           Added to database by:
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-         {{$title->user()->first()->name}}
+         {{$title->user->name}}&nbsp;({{$title->user->role->name}})
         </dd>
       </div>
 

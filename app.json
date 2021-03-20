@@ -1,0 +1,17 @@
+{
+    "addons": ["heroku-postgresql"],
+    "buildpacks": [
+        {
+            "url": "heroku/php"
+        }
+    ],
+    "env": {
+        "APP_NAME": "team-8-u05-review",
+        "APP_ENV": "review",
+        "APP_DEBUG": "true",
+        "DB_CONNECTION": "pgsql",
+        "APP_KEY": {
+            "generator": "secret"
+        }
+    }
+}

@@ -45,7 +45,7 @@
           Movie:
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            {{ $review->title->name }}
+            {{ $review->title->name }}&nbsp;({{ $review->title->publ_date }})
         </dd>
       </div>
 
@@ -56,7 +56,7 @@
           Written by:
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            {{$review->user->name}}
+            {{$review->user->name}} &nbsp;({{$review->user->role->name}})
         </dd>
       </div>
 
