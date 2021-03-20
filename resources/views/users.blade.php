@@ -31,7 +31,7 @@
       {{$user['name']}}
     </h3>
     <p class="mt-1 max-w-2xl text-sm text-gray-500">
-     Id:{{$user['id']}}
+     Id:{{$user['id']}}&nbsp; ({{$user->role->name}})
     </p>
 
   </div>
@@ -66,12 +66,15 @@
             @foreach  ($user->titles()->get() as $title )
                 @if ($counter > 0 ) @php $delim = "| ";@endphp @endif
 
-               {{$delim}}{{Str::of($title->name)->trim()}}
+               {{-- {{$delim}}{{Str::of($title->name)->trim()}} --}}
+  {{$delim}}<a class=" text-blue-700 underline" href="{{ url('/').'/title/'.$title->id}}">{{$title->name}}</a>
 
                 @php $counter++; @endphp
             @endforeach
         @else
-            {{ $user->titles()->get()->first()->name }}
+            {{-- {{ $user->titles()->get()->first()->name }} --}}
+          <a class=" text-blue-700 underline" href="{{ url('/').'/title/'.$user->titles()->get()->first()->id}}">{{$user->titles()->get()->first()->name}}</a>
+
         @endif
     @endif
         </dd>

@@ -31,6 +31,8 @@ Route::resource('title', TitleController::class);
 
 Route::resource('user', UserController::class);
 
+//Route::resource('role', RoleController::class);
+Route::get('/roles', [RoleController::class, 'index']);
 
 Route::resource('genre', GenreController::class);
 

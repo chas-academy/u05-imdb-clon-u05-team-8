@@ -15,8 +15,14 @@ class CreateGenreTitlesTable extends Migration
     {
         Schema::create('genre_title', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('title_id');
-            $table->tinyInteger('genre_id');
+            $table->foreignId('title_id')
+      ->constrained()
+      ->onUpdate('cascade')
+      ->onDelete('cascade');
+            $table->foreignId('genre_id')
+      ->constrained()
+      ->onUpdate('cascade')
+      ->onDelete('cascade');
 
             $table->timestamps();
         });

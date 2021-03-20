@@ -16,5 +16,6 @@ class RolesTableSeeder extends Seeder
     {
         //
         Role::create(array('name' =>'Administrator'));
+        Role::create(array('name' =>'User'));
     }
 }

@@ -16,7 +16,13 @@ class CreateTitlesTable extends Migration
         Schema::create('titles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->tinyInteger('user_id');
+            $table->date('publ_date');
+
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
 
             $table->timestamps();
         });
