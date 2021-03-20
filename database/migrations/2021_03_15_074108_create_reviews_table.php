@@ -16,15 +16,12 @@ class CreateReviewsTable extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('user_id')->constrained()
-            ->onUpdate('cascade')
-      ->onDelete('cascade');
-            $table->foreignId('title_id')->constrained()->onUpdate('cascade')
-      ->onDelete('cascade');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('title_id')->constrained();
 
             // 0 is false, 1 is true
             $table->boolean('approve')->nullable();
-
+            
             $table->text('body');
 
             $table->timestamps();

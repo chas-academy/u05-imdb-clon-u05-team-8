@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Role;
-use App\Models\User;
+use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
@@ -16,24 +15,6 @@ class RoleController extends Controller
     public function index()
     {
         //
-        $roles = Role::all();
-
-
-        echo("<h2>Roles</h2>");
-
-        echo("RoleController index()");
-
-
-        foreach ($roles as $role) {
-            echo("<br /><br /><u>Role: ".$role->name."</u>");
-
-            $users = $role->users()->get();
-
-            foreach ($users as $user) {
-                echo("<br />User: ".$user->name);
-            }
-        }
-        echo('<br /><br /><a  href="http://u05.test/">Home</a>');
     }
 
     /**

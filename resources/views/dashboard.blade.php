@@ -10,23 +10,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-
-                @auth
-                    <?php $user = Auth::user(); ?>
-                    {{$user->name}} - You're logged in as {{$user->role->name}}
-                    <br />
-                    <br />
-                    @if ( $user->role->name == "Administrator")
-
-                        Logged in as admin - admin panel goes here
-
-                    @else
-
-                        Logged in as user - user panel goes here
-
-                    @endif
-                @endauth
-
+                    You're logged in!
                 </div>
             </div>
         </div>

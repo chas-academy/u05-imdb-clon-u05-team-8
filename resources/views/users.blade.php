@@ -31,7 +31,7 @@
       {{$user['name']}}
     </h3>
     <p class="mt-1 max-w-2xl text-sm text-gray-500">
-     Id:{{$user['id']}}&nbsp; ({{$user->role->name}})
+     Id:{{$user['id']}}
     </p>
 
   </div>
