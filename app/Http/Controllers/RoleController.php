@@ -34,7 +34,7 @@ class RoleController extends Controller
             }
         }
 
-        echo("<br /><br /><a href='".url()->previous()."'>Back</a>");
+        echo("<br /><br /><a href='".url()->previous()."'>Back</a><br />");
     }
 
     /**
