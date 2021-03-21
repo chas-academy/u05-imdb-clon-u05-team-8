@@ -30,12 +30,30 @@
 
 
         <h1>IMDB-CLONE-LOGO</h1>
-
+        <nav class="flex items-center justify-between max-w-7xl mx-auto sm:px-6 lg:px-8 pl-6 mt-16">
+        <ul class="flex">
+            <li class="mr-16 text-3xl">
+              <a class="text-gray-500 hover:text-gray-800" href="#">Contact</a>
+            </li>
+            <li class="mr-16 text-3xl">
+              <a class="text-gray-500 hover:text-gray-800" href="#">About Us</a>
+            </li>
+            <li class="mr-16 text-3xl">
+              <a class="text-gray-500 hover:text-gray-800" href="#">New Movies</a>
+            </li>
+            <li class="mr-16 text-3xl">
+              <a class="text-gray-500 hover:text-gray-800" href="#">Top Movies</a>
+            </li>
+            <li class="mr-16 text-3xl">
+              <a class="text-gray-500 hover:text-gray-800" href="#">Watchlist</a>
+            </li>
+          </ul>
+        </nav>
 
         <h2 class="text-4xl mt-40 text-center">Coming soon</h2>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-28">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-28 pl-6">
                 <h3 class="text-4xl pb-6 bg-white border-b border-gray-400">New Movies</h3>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="text-2xl pt-6 bg-white grid grid-cols-5 gap-1">
@@ -51,7 +69,7 @@
         </div>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-28">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-28 pl-6">
                 <h3 class="text-4xl pb-6 bg-white border-b border-gray-400">New TV-Shows</h3>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="text-2xl pt-6 bg-white grid grid-cols-5 gap-1">
@@ -68,8 +86,8 @@
 
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-28">
-                <h3 class="text-4xl pb-6 bg-white border-b border-gray-400">Top 5 Movies</h3>
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-28 pl-6">
+                <h3 class="text-4xl pb-6 bg-white border-b border-gray-400">Movie Tips</h3>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="text-2xl pt-6 bg-white grid grid-cols-5 gap-1">
                         @foreach($titles->slice(0, 5) as $title)
@@ -86,14 +104,14 @@
 
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-28">
-                <h3 class="text-4xl pb-6 bg-white border-b border-gray-400">Top 5 TV-Shows</h3>
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-28 pl-6">
+                <h3 class="text-4xl pb-6 bg-white border-b border-gray-400">TV-Show Tips</h3>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="text-2xl pt-6 bg-white grid grid-cols-5 gap-1">
                         @foreach($titles->slice(0, 5) as $title)
                         <div>
                             <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>                           
-                            <a class=" text-blue-500 underline" href="{{ url('/').'/genre/'.$title->id}}">Read more</a>
+                            <a class="text-blue-500 underline" href="{{ url('/').'/genre/'.$title->id}}">Read more</a>
                         </div>
                         @endforeach
                     </div>
