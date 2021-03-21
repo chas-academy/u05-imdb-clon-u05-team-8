@@ -22,12 +22,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/start', function () {
-    return view('index');
-});
+Route::resource('start', TitleController::class);
+
+// Route::get('/start', function () {
+//     return view('index');
+// });
+
+// Route::get('/start', TitleController::class);
 
 
-Route::resource('title', TitleController::class);
+// Route::resource('title', TitleController::class);
 
 Route::resource('user', UserController::class);
 

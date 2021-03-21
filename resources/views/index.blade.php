@@ -33,15 +33,78 @@
 
 
         <h2 class="text-4xl mt-40 text-center">Coming soon</h2>
+
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <h3 class="text-4xl p-6 bg-white">New Movies</h3>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="text-4xl p-6 bg-white border-b border-gray-200">
-                        Movies goes here
+                    <div class="text-2xl p-6 bg-white border-b border-gray-200 grid grid-cols-5 gap-1">
+                        @foreach($titles->slice(0, 5) as $title)
+                        <div>
+                            <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>                           
+                            <a class=" text-blue-500 underline" href="{{ url('/').'/genre/'.$title->id}}">Read more</a>
+                        </div>   
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <h3 class="text-4xl p-6 bg-white">New TV-Shows</h3>
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="text-2xl p-6 bg-white border-b border-gray-200 grid grid-cols-5 gap-1">
+                        @foreach($titles ->slice(0, 5) as $title)
+                        <div>
+                            <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>                           
+                            <a class=" text-blue-500 underline" href="{{ url('/').'/genre/'.$title->id}}">Read more</a>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <h3 class="text-4xl p-6 bg-white">Top 5 Movies</h3>
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="text-2xl p-6 bg-white border-b border-gray-200 grid grid-cols-5 gap-1">
+                        @foreach($titles->slice(0, 5) as $title)
+                        <div>
+                            <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>                           
+                            <a class=" text-blue-500 underline" href="{{ url('/').'/genre/'.$title->id}}">Read more</a>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <h3 class="text-4xl p-6 bg-white">Top 5 TV-Shows</h3>
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="text-2xl p-6 bg-white border-b border-gray-200 grid grid-cols-5 gap-1">
+                        @foreach($titles->slice(0, 5) as $title)
+                        <div>
+                            <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>                           
+                            <a class=" text-blue-500 underline" href="{{ url('/').'/genre/'.$title->id}}">Read more</a>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+ 
+
+
 
 
     </body>
