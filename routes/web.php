@@ -24,14 +24,7 @@ Route::get('/', function () {
 
 Route::resource('start', TitleController::class);
 
-// Route::get('/start', function () {
-//     return view('index');
-// });
-
-// Route::get('/start', TitleController::class);
-
-
-// Route::resource('title', TitleController::class);
+Route::resource('title', TitleController::class);
 
 Route::resource('user', UserController::class);
 

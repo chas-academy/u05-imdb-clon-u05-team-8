@@ -50,17 +50,17 @@
           </ul>
         </nav>
 
-        <h2 class="text-4xl mt-40 text-center">Coming soon</h2>
+        <h2 class="text-4xl mt-40 text-center mt-72">Coming soon</h2>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-28 pl-6">
-                <h3 class="text-4xl pb-6 bg-white border-b border-gray-400">New Movies</h3>
+                <h3 class="text-4xl pb-6 bg-white border-b border-gray-800">New Movies</h3>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="text-2xl pt-6 bg-white grid grid-cols-5 gap-1">
                         @foreach($titles->slice(0, 5) as $title)
                         <div>
                             <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>                           
-                            <a class=" text-blue-500 underline" href="{{ url('/').'/genre/'.$title->id}}">Read more</a>
+                            <a class=" text-blue-500 underline" href="{{ url('/').'/title/'.$title->id}}">Read more</a>
                         </div>   
                         @endforeach
                     </div>
@@ -120,9 +120,11 @@
         </div>
 
 
- 
-
-
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-28 pl-6">
+                <h3 class="text-4xl pb-6 bg-white text-center mt-48">FOOTER</h3>
+            </div>
+        </div>
 
 
     </body>
