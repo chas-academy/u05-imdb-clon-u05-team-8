@@ -69,10 +69,10 @@ Vet inte om instruktionerna fungerar för alla - vi får uppdatera här vartefte
 ### 2021-03-20 Heroku Deployment
 
     Jag har uppdaterat filer för att fungera med Heroku.
+    Gör så här:
 
--   Gör så här:
--   Pusha en branch till GitHub som du vill testa med Heroku (t.ex. i mobilen).
+-   Pusha en branch till GitHub som du vill testa med Heroku, t.ex. i mobilen.
 -   Logga in till Heroku, skapa en pipeline, koppla den till vårt repo: u05-imdb-clon-u05-team-8.
 -   Enable Review Apps på pipeline.
 -   Skapa en Pull Request på din branch.
--   Gå till Heroku - Skapa Review App från aktuell Pull Request.
+-   Gå till Heroku - Skapa en Review App från aktuell Pull Request.
