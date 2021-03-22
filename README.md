@@ -2,8 +2,6 @@
 
 Team 8 - Laravel projekt med Breeze och Tailwind CSS installerat.
 
--
-
 Instruktion nedan för att komma igång med en lokal version av repot.
 Vet inte om instruktionerna fungerar för alla - vi får uppdatera här vartefter.
 
@@ -47,7 +45,7 @@ Vet inte om instruktionerna fungerar för alla - vi får uppdatera här vartefte
 
 -   17. vagrant reload --provision // starta om Vagrant från din Homestead mapp
 
--   18. Gå till adminer från din browser, logga in och skapa en databas (Create Database) med samma namn som du valde i .env-filen ovan.
+-   18. Gå till adminer i din browser, logga in och skapa en databas (Create Database) med samma namn som du valde i .env-filen ovan.
 
 -   19. vagrant ssh // logga in till homestead-boxen
 
@@ -67,3 +65,14 @@ Vet inte om instruktionerna fungerar för alla - vi får uppdatera här vartefte
 -   26. git checkout -b testbranch
 
 -   27. Skriv kod / Testa lokalt / Push till GitHub / Skapa Pull request.
+
+### 2021-03-20 Heroku Deployment
+
+    Jag har uppdaterat filer för att fungera med Heroku.
+    Gör så här:
+
+-   Pusha en branch till GitHub som du vill testa med Heroku, t.ex. i mobilen.
+-   Logga in till Heroku, skapa en pipeline, koppla den till vårt repo: u05-imdb-clon-u05-team-8.
+-   Enable Review Apps på pipeline.
+-   Skapa en Pull Request på din branch.
+-   Gå till Heroku - Skapa en Review App från aktuell Pull Request.

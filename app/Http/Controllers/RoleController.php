@@ -17,12 +17,8 @@ class RoleController extends Controller
     {
         //
         $roles = Role::all();
-
-
         echo("<h2>Roles</h2>");
-
         echo("RoleController index()");
-
 
         foreach ($roles as $role) {
             echo("<br /><br /><u>Role: ".$role->name."</u>");
@@ -33,7 +29,8 @@ class RoleController extends Controller
                 echo("<br />User: ".$user->name);
             }
         }
-        echo('<br /><br /><a  href="http://u05.test/">Home</a>');
+
+        echo("<br /><br /><a href='".url()->previous()."'>Back</a><br />");
     }
 
     /**
