@@ -18,11 +18,7 @@ use App\Http\Controllers\ReviewController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::resource('start', TitleController::class);
+Route::get('/', [TitleController::class, 'index']);
 
 Route::resource('title', TitleController::class);
 
