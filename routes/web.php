@@ -20,6 +20,10 @@ use App\Http\Controllers\ReviewController;
 
 Route::get('/', [TitleController::class, 'index']);
 
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
 Route::resource('title', TitleController::class);
 
 Route::resource('user', UserController::class);

@@ -15,7 +15,7 @@
         {{-- @include('layouts.navigation') --}}
         @if (Route::has('login'))
         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            <a class="pl-6 mr-4 text-sm text-gray-700 underline" href="{{ url('/start') }}">Home</a>
+            <a class="pl-6 mr-4 text-sm text-gray-700 underline" href="{{ url('/') }}">Home</a>
             @auth
                 <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
             @else
@@ -33,7 +33,7 @@
         <nav class="flex items-center justify-between max-w-7xl mx-auto sm:px-6 lg:px-8 pl-6 mt-16">
         <ul class="flex">
             <li class="mr-16 text-3xl">
-              <a class="text-gray-500 hover:text-gray-800" href="#">Contact</a>
+              <a class="text-gray-500 hover:text-gray-800" href="/">Home</a>
             </li>
             <li class="mr-16 text-3xl">
               <a class="text-gray-500 hover:text-gray-800" href="#">About Us</a>
