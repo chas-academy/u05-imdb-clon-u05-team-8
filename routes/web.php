@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ListingController;
+use App\Models\Title;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,9 @@ use App\Http\Controllers\ListingController;
 |
 */
 
-Route::get('/', [TitleController::class, 'index']);
+Route::get('/', function () {
+    return view('index', ['titles' => Title::all()]);
+});
 
 Route::get('/welcome', function () {
     return view('welcome');

@@ -17,8 +17,8 @@ class TitleController extends Controller
     public function index()
     {
         $titles = Title::all();
-        // return view('titles', compact('titles'));
-        return view('index', compact('titles'));
+        return view('titles', compact('titles'));
+        // return view('index', compact('titles'));
     }
 
     /**

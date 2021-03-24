@@ -12,21 +12,9 @@
 
     </head>
     <body>
-        {{-- @include('layouts.navigation') --}}
-        @if (Route::has('login'))
-        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            <a class="pl-6 mr-4 text-sm text-gray-700 underline" href="{{ url('/') }}">Home</a>
-            @auth
-                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-            @else
-                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                @endif
-            @endauth
-        </div>
-    @endif
+
+        @include('menu')
 
 
         <h1>IMDB-CLONE-LOGO</h1>
@@ -50,7 +38,7 @@
           </ul>
         </nav>
 
-        <h2 class="text-4xl mt-40 text-center mt-72">Coming soon</h2>
+        <h2 class="text-4xl mt-40 text-center ">Coming soon</h2>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-28 pl-6">
@@ -59,9 +47,9 @@
                     <div class="text-2xl pt-6 bg-white grid grid-cols-5 gap-1">
                         @foreach($titles->slice(0, 5) as $title)
                         <div>
-                            <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>                           
+                            <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>
                             <a class=" text-blue-500 underline" href="{{ url('/').'/title/'.$title->id}}">Read more</a>
-                        </div>   
+                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -75,8 +63,8 @@
                     <div class="text-2xl pt-6 bg-white grid grid-cols-5 gap-1">
                         @foreach($titles ->slice(0, 5) as $title)
                         <div>
-                            <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>                           
-                            <a class=" text-blue-500 underline" href="{{ url('/').'/genre/'.$title->id}}">Read more</a>
+                            <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>
+                            <a class=" text-blue-500 underline" href="{{ url('/').'/title/'.$title->id}}">Read more</a>
                         </div>
                         @endforeach
                     </div>
@@ -92,8 +80,8 @@
                     <div class="text-2xl pt-6 bg-white grid grid-cols-5 gap-1">
                         @foreach($titles->slice(0, 5) as $title)
                         <div>
-                            <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>                           
-                            <a class=" text-blue-500 underline" href="{{ url('/').'/genre/'.$title->id}}">Read more</a>
+                            <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>
+                            <a class=" text-blue-500 underline" href="{{ url('/').'/title/'.$title->id}}">Read more</a>
                         </div>
                         @endforeach
                     </div>
@@ -110,8 +98,8 @@
                     <div class="text-2xl pt-6 bg-white grid grid-cols-5 gap-1">
                         @foreach($titles->slice(0, 5) as $title)
                         <div>
-                            <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>                           
-                            <a class="text-blue-500 underline" href="{{ url('/').'/genre/'.$title->id}}">Read more</a>
+                            <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>
+                            <a class="text-blue-500 underline" href="{{ url('/').'/title/'.$title->id}}">Read more</a>
                         </div>
                         @endforeach
                     </div>

@@ -10,7 +10,7 @@
                     </a>
                     <!-- Added Home link u05 -->
                     <a class="pl-6 text-sm text-gray-700 underline" href="{{ url('/') }}">Home</a>
-                    <a class="pl-6 text-sm text-gray-700 underline" href="{{ url('/welcome') }}">Welcome</a>
+                    <a class="pl-6 text-sm text-gray-700 underline" href="{{ url('/welcome') }}">[Temporary Test of Routes]</a>
                 </div>
 
                 <!-- Navigation Links -->
