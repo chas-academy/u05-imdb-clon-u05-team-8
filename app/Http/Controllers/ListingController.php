@@ -15,6 +15,9 @@ class ListingController extends Controller
     public function index()
     {
         //
+
+        $listings = Listing::all();
+        return view('listings', compact('listings'));
     }
 
     /**
@@ -48,6 +51,7 @@ class ListingController extends Controller
     {
         //
     }
+
 
     /**
      * Show the form for editing the specified resource.

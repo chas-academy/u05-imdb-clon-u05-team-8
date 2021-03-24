@@ -52,6 +52,7 @@ $appRoutes = array (
   array("user","index()"), //index
   array("genre","index()"), //index
   array("title","index()"), //index
+  array("listing","index()"), //index
   array("reviews","index()"), //index
   array("roles","index()"), //index
   array("title/".$id,"show()"), //show

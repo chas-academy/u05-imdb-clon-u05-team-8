@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ListingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,8 @@ Route::get('/', function () {
 });
 
 Route::resource('title', TitleController::class);
+
+Route::resource('listing', ListingController::class);
 
 Route::resource('user', UserController::class);
 
