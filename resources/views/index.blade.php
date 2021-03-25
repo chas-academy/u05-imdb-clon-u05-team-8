@@ -13,11 +13,13 @@
     </head>
     <body>
 
-
         @include('menu')
-
-
         <h1>IMDB-CLONE-LOGO</h1>
+
+        @foreach($genres as $g)
+                &nbsp;<a class=" text-blue-500 underline" href="{{ url('/').'/genre/'.$g->id}}">{{$g->name}}</a>&nbsp;&nbsp;
+        @endforeach
+
         <nav class="flex items-center justify-between max-w-7xl mx-auto sm:px-6 lg:px-8 pl-6 mt-16">
         <ul class="flex">
             <li class="mr-16 text-3xl">

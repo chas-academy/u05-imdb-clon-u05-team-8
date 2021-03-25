@@ -7,7 +7,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ListingController;
-use App\Models\Title;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +18,9 @@ use App\Models\Title;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('index', ['titles' => Title::all()]);
+    return view('index', ['titles' => TitleController::allTitles(),
+                          'genres' => GenreController::allGenres()]);
 });
 
 Route::get('/welcome', function () {

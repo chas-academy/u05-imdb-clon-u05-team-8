@@ -19,6 +19,12 @@ class GenreController extends Controller
         return view('genre', compact('genres'));
     }
 
+    // Return all Genres
+    public static function allGenres()
+    {
+        return Genre::all();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

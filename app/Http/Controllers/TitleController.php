@@ -18,7 +18,11 @@ class TitleController extends Controller
     {
         $titles = Title::all();
         return view('titles', compact('titles'));
-        // return view('index', compact('titles'));
+    }
+    // Return all titles
+    public static function allTitles()
+    {
+        return Title::all();
     }
 
     /**
