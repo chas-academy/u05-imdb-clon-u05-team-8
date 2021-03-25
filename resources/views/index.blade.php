@@ -16,6 +16,7 @@
         @include('menu')
         <h1>IMDB-CLONE-LOGO</h1>
 
+       <!-- Example loop over all available Ganres -->
         @foreach($genres as $g)
                 &nbsp;<a class=" text-blue-500 underline" href="{{ url('/').'/genre/'.$g->id}}">{{$g->name}}</a>&nbsp;&nbsp;
         @endforeach

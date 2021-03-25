@@ -21,7 +21,11 @@ class ReviewController extends Controller
             'reviews' => $reviews
         ]);
     }
-
+    // Return all reviews witout a view
+    public static function allReviews()
+    {
+        return Review::all();
+    }
     /**
      * Show the form for creating a new resource.
      *

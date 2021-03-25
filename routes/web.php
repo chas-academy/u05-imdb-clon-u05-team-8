@@ -41,7 +41,8 @@ Route::resource('genre', GenreController::class);
 Route::get('/reviews', [ReviewController::class, 'index']);
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard', ['titles'  => TitleController::allTitles(),
+                              'reviews' => ReviewController::allReviews()]);
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
