@@ -16,6 +16,13 @@ class CreateTitlesTable extends Migration
         Schema::create('titles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->date('publ_date')->default('1999-12-31');
+
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
 
             $table->timestamps();
         });
@@ -30,4 +37,7 @@ class CreateTitlesTable extends Migration
     {
         Schema::dropIfExists('titles');
     }
+    // till genre titles
+    //  $table->tinyInteger('genre_id');
+    //         $table->tinyInteger('title_id');
 }

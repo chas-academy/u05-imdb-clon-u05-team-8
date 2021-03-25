@@ -6,6 +6,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Title;
+use App\Models\Review;
+use App\Models\Role;
 
 class User extends Authenticatable
 {
@@ -40,4 +43,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function titles()
+    {
+        return $this->hasMany('App\Models\Title');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+        // return $this->belongsTo('App\Models\Role');
+    }
 }

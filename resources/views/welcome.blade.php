@@ -19,6 +19,18 @@
                         <br>
                         <h1 class="text-2xl">Routes</h1>
                         @include('menu')
+<p>
+@auth
+
+    <?php
+    $user = auth()->user();
+    echo ($user->name." - You are logged in now!");
+    ?>
+
+@else
+    You are not logged in!
+@endauth
+</p><br />
 <?php
 $res = DB::select('select MIN(id) as id from titles');
 //var_dump($res);
@@ -26,17 +38,23 @@ $res = DB::select('select MIN(id) as id from titles');
 $id = $res[0]->id;
 if(empty($id)){
 
-    DB::insert('INSERT INTO titles (name) VALUES ("Test Title") ');
+    DB::insert('INSERT INTO titles (name,user_id) VALUES ("Test Title",2) ');
+
 
     $res = DB::select('select MIN(id) as id from titles');
     $id = $res[0]->id;
+    DB::insert('INSERT INTO genre_title (title_id,genre_id) VALUES ('.$id.',5) ');
 }
 
 $appRoutes = array (
 
   /*   route, controller method  */
   array("user","index()"), //index
+  array("genre","index()"), //index
   array("title","index()"), //index
+  array("listing","index()"), //index
+  array("reviews","index()"), //index
+  array("roles","index()"), //index
   array("title/".$id,"show()"), //show
   array("title/".$id."/edit", "edit() -> update() -> index()"), //edit
   array("title/create","create() -> store() -> index()"), //create
@@ -45,6 +63,7 @@ $appRoutes = array (
 );
 
 for ( $i=0; $i< count($appRoutes);$i++){  ?>
+
 
 <div class="bg-green-100 border border-green-200 overflow-hidden rounded-md">
   <div class="px-4 py-5 sm:px-6">
