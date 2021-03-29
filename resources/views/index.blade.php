@@ -40,17 +40,17 @@
           </ul>
         </nav>
 
-        <h2 class="text-4xl mt-40 text-center ">Coming soon</h2>
+        <h2 class="lg:text-5xl text-4xl mt-40 text-center ">Coming soon</h2>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-28 pl-6">
-                <h3 class="text-4xl pb-6 bg-white border-b border-gray-800">New Movies</h3>
+                <h3 class="lg:text-4xl text-3xl pb-6 bg-white border-b border-gray-400">New Movies</h3>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="text-2xl pt-6 bg-white grid grid-cols-5 gap-1">
                         @foreach($titles->slice(0, 5) as $title)
-                        <div>
-                            <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>
-                            <a class=" text-blue-500 underline" href="{{ url('/').'/title/'.$title->id}}">Read more</a>
+                        <div class="lg:w-40 md:w-28 w-28">
+                            <p class="lg:text-2xl text-lg lg:h-36 h-32 font-semibold">{{$title->name}}</p>
+                            <a class="lg:text-2xl text-lg text-blue-500 underline" href="{{ url('/').'/title/'.$title->id}}">Read more</a>
                         </div>
                         @endforeach
                     </div>
@@ -60,13 +60,13 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-28 pl-6">
-                <h3 class="text-4xl pb-6 bg-white border-b border-gray-400">New TV-Shows</h3>
+                <h3 class="lg:text-4xl text-3xl pb-6 bg-white border-b border-gray-400">New TV-Shows</h3>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="text-2xl pt-6 bg-white grid grid-cols-5 gap-1">
                         @foreach($titles ->slice(0, 5) as $title)
-                        <div>
-                            <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>
-                            <a class=" text-blue-500 underline" href="{{ url('/').'/title/'.$title->id}}">Read more</a>
+                        <div class="lg:w-40 md:w-28 w-28">
+                            <p class="lg:text-2xl text-lg lg:h-36 h-32 font-semibold">{{$title->name}}</p>
+                            <a class="lg:text-2xl text-lg text-blue-500 underline" href="{{ url('/').'/title/'.$title->id}}">Read more</a>
                         </div>
                         @endforeach
                     </div>
@@ -77,13 +77,13 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-28 pl-6">
-                <h3 class="text-4xl pb-6 bg-white border-b border-gray-400">Movie Tips</h3>
+                <h3 class="lg:text-4xl text-3xl pb-6 bg-white border-b border-gray-400">Movie Tips</h3>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="text-2xl pt-6 bg-white grid grid-cols-5 gap-1">
                         @foreach($titles->slice(0, 5) as $title)
-                        <div>
-                            <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>
-                            <a class=" text-blue-500 underline" href="{{ url('/').'/title/'.$title->id}}">Read more</a>
+                        <div class="lg:w-40 md:w-28 w-28">
+                            <p class="lg:text-2xl text-lg lg:h-36 h-32 font-semibold">{{$title->name}}</p>
+                            <a class="lg:text-2xl text-lg text-blue-500 underline" href="{{ url('/').'/title/'.$title->id}}">Read more</a>
                         </div>
                         @endforeach
                     </div>
@@ -95,13 +95,13 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-28 pl-6">
-                <h3 class="text-4xl pb-6 bg-white border-b border-gray-400">TV-Show Tips</h3>
+                <h3 class="lg:text-4xl text-3xl pb-6 bg-white border-b border-gray-400">TV-Show Tips</h3>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="text-2xl pt-6 bg-white grid grid-cols-5 gap-1">
                         @foreach($titles->slice(0, 5) as $title)
-                        <div>
-                            <h3>{{$title->name}}&nbsp;({{$title->id}})</h3>
-                            <a class="text-blue-500 underline" href="{{ url('/').'/title/'.$title->id}}">Read more</a>
+                        <div class="lg:w-40 md:w-28 w-28">
+                            <p class="lg:text-2xl text-lg lg:h-36 h-32 font-semibold">{{$title->name}}</p>
+                            <a class="lg:text-2xl text-lg text-blue-500 underline" href="{{ url('/').'/title/'.$title->id}}">Read more</a>
                         </div>
                         @endforeach
                     </div>
