@@ -21,7 +21,11 @@ class ReviewController extends Controller
             'reviews' => $reviews
         ]);
     }
-
+    // Return all reviews witout a view
+    public static function allReviews()
+    {
+        return Review::all();
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -72,10 +76,15 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Review $review)
     {
-        //
+        $review->update($request->all());
+
+        return redirect()->route('dashboard')
+                              ->with('message', "Review of \"".$review->title->name."\" by ".$review->user->name.' - has been approved.');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
