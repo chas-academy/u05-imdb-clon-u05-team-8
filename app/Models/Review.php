@@ -4,13 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Title;
 
 class Review extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'body'
+        'body',
+        'user_id'
     ];
 
     public function user()

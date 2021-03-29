@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Review;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -15,7 +17,7 @@ class ReviewController extends Controller
     public function index()
     {
         //
-        $reviews = Review::get();
+        $reviews = Review::all();
 
         return view('reviews', [
             'reviews' => $reviews
@@ -39,8 +41,28 @@ class ReviewController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $request->validate([
+            'body' => 'required',
+          //'user_id' =>'required',
+        ]);
+
+        // Title::create($request->all());
+
+        if (Auth::check()) {
+            $review = new Review;
+            $review->body = $request->body;
+            $review->user_id = Auth::user()->id;
+            $review->title_id = $request->title_id;
+            $review->save();
+
+            return redirect('title')
+                ->with('message', 'Review created');
+        } else {
+            return redirect()->route('create-review')
+                ->with('message', "You have to be logged in when creating reviews");
+        }
+        
     }
 
     /**
@@ -51,7 +73,7 @@ class ReviewController extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**
@@ -62,7 +84,7 @@ class ReviewController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -74,7 +96,7 @@ class ReviewController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -85,6 +107,6 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }
