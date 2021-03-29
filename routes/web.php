@@ -33,17 +33,21 @@ Route::resource('title', TitleController::class);
 
 Route::resource('listing', ListingController::class);
 
+Route::put('/user/{id}/permit', [UserController::class, 'permit']);
+
 Route::resource('user', UserController::class);
 
-//Route::resource('role', RoleController::class);
 Route::get('/roles', [RoleController::class, 'index']);
 
 Route::resource('genre', GenreController::class);
 
-Route::get('/reviews', [ReviewController::class, 'index']);
+//Route::get('/reviews', [ReviewController::class, 'index']);
+Route::resource('review', ReviewController::class);
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard', ['titles'  => TitleController::allTitles(),
+                              'users'   => UserController::allUsers(),
+                              'reviews' => ReviewController::allReviews()]);
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

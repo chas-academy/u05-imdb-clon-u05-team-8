@@ -19,11 +19,7 @@ class TitleController extends Controller
         $titles = Title::all();
         return view('titles', compact('titles'));
     }
-    // Return all titles
-    public static function allTitles()
-    {
-        return Title::all();
-    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -122,5 +118,11 @@ class TitleController extends Controller
         //   return redirect()->back()->with('message', $title->name.' - removed.');
         return redirect()->route('title.index')
                             ->with('message', $title->name.' - removed.');
+    }
+
+    // Return all titles
+    public static function allTitles()
+    {
+        return Title::all();
     }
 }
