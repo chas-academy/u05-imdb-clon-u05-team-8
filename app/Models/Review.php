@@ -13,8 +13,8 @@ class Review extends Model
 
     protected $fillable = [
         'body',
-        'user_id'
-        'approve',
+        'user_id',
+        'approve'
     ];
 
     public function user()
