@@ -17,9 +17,9 @@
         <h1>IMDB-CLONE-LOGO</h1>
 
        <!-- Example loop over all available Ganres -->
-        @foreach($genres as $g)
+        {{-- @foreach($genres as $g)
                 &nbsp;<a class=" text-blue-500 underline" href="{{ url('/').'/genre/'.$g->id}}">{{$g->name}}</a>&nbsp;&nbsp;
-        @endforeach
+        @endforeach --}}
 
         <nav class="flex items-center justify-between max-w-7xl mx-auto sm:px-6 lg:px-8 pl-6 mt-16">
         <ul class="flex">
