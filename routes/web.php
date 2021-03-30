@@ -27,6 +27,8 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::resource('reviews', ReviewController::class);
+
 Route::resource('title', TitleController::class);
 
 Route::resource('listing', ListingController::class);
