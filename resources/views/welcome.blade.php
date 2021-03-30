@@ -91,7 +91,7 @@ for ( $i=0; $i< count($appRoutes);$i++){  ?>
                     method="POST">
                     @method('DELETE')
                     @csrf
-                    <span class=" text-sm text-gray-700">
+                    <span class=" text-sm text-blue-600">
                         <button type="submit" class="focus:outline-none  underline">
                          {{ url('/').'/'.$appRoutes [$i][0] }}
                         </button>

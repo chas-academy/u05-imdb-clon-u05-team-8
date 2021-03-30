@@ -74,6 +74,14 @@ class ListingController extends Controller
     public function update(Request $request, Listing $listing)
     {
         //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $listing->update($request->all());
+
+        return redirect()->route('dashboard')
+                            ->with('message', "List \"".$request['oldname']."\" renamed to: \"" .$listing->name. "\".");
     }
 
     /**
@@ -85,5 +93,12 @@ class ListingController extends Controller
     public function destroy(Listing $listing)
     {
         //
+    }
+    // Return all listings (lists)
+    public static function allListings()
+    {
+        // var_dump(Listing::all());
+        $listings = Listing::all();
+        return $listings;
     }
 }

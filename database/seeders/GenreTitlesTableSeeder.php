@@ -14,16 +14,19 @@ class GenreTitlesTableSeeder extends Seeder
      */
     public function run()
     {
+        GenreTitle::create(array('title_id' => 1,'genre_id' => 2 ));
+        GenreTitle::create(array('title_id' => 2,'genre_id' => 2 ));
+        GenreTitle::create(array('title_id' => 3,'genre_id' => 2 ));
 
         // La Jetee
-        GenreTitle::create(array('title_id' => 1,'genre_id' => 3 ));
-        GenreTitle::create(array('title_id' => 1,'genre_id' => 8 ));
+        GenreTitle::create(array('title_id' => 4,'genre_id' => 3 ));
+        GenreTitle::create(array('title_id' => 4,'genre_id' => 6 ));
         //Forrest Gump
-        GenreTitle::create(array('title_id' => 2,'genre_id' => 3 ));
+        GenreTitle::create(array('title_id' => 5,'genre_id' => 3 ));
         //Cast Away
-        GenreTitle::create(array('title_id' => 3,'genre_id' => 3));
+        GenreTitle::create(array('title_id' => 6,'genre_id' => 3));
         // Western
-        GenreTitle::create(array('title_id' => 4,'genre_id' => 9));
-        GenreTitle::create(array('title_id' => 5,'genre_id' => 9));
+        GenreTitle::create(array('title_id' => 7,'genre_id' => 9));
+        GenreTitle::create(array('title_id' => 8,'genre_id' => 9));
     }
 }

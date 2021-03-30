@@ -45,9 +45,10 @@ Route::resource('genre', GenreController::class);
 Route::resource('review', ReviewController::class);
 
 Route::get('/dashboard', function () {
-    return view('dashboard', ['titles'  => TitleController::allTitles(),
-                              'users'   => UserController::allUsers(),
-                              'reviews' => ReviewController::allReviews()]);
+    return view('dashboard', ['titles'   => TitleController::allTitles(),
+                              'users'    => UserController::allUsers(),
+                              'listings' => ListingController::allListings(),
+                              'reviews'  => ReviewController::allReviews()]);
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

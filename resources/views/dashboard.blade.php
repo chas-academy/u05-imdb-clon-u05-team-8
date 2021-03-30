@@ -7,16 +7,15 @@
     </x-slot>
 
     @auth
-        <?php $user = Auth::user(); ?>
+        <?php $userAuth = Auth::user(); ?>
 
-        @if ( $user->role->name == "Administrator")
+        @if ( $userAuth->role->name == "Administrator")
 
 {{--
 <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
 <div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
+    <div class="-mt-8  max-w-7xl mx-auto sm:px-6 lg:px-8">
 
          @if(session()->has('message'))
             <div class="alert alert-success p-6 bg-green-50">
@@ -26,19 +25,19 @@
 
         <div class="bg-white my-6 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6  border border-red-400">
-                <h1>Admin panels:</h1>
+                <h1>Admin panels</h1>
                 <br />
-                    {{$user->name}} - You're logged in with role "{{$user->role->name}}"
+                    {{$userAuth->name}} - You're logged in with role "{{$userAuth->role->name}}"
                 <br />
-                    <p>User have admin rights - Admin panels follows...</p>
+                    <p>You have admin rights - Admin panels follows...</p>
                    <br />
-                   <p>{{$user->name}}'s personal panels <a href="#pp">here</a></p>
+                   <p>{{$userAuth->name}}'s personal panels <a href="#pp">here</a></p>
 
             </div>
         </div>
         <div class="bg-white e my-6 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6  border border-red-400">
-                <h2>Approval of reviews:</h2>
+                <h2>Approval of reviews</h2>
                     <br />
 
                @php $count = 0; @endphp
@@ -78,10 +77,10 @@
                     <br />
                 </div>
             </div>
-        <div class="bg-white e my-6 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="bg-white e myt-6 overflow-hidden shadow-sm sm:rounded-lg">
 
             <div class="p-6  border border-red-400">
-                <h2>Assign administrator privileges:</h2>
+                <h2>Assign administrator privileges</h2>
                     <br />
 
                @php $count = 0; @endphp
@@ -125,23 +124,57 @@
 </div>
 
         @endif
-        <br>
+        <br />
+
         <div id="pp" class="">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+                @if(session()->has('message'))
+                            <div class="alert alert-success p-6 bg-green-50">
+                                {{ session()->get('message') }}
+                            </div>
+                            <br>
+                @endif
+
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border border-green-400">
                         <h1>Personal panel</h1>
                         <br>
-                        Welcome  {{$user->name}}!
+                        Welcome  {{$userAuth->name}}!
                         <br><br>
-                        Logged in User's non-administrative priviliges panels goes here: <br /><br />
+                        Logged in User's personal panels goes here: <br /><br />
                         <ul>
                             <li>Manage My Account</li>
-                            <li>Manage My Lists</li>
                             <li>Manage My Reviews</li>
-
                         </ul>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div id="lists" class="mt-6">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 bg-white border border-green-400">
+                        <h1>Manage Lists</h1>
+                        <br>
+
+        @foreach ($listings as $list)
+            @if( $list->user_id == $userAuth->id)
+
+            <form action="/listing/{{$list->id}}" method="POST">
+                    @csrf
+                    @method('PUT')
+
+                    <input type="hidden" name="oldname" value="{{$list->name}}">
+                    <input type="text" name="name" value="{{$list->name}}">&nbsp;
+                <button class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">Rename</button>
+
+            </form>
+            <br>
+            @endif
+        @endforeach
+
+                     </div>
                 </div>
             </div>
         </div>
