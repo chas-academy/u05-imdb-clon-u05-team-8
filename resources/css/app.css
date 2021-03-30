@@ -1,3 +1,32 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+/* @import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities"; */
+@tailwind base;
+
+@layer base {
+    h1 {
+        @apply text-2xl;
+    }
+    h2 {
+        @apply text-xl;
+    }
+    h3 {
+        @apply text-lg;
+    }
+    h4 {
+        @apply text-base;
+        @apply underline;
+    }
+
+    a {
+        @apply text-blue-600 underline;
+    }
+
+    ul {
+        @apply list-disc;
+        @apply list-inside;
+    }
+}
+
+@tailwind components;
+@tailwind utilities;

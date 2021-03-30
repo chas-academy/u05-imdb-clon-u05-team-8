@@ -1,4 +1,8 @@
-/*! tailwindcss v2.0.3 | MIT License | https://tailwindcss.com */
+/* @import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities"; */
+
+/* ! tailwindcss v2.0.4 | MIT License | https://tailwindcss.com */
 
 /*! modern-normalize v1.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
 
@@ -746,6 +750,38 @@ select {
 
 [type='file']:focus {
   outline: 1px auto -webkit-focus-ring-color;
+}
+
+h1 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+h3 {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+h4 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  text-decoration: underline;
+}
+
+a {
+  --tw-text-opacity: 1;
+  color: rgba(37, 99, 235, var(--tw-text-opacity));
+  text-decoration: underline;
+}
+
+ul {
+  list-style-type: disc;
+  list-style-position: inside;
 }
 
 .container {

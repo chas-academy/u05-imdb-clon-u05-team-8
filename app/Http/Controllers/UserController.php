@@ -73,7 +73,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
@@ -85,5 +84,27 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+    // Return all titles
+    public static function allUsers()
+    {
+        return User::all();
+    }
+
+
+    public function permit(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        $request->validate([
+            'role_id' => 'required',
+        ]);
+
+        $user->role_id = 1;
+        $user->save();
+
+        return redirect()->route('dashboard')
+                ->with('message', "User \"".$user->name.
+                "\" - has been assigned administrative privileges.");
     }
 }

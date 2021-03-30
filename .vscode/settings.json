@@ -1,3 +1,10 @@
 {
-  "jira-plugin.workingProject": ""
+
+  "css.validate": true,
+  "stylelint.enable": false, // Enable sytlelint
+  "css.lint.fontFaceProperties": "ignore",
+  "[css]": {
+
+    "editor.suggest.insertMode": "replace"
+  }
 }

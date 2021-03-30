@@ -16,9 +16,10 @@
         @include('menu')
         <h1>IMDB-CLONE-LOGO</h1>
 
-        @foreach($genres as $g)
+       <!-- Example loop over all available Ganres -->
+        {{-- @foreach($genres as $g)
                 &nbsp;<a class=" text-blue-500 underline" href="{{ url('/').'/genre/'.$g->id}}">{{$g->name}}</a>&nbsp;&nbsp;
-        @endforeach
+        @endforeach --}}
 
         <nav class=" max-w-5xl mx-auto mt-16 rounded-full py-3 bg-gray-800">
             <ul class="flex items-center justify-between ml-8">
