@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+}
+
+body {
+    background-color: #1d2126;
+    color: #f8f8f8;
+    letter-spacing: 2px;
+    word-spacing: 1px;
+    font-family: sans-serif;
+}
+
+main ul {
+    margin: auto;
+    width: 60vw;
+    border: 5px solid #000000;
+    padding-top: 0;
+}
+
+main li {
+    padding-top: 0px !important;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.Accordion {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.Accordion .tabs {
+    padding: 25px 20px 5px 20px;
+    max-width: 600px;
+    list-style: none;
+}
+
+.Accordion .tab {
+    width: 100%;
+}
+
+.Accordion .tab .headline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(248, 248, 248, 0.5);
+    transition: 0.2s ease all;
+    padding: 20px 15px;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.Accordion .tab .headline:hover {
+    background-color: #3a63c3;
+}
+
+.Accordion .tab .headline > h4 {
+    user-select: none;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.Accordion .tab .headline .icon {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border: 1px solid;
+    border-radius: 22px;
+    position: relative;
+}
+
+.Accordion .tab .headline .icon::before {
+    display: block;
+    position: absolute;
+    content: "";
+    top: 10px;
+    left: 6px;
+    width: 10px;
+    height: 2px;
+    background: currentColor;
+}
+
+.Accordion .tab .headline .icon::after {
+    display: block;
+    position: absolute;
+    content: "";
+    top: 6px;
+    left: 10px;
+    width: 2px;
+    height: 10px;
+    background: currentColor;
+    transition: 0.2s ease all;
+}
+
+.Accordion .tab .content {
+    overflow: hidden;
+    padding: 0px 15px;
+    box-sizing: border-box;
+    height: 100%;
+    max-height: 0;
+    transition: 0.4s ease all;
+}
+
+.Accordion .tab--open .Accordion .tab .headline .icon::after {
+    transform: scaleY(0);
+}
+
