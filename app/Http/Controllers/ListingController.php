@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
@@ -92,7 +95,17 @@ class ListingController extends Controller
      */
     public function destroy(Listing $listing)
     {
-        //
+        $user = Auth::user();
+        $name = $listing->name;
+
+        if ($user) {
+            Listing::destroy($listing->id);
+            //   return redirect()->back()->with('message', $title->name.' - removed.');
+            return redirect()->route('dashboard')
+                            ->with('message', $name.' - removed.');
+        } else {
+            return back()->with('message', "You have to have be logged in to delete Lists");
+        }
     }
     // Return all listings (lists)
     public static function allListings()

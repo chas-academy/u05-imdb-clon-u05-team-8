@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Listitem;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 class ListitemController extends Controller
 {
@@ -80,6 +83,16 @@ class ListitemController extends Controller
      */
     public function destroy(Listitem $listitem)
     {
-        //
+        $user = Auth::user();
+        $name = $listitem->title()->get()->first()->name;
+
+        if ($user) {
+            Listitem::destroy($listitem->id);
+            //   return redirect()->back()->with('message', $title->name.' - removed.');
+            return redirect()->route('dashboard')
+                            ->with('message', $name.' - removed from List.');
+        } else {
+            return back()->with('message', "You have to have be logged in to delete Listitems");
+        }
     }
 }

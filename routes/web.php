@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TitleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TitleController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\ListitemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,8 @@ Route::resource('title', TitleController::class);
 
 Route::resource('listing', ListingController::class);
 
+Route::resource('listitem', ListitemController::class);
+
 Route::put('/user/{id}/permit', [UserController::class, 'permit']);
 
 Route::resource('user', UserController::class);
@@ -41,7 +44,6 @@ Route::get('/roles', [RoleController::class, 'index']);
 
 Route::resource('genre', GenreController::class);
 
-//Route::get('/reviews', [ReviewController::class, 'index']);
 Route::resource('review', ReviewController::class);
 
 Route::get('/dashboard', function () {
