@@ -11,8 +11,6 @@
 
         @if ( $userAuth->role->name == "Administrator")
 
-{{--
-<link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
 <div class="py-12">
     <div class="-mt-8  max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -129,21 +127,24 @@
         <div id="pp" class="">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-                @if(session()->has('message'))
-                            <div class="alert alert-success p-6 bg-green-50">
-                                {{ session()->get('message') }}
-                            </div>
-                            <br>
+                @if ( $userAuth->role->name != "Administrator")
+
+                    @if(session()->has('message'))
+                                <div class="alert alert-success p-6 bg-green-50">
+                                    {{ session()->get('message') }}
+                                </div>
+                                <br>
+                    @endif
                 @endif
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border border-green-400">
                         <h1>Personal panel</h1>
                         <br>
-                        Welcome  {{$userAuth->name}}!
+                        Welcome {{$userAuth->name}}!
                         <br><br>
                         Logged in User's personal panels goes here: <br /><br />
-                        <ul>
+                        <ul class="list-disc">
                             <li>Manage My Account</li>
                             <li>Manage My Reviews</li>
                         </ul>

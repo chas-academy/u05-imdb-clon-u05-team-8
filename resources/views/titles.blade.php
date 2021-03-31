@@ -33,11 +33,32 @@
                             </div>
                         @endif --}}
 <br />
+
+@php
+    $is_admin = false;
+@endphp
+
+@auth  <!-- Only check role for Authenticated users -->
+@php
+    $userAuth = Auth::user();
+
+    if ($userAuth->role->id == 1) {
+        $is_admin = true;
+    }
+@endphp
+@endauth
+
+<!-- Display Create button for authenticated users with role Administrator -->
+@if ( $is_admin )
+
 <div class="text-sm">
     <a href="{{action([App\Http\Controllers\TitleController::class, 'create'])}}"
         class="text-sm text-green-700 underline">[Create]</a> new Title.
 </div>
 <br />
+
+@endif
+
 @foreach($titles as $title)
 
 
@@ -56,6 +77,11 @@
             <a href="{{action([App\Http\Controllers\TitleController::class, 'show'], ['title'=>$title])}}"
                 class="text-sm text-grey-700 underline">[Read]</a>
         </div>
+
+        <!-- Display Edit and Delete buttons for authenticated users with role Administrator -->
+
+        @if ( $is_admin )
+
         &nbsp;&nbsp;
         <div class="text-sm">
             <a href="{{action([App\Http\Controllers\TitleController::class, 'edit'], ['title'=>$title])}}"
@@ -74,7 +100,7 @@
                 </span>
         </form>
 
-
+        @endif <!-- end if admin -->
 
     </div>
 

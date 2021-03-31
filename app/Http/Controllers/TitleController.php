@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Title;
 use App\Models\User;
+use App\Models\Role;
+
 use Illuminate\Support\Facades\Auth;
 
 class TitleController extends Controller
@@ -28,7 +30,20 @@ class TitleController extends Controller
      */
     public function create()
     {
-        return view('titles-create', );
+        $user = Auth::user();
+
+        if ($user) {
+            if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
+
+                $title = Title::all();
+
+                return view('titles-create', compact('title'));
+            } else {
+                return back()->with('message', "You have to have administrative rights to create new Titles");
+            }
+        } else {
+            return back()->with('message', "You have to have be logged in to create new Titles");
+        }
     }
 
     /**
@@ -47,17 +62,23 @@ class TitleController extends Controller
 
         // Title::create($request->all());
 
-        if (Auth::check()) {
-            $title = new Title;
-            $title->name = $request->name;
-            $title->user_id = Auth::user()->id;
-            $title->save();
+        $user = Auth::user();
 
-            return redirect()->route('title.index')
+        if ($user) {
+            if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
+                $title = new Title;
+                $title->name = $request->name;
+                $title->user_id = Auth::user()->id;
+                $title->save();
+
+                return redirect()->route('title.index')
                 ->with('message', $request->input('name').' - created.');
+            } else {
+                return redirect()->route('title.index')
+                ->with('message', "You have to be logged in with administrative rights when creating records");
+            }
         } else {
-            return redirect()->route('title.index')
-                ->with('message', "You have to be logged in when creating records");
+            return back()->with('message', "You have to have be logged in to store Titles");
         }
     }
 
@@ -82,7 +103,18 @@ class TitleController extends Controller
      */
     public function edit(Title $title)
     {
-        return view('titles-edit', compact('title'));
+        $user = Auth::user();
+
+        if ($user) {
+            if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
+                return view('titles-edit', compact('title'));
+            } else {
+                return redirect()->route('title.index')
+                ->with('message', "You have to be logged in with administrative rights to edit Titles");
+            }
+        } else {
+            return back()->with('message', "You have to have be logged in to edit Titles");
+        }
     }
 
     /**
@@ -113,11 +145,21 @@ class TitleController extends Controller
      */
     public function destroy(Title $title)
     {
-        //
-        Title::destroy($title->id);
-        //   return redirect()->back()->with('message', $title->name.' - removed.');
-        return redirect()->route('title.index')
+        $user = Auth::user();
+
+        if ($user) {
+            if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
+                Title::destroy($title->id);
+                //   return redirect()->back()->with('message', $title->name.' - removed.');
+                return redirect()->route('title.index')
                             ->with('message', $title->name.' - removed.');
+            } else {
+                return redirect()->route('title.index')
+                ->with('message', "You have to be logged in with administrative rights when deleting records");
+            }
+        } else {
+            return back()->with('message', "You have to have be logged in to delete Titles");
+        }
     }
 
     // Return all titles

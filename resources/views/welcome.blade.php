@@ -19,6 +19,12 @@
                         <br>
                         <h1 class="text-2xl">Routes</h1>
                         @include('menu')
+
+                        @if(session()->has('message'))
+                            <div class="alert alert-success p-6 bg-red-50">
+                                {{ session()->get('message') }}
+                            </div>
+                        @endif
 <p>
 @auth
 
