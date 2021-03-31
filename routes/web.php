@@ -48,5 +48,4 @@ require __DIR__.'/auth.php';
 
 Route::get('/faq', function(){
     return view('faq');
-    include 'faq.blade.php';
 });

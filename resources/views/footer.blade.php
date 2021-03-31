@@ -20,7 +20,7 @@
                         <h3>Services</h3>
                         <ul>
                             <li><a href="#">Web design</a></li>
-                            <li><a href="{{ route('faq') }}">FAQ</a></li>
+                            <li><a href="faq">FAQ</a></li>
                         
                         </ul>
                     </div>
