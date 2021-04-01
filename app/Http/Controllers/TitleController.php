@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Title;
 use App\Models\User;
 use App\Models\Role;
-
 use Illuminate\Support\Facades\Auth;
 
 class TitleController extends Controller
