@@ -14,7 +14,6 @@
     <body>
 
         @include('menu')
-        <h1>IMDB-CLONE-LOGO</h1>
 
        <!-- Example loop over all available Ganres -->
         {{-- @foreach($genres as $g)
@@ -117,11 +116,6 @@
             </div>
         </div>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-28 pl-6">
-                <h3 class="text-4xl pb-6 bg-white text-center mt-48">FOOTER</h3>
-            </div>
-        </div>
 
 <footer class="imdb-footer VUGIPjGgHtzvbHiU19iTQ" "mr-16 text-3xl">
 <div class="_32mc4FXftSbwhpJwmGCYUQ">
