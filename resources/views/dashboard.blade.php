@@ -9,7 +9,7 @@
     @auth
         <?php $userAuth = Auth::user(); ?>
 
-        @if ( $userAuth->role->name == "Administrator")
+        @if ( $userAuth->role->id == 1) <!-- 1 = Administrator -->
 
 
 <div class="py-12">
@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="bg-white e my-6 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6  border border-red-400">
+            <div class="p-6  border border-red-400">
                 <h2>Approval of reviews</h2>
                     <br />
 
@@ -75,7 +75,7 @@
                     <br />
                 </div>
             </div>
-        <div class="bg-white e myt-6 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white e myt-6 overflow-hidden shadow-sm sm:rounded-lg">
 
             <div class="p-6  border border-red-400">
                 <h2>Assign administrator privileges</h2>

@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
         User::create(array('name' => 'Jonas Lund',
         'role_id' => '1',
         'email' => 'jonas.lund@chasacademy.se',
-        'password' => '$2y$10$0BWMMQX6HSL4shgY9m2AcO947qwstH8pERG/XaqaSHF3YGcpQ0e1u',
+        'password' => '$2y$10$zvznGC34MxPZGUaEgBHinOcSHc9jYLaSDZMbAho8GSYsbpReRr/2m',
          ));
 
         User::create(array('name' => 'Admin1 Admin1',
