@@ -21,7 +21,8 @@ use App\Http\Controllers\ListitemController;
 */
 Route::get('/', function () {
     return view('index', ['titles' => TitleController::allTitles(),
-                          'genres' => GenreController::allGenres()]);
+                          'genres' => GenreController::allGenres(),
+                          'review' => ReviewController::allReviews()]);
 });
 
 Route::get('/welcome', function () {

@@ -60,10 +60,10 @@ class ReviewController extends Controller
             $review->title_id = $request->title_id;
             $review->save();
 
-            return redirect('title')
-                ->with('message', 'Review created');
+            return redirect('reviews')
+                ->with('message', 'Review created! Waiting for an admin to approve it');
         } else {
-            return redirect()->route('create-review')
+            return redirect()->route('reviews')
                 ->with('message', "You have to be logged in when creating reviews");
         }
         
