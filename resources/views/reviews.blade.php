@@ -61,7 +61,7 @@
 
 @if ($reviews->count())
 @foreach ($reviews as $review)
-  @if($review->approve === 1)
+  @if($review->approve ==true)
   <div class="border-t border-gray-400">
     <dl>
       <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -79,8 +79,8 @@
           <p class="text-sm text-gray-500 mt-8">Date: {{ $review->created_at->format('Y-m-d')}}</p>
         </dt>
         <dd class="mt-1 lg:text-2xl text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            {{-- {{ $review->body }} --}}           
-              {{$review->body}}          
+            {{-- {{ $review->body }} --}}
+              {{$review->body}}
         </dd>
       </div>
 
