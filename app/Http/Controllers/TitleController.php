@@ -56,10 +56,10 @@ class TitleController extends Controller
     {
         $request->validate([
             'name' => 'required',
-          //'user_id' =>'required',
+
         ]);
 
-        // Title::create($request->all());
+
 
         $user = Auth::user();
 
@@ -149,7 +149,7 @@ class TitleController extends Controller
         if ($user) {
             if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
                 Title::destroy($title->id);
-                //   return redirect()->back()->with('message', $title->name.' - removed.');
+
                 return redirect()->route('title.index')
                             ->with('message', $title->name.' - removed.');
             } else {

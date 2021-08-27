@@ -10,6 +10,13 @@ use App\Models\Listing;
 class Listitem extends Model
 {
     use HasFactory;
+ protected $fillable = [
+        'listing_id',
+        'title_id',
+
+
+
+    ];
 
 
     public function title()

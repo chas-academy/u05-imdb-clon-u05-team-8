@@ -6,6 +6,9 @@ use App\Models\Listing;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Title;
+use App\Models\Listitem;
+
 use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
@@ -17,10 +20,22 @@ class ListingController extends Controller
      */
     public function index()
     {
-        //
 
-        $listings = Listing::all();
-        return view('listings', compact('listings'));
+
+        $user = Auth::user();
+        if ($user) {
+            $listings =  Listing::where('user_id', $user->id)
+               ->orderBy('name')
+               ->get();
+
+            return view('listings', [ 'listings' => $listings ]);
+        }
+
+         else {
+            return back()->with('message', "You have to be logged in to create and see your Watchlists");
+        }
+
+
     }
 
     /**
@@ -30,7 +45,17 @@ class ListingController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+
+        if ($user) {
+
+                $listing = Listing::where('user_id',$user->id);
+
+                return view('listings-create', compact('listing'));
+
+        } else {
+            return back()->with('message', "You have to have be logged in to create new Titles");
+        }
     }
 
     /**
@@ -41,7 +66,28 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $request->validate([
+
+            'name' => 'required',
+        ]);
+
+        $user = Auth::user();
+
+        if ($user) {
+
+
+            $list = new Listing;
+            $list->name = $request->name;
+            $list->user_id = Auth::user()->id;
+            $list->save();
+
+                return redirect()->route('listing.index')
+                ->with('message', $request->input('name').' - created.');
+            } else {
+                return redirect()->route('listing.index')
+                ->with('message', "You have to be logged in when creating records");
+            }
+
     }
 
     /**
@@ -110,8 +156,34 @@ class ListingController extends Controller
     // Return all listings (lists)
     public static function allListings()
     {
-        // var_dump(Listing::all());
         $listings = Listing::all();
         return $listings;
+    }
+
+
+    public function addTitleToListing($id, $title_id)
+    {
+
+           $title = Title::find($title_id);
+           $list = Listing::find($id);
+           $item = Listitem::where('listing_id', $id)->where('title_id',$title_id )->get()->first();
+
+           if( $item ){
+
+                return back()->with('message', "\"".$title->name."\" already exists in Watchlist \"".$list->name."\"");
+
+           }
+           else{
+
+            if (Listitem::create(
+                    [
+                        'listing_id' => $list->id,
+                        'title_id' => $title_id,
+                    ]
+                )) {
+
+                    return back()->with('message', "\"".$title->name."\" added to Watchlist \"".$list->name."\"");
+                }
+        }
     }
 }

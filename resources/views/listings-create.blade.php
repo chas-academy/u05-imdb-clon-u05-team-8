@@ -7,7 +7,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Create Title</title>
+        <title>Create Watchlist</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <br>
-                        <h1 class="text-2xl">Create Title</h1>
+                        <h1 class="text-2xl">Create Watchlist</h1>
                         @include('menu')
 
                         @if(session()->has('message'))
@@ -30,7 +30,7 @@
 
 <br />
 <div class="mt-5 md:mt-0 md:col-span-2">
-     <form action="{{ route('title.store') }}" method="POST">
+     <form action="{{ route('listing.store') }}" method="POST">
         @csrf
 
         <div class="shadow border border-green-200 overflow-hidden sm:rounded-md">
@@ -39,8 +39,8 @@
 
               <div class="col-span-6 sm:col-span-3">
 
-                <label for="name" class="block text-sm font-medium text-gray-700">Title</label>
-                <input type="text" name="name" id="name" value="" autocomplete="" placeholder="Enter Title"
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" name="name" id="name" value="" autocomplete="" placeholder="Enter Watchlist name"
                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded">
 
 
@@ -55,7 +55,7 @@
             </div>
             &nbsp;&nbsp;
             <div class="text-sm">
-                <a class=" text-blue-700 underline" href="{{ route('title.index') }}">[Back]</a>
+                <a class=" text-blue-700 underline" href="{{ route('listing.index') }}">[Back]</a>
             </div>
             &nbsp;
 
