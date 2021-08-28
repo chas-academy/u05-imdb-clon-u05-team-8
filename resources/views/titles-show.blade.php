@@ -7,7 +7,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Titles</title>
+        <title>Title</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <br>
-                        <h1 class="text-2xl">Titles</h1>
+                        <h1 class="text-2xl">Title</h1>
                         @include('menu')
 
 
@@ -28,14 +28,6 @@
                                 {{ session()->get('message') }}
                             </div>
                         @endif
-
-
-                        {{-- @if ( session('status') == 'success_delete')
-                            <div class="p-6 bg-green-50">
-                                {{ __('Title successfully deleted')}}
-
-                            </div>
-                        @endif --}}
 <br />
 @php
     $is_admin = false;
@@ -67,6 +59,7 @@
     <h3 class="text-lg leading-6 font-medium text-gray-900">
       {{$title['name']}}
     </h3>
+
     <p class="mt-1 max-w-2xl text-sm text-gray-500">
      Id:{{$title['id']}}
     </p>
@@ -152,10 +145,46 @@
     </dl>
   </div>
 </div>
-<br /><br />
+ @if(auth()->user())
+ {{-- Add {{$title['name']}} to Watchlist: --}}
+
+    @foreach  (auth()->user()->listings()->get() as $listing )
+<br />
+        <form action="/listing/{{$listing->id}}/title/{{$title->id}}" method="POST">
+            @csrf
+            @method('PUT')
+            <button name="listing" value="1"
+                class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">Add to "{{$listing->name}}"</button>
+        </form>
+
+    @endforeach
+    {{-- <br />
+    <form action="/review" method="GET">
+        <button name="review" value="1"
+            class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">Write a review</button>
+    </form> --}}
 
 
-{{-- A form that only shows when logged in, to write a review --}}
+<br />
+        <div class="text-base">
+             <form action="/reviews/{{$title->id}}" method="POST">
+            {{-- <a href="{{action([App\Http\Controllers\ReviewController::class, 'addReview'])}}"
+                class="btn bg-green-500 hover:bg-greeen-700 text-white text-base font-bold py-1 px-2 rounded no-underline">Write a review</a> --}}
+                 {{-- class="text-sm text-green-700 underline">[Write a reviw]</a> --}}
+
+ @csrf
+
+            <button name="listing" value="1"
+                class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">Add Review</button>
+        </form>
+
+        </div>
+        <br />
+
+
+
+ @endif
+{{-- A form that only shows when logged in, to write a review
 <div>
   <h1 class="text-center m-12">Write a review for {{ $title->name }}</h1>
   @if(auth()->user())
@@ -173,7 +202,7 @@
 <h3 class="text-center m-12">To write a review about {{ $title->name }}, you have to <a class=" text-blue-700 underline" href="http://u05.test/register">Register</a> or be <a class=" text-blue-700 underline" href="http://u05.test/login">Logged in</a></h3>
 @endif
 
-
+--}}
                         </div>
                     </div>
                 </div>

@@ -30,10 +30,13 @@ Route::get('/welcome', function () {
 });
 
 Route::resource('reviews', ReviewController::class);
+Route::post('/reviews/{title_id}', [ReviewController::class, 'addReview']);
 
 Route::resource('title', TitleController::class);
 
 Route::resource('listing', ListingController::class);
+
+Route::put('/listing/{id}/title/{title_id}', [ListingController::class, 'addTitleToListing']);
 
 Route::resource('listitem', ListitemController::class);
 

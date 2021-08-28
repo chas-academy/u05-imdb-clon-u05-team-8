@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Title;
 use App\Models\Review;
 use App\Models\Role;
+use App\Models\Listing;
 
 class User extends Authenticatable
 {
@@ -60,4 +61,9 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
         // return $this->belongsTo('App\Models\Role');
     }
+    public function listings()
+    {
+        return $this->hasMany(Listing::class);
+    }
+
 }
