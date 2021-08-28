@@ -79,7 +79,7 @@
 
         <div class="py-12 lg:mt-56 md:mt-28 mt-16">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-1">
-                <h3 class="lg:text-4xl mb-8 text-2xl pb-6 bg-white border-b-4 border-gray-400">Movvie Tips</h3>
+                <h3 class="lg:text-4xl mb-8 text-2xl pb-6 bg-white border-b-4 border-gray-400">Movie Tips</h3>
                 <div class="bg-white overflow-hidden sm:rounded-lg">
                     <div class="text-2xl pt-6 bg-white grid grid-cols-5 gap-1">
                         @foreach($titles->slice(0, 5) as $title)

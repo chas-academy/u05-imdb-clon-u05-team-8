@@ -61,7 +61,7 @@
 
 @if ($reviews->count())
 @foreach ($reviews as $review)
-  @if($review->approve ==true)
+  @if($review->approve == true)
   <div class="border-t border-gray-400">
     <dl>
       <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
