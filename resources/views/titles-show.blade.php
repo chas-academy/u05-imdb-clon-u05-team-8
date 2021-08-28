@@ -2,45 +2,35 @@
 {{-- <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"> --}}
 <html lang="zxx">
 
-
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Title</title>
+        <title>Movie</title>
 
-        <!-- Fonts -->
+
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
+        @include('menu')
+
         <div class="container mx-auto px-4">
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <br>
-                        <h1 class="text-2xl">Title</h1>
-                        @include('menu')
-
-
-                        @if(session()->has('message'))
-                            <div class="alert alert-success p-6 bg-green-50">
-                                {{ session()->get('message') }}
-                            </div>
-                        @endif
-<br />
 @php
     $is_admin = false;
 @endphp
+<!--Only check role for Authenticated users -->
+@auth
+    @php
+        $userAuth = Auth::user();
 
-@auth  <!-- Only check role for Authenticated users -->
-@php
-    $userAuth = Auth::user();
-
-    if ($userAuth->role->id == 1) {
-        $is_admin = true;
-    }
-@endphp
+        if ($userAuth->role->id == 1) {
+            $is_admin = true;
+        }
+    @endphp
 @endauth
     <!-- Display Create button for authenticated users with role Administrator -->
     @if ( $is_admin )

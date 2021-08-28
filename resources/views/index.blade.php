@@ -12,37 +12,7 @@
 
     </head>
     <body>
-
         @include('menu')
-
-
-        <nav class=" max-w-5xl mx-auto mt-16 rounded-full py-3 bg-gray-800">
-            <ul class="flex items-center justify-between ">
-                <li class="lg:mr-14 mr-2 ml-2 lg:text-3xl md:text-2xl text-xs">
-                <a class="text-gray-300 hover:underline hover:text-gray-200" href="/">Home</a>
-                </li>
-                <li class="lg:mr-14 mr-2 lg:text-3xl md:text-2xl text-xs">
-                <a class="text-gray-300 hover:underline hover:text-gray-200" href="/reviews">Reviews</a>
-                </li>
-                <li class="lg:mr-14 mr-2 lg:text-3xl md:text-2xl text-xs">
-                <a class="text-gray-300 hover:underline hover:text-gray-200" href="#">New Movies</a>
-                </li>
-                <li class="lg:mr-14 mr-2 lg:text-3xl md:text-2xl text-xs">
-                <a class="text-gray-300 hover:underline hover:text-gray-200" href="#">Top Movies</a>
-                </li>
-                <li class="lg:mr-14 mr-2 lg:text-3xl md:text-2xl text-xs">
-                <a class="text-gray-300 hover:underline hover:text-gray-200" href="/listing">Watchlists</a>
-                </li>
-            </ul>
-        </nav>
-
-        @if(session()->has('message'))
-
-            <div class="alert alert-success p-6 m-10 bg-green-50">
-                {{ session()->get('message') }}
-            </div>
-        @endif
-
         <div class="py-4 lg:mt-36 md:mt-18 mt-9">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-1">
                 <h3 class="lg:text-4xl mb-8 text-2xl pb-6 bg-white border-b-4 border-gray-400">New Movies</h3>

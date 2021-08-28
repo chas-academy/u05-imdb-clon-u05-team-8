@@ -32,7 +32,7 @@ class ListingController extends Controller
         }
 
          else {
-            return back()->with('message', "You have to be logged in to create and see your Watchlists");
+            return back()->with('message', "Please login to see your Watchlists");
         }
 
 
