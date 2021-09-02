@@ -13,15 +13,40 @@
 
     </head>
     <body>
+        @include('menu')
         <div class="container mx-auto px-4">
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <br>
                         <h1 class="text-2xl">Users</h1>
-                        @include('menu')
 
 
+
+@php
+    $is_admin = false;
+@endphp
+
+@auth  <!-- Only check role for Authenticated users -->
+@php
+    $userAuth = Auth::user();
+
+    if ($userAuth->role->id == 1) {
+        $is_admin = true;
+    }
+@endphp
+@endauth
+
+<!-- Display Create button for authenticated users with role Administrator -->
+@if ( $is_admin )
+
+<div class="text-sm">
+    <a href="{{action([App\Http\Controllers\UserController::class, 'create'])}}"
+        class="text-sm text-green-700 underline">[Create]</a> new User.
+</div>
+<br />
+
+@endif
 @foreach($users as $user)
 
 
@@ -33,7 +58,38 @@
     <p class="mt-1 max-w-2xl text-sm text-gray-500">
      Id:{{$user['id']}}&nbsp; ({{$user->role->name}})
     </p>
+<div class="flex justify-end">
 
+        <div class="text-sm">
+            <a href="{{action([App\Http\Controllers\UserController::class, 'show'], ['user'=>$user])}}"
+                class="text-sm text-grey-700 underline">[Read]</a>
+        </div>
+
+        <!-- Display Edit and Delete buttons for authenticated users with role Administrator -->
+
+        @if ( $is_admin )
+
+        &nbsp;&nbsp;
+        <div class="text-sm">
+            <a href="{{action([App\Http\Controllers\UserController::class, 'edit'], ['user'=>$user])}}"
+                class="text-sm text-blue-700 underline">[Update]</a>
+        </div>
+        &nbsp;&nbsp;
+
+       <form  class="text-sm font-medium"
+                onsubmit="return confirm('Do you really want to delete? ({{$user['name']}})');"
+                action="{{ action([App\Http\Controllers\UserController::class, 'destroy'], ['user'=>$user])}}"
+                method="POST">
+                @method('DELETE')
+                @csrf
+                <span class=" text-sm text-gray-700">
+                    <button type="submit" class="focus:outline-none   text-red-700 underline">[Delete]</button>
+                </span>
+        </form>
+
+        @endif <!-- end if admin -->
+
+    </div>
   </div>
   <div class="border-t border-gray-400">
     <dl>
@@ -82,25 +138,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </dl>
   </div>
 </div>
@@ -112,5 +149,6 @@
                 </div>
             </div>
         </div>
+        @include('footer')
     </body>
 </html>

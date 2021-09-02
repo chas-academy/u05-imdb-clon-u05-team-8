@@ -18,9 +18,11 @@
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <br>
-                        <h1 class="text-center lg:text-5xl text-2xl md:mb-56 mb-28 md:mt-40 mt-28">Reviews</h1>
+
+                        {{-- <h1 class="text-center lg:text-5xl text-2xl md:mb-36 mb-18 md:mt-30 mt-18">Reviews</h1> --}}
 <br />
+
+                        <h1 class="text-3xl">Reviews</h1>
 @if ($reviews->count())
 @foreach ($reviews as $review)
   @if($review->approve == true)

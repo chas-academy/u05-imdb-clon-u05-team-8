@@ -14,20 +14,13 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
+        @include('menu')
         <div class="container mx-auto px-4">
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <br>
                         <h1 class="text-2xl">Create Review</h1>
-                        @include('menu')
-
-                        @if(session()->has('message'))
-                            <div class="alert alert-success p-6 bg-green-50">
-                                {{ session()->get('message') }}
-                            </div>
-                        @endif
-
 <br />
 {{-- <div class="mt-5 md:mt-0 md:col-span-2">
      <form action="{{ route('reviews.store') }}" method="POST">

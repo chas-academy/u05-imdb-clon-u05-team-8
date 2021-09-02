@@ -7,7 +7,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Create Watchlist</title>
+        <title>Create User</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,11 +20,10 @@
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <br>
-                        <h1 class="text-2xl">Create Watchlist</h1>
-
+                        <h1 class="text-2xl">Create User</h1>
 <br />
 <div class="mt-5 md:mt-0 md:col-span-2">
-     <form action="{{ route('listing.store') }}" method="POST">
+     <form action="{{ route('user.store') }}" method="POST">
         @csrf
 
         <div class="shadow border border-green-200 overflow-hidden sm:rounded-md">
@@ -33,8 +32,16 @@
 
               <div class="col-span-6 sm:col-span-3">
 
-                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                <input type="text" name="name" id="name" value="" autocomplete="" placeholder="Enter Watchlist name"
+                <label for="name" class="block text-sm font-medium text-gray-700">User name</label>
+                <input type="text" name="name" id="name" value="" autocomplete="" placeholder="Enter User name"
+                       class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded">
+
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="text" name="email" id="email" value="" autocomplete="" placeholder="Enter User email"
+                       class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded">
+
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="text" name="password" id="password" value="" autocomplete="" placeholder="Enter User password"
                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded">
 
 
@@ -49,7 +56,7 @@
             </div>
             &nbsp;&nbsp;
             <div class="text-sm">
-                <a class=" text-blue-700 underline" href="{{ route('listing.index') }}">[Back]</a>
+                <a class=" text-blue-700 underline" href="{{ route('title.index') }}">[Back]</a>
             </div>
             &nbsp;
 
@@ -64,7 +71,7 @@
 
     @if ($errors->any())
         <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            There were some problems with your input.<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -81,6 +88,5 @@
                     </div>
                 </div>
             </div>
-            @include('footer');
     </body>
 </html>

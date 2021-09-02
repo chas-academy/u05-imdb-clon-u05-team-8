@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
@@ -28,7 +33,19 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        if ($user) {
+            if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
+
+                $user = User::all();
+
+                return view('users-create', compact('user'));
+            } else {
+                return back()->with('message', "You have to have administrative rights to create new Users");
+            }
+        } else {
+            return back()->with('message', "You have to have be logged in to create new Users");
+        }
     }
 
     /**
@@ -39,7 +56,36 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'email:rfc,dns',
+             'password' => 'required',
+        ]);
+
+
+
+        $user = Auth::user();
+
+        if ($user) {
+            if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
+                $user = new User;
+                $user->name = $request->name;
+                $user->email = $request->email;
+                $user->password = Hash::make($request->password);
+                $user->role_id = 2;
+
+                               // $user->user_id = Auth::user()->id;
+                $user->save();
+
+                return redirect()->route('user.index')
+                ->with('message', $request->input('name').' - created.');
+            } else {
+                return redirect()->route('user.index')
+                ->with('message', "You have to be logged in with administrative rights when creating users");
+            }
+        } else {
+            return back()->with('message', "You have to have be logged in to store users");
+        }
     }
 
     /**
@@ -48,9 +94,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+         return view('users-show', compact('user'));
     }
 
     /**
@@ -59,9 +105,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+         $userAuth = Auth::user();
+
+        if ($userAuth) {
+            if ($userAuth->role()->get()->first()->id == 1) {  // 1 = Administrator
+                return view('users-edit', compact('user'));
+            } else {
+                return redirect()->route('user.index')
+                ->with('message', "You have to be logged in with administrative rights to edit Users");
+            }
+        } else {
+            return back()->with('message', "You have to have be logged in to edit Users");
+        }
     }
 
     /**
@@ -71,8 +128,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $user->update($request->all());
+
+        return redirect()->route('user.index')
+                            ->with('message', $user->name.' - updated.');
     }
 
     /**
@@ -81,9 +146,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user )
     {
-        //
+        $userA = Auth::user();
+
+        if ($userA) {
+            if ($userA->role()->get()->first()->id == 1) {  // 1 = Administrator
+                User::destroy($user->id);
+
+                return redirect()->route('user.index')
+                            ->with('message', $user->name.' - removed.');
+            } else {
+                return redirect()->route('user.index')
+                ->with('message', "You have to be logged in with administrative rights when deleting records");
+            }
+        } else {
+            return back()->with('message', "You have to have be logged in to delete Users");
+        }
     }
     // Return all titles
     public static function allUsers()

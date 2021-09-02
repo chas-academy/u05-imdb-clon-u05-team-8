@@ -15,13 +15,15 @@
 <div class="py-12">
     <div class="-mt-8  max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-         @if(session()->has('message'))
+        @if(session()->has('message'))
             <div class="alert alert-success p-6 bg-green-50">
                 {{ session()->get('message') }}
             </div>
         @endif
 
+
         <div class="bg-white my-6 overflow-hidden shadow-sm sm:rounded-lg">
+
             <div class="p-6  border border-red-400">
                 <h1>Admin panels</h1>
                 <br />
@@ -33,6 +35,23 @@
 
             </div>
         </div>
+
+        <div class="bg-white e myt-6 overflow-hidden shadow-sm sm:rounded-lg">
+
+            <div class="p-6  border border-red-400">
+                <h2>Add new users</h2>
+                    <br />
+
+
+                <div class="text-sm">
+                    <a href="{{action([App\Http\Controllers\UserController::class, 'create'])}}"
+                        class="text-sm text-green-700 underline">[Create]</a> new User.
+                </div>
+            <br />
+            </div>
+
+        </div>
+
         <div class="bg-white e my-6 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6  border border-red-400">
                 <h2>Approval of reviews</h2>

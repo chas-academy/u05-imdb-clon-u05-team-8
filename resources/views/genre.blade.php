@@ -13,17 +13,16 @@
 
     </head>
     <body>
+         @include('menu')
+
         <div class="container mx-auto px-4">
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <br>
-                        <h1 class="text-2xl">Genres</h1>
-                        @include('menu')
-
+                        <h1>Genres</h1>
 
 @foreach($genres as $genre)
-
 
 <div class="bg-green-100 border border-green-200 overflow-hidden rounded-md">
   <div class="px-4 py-5 sm:px-6">

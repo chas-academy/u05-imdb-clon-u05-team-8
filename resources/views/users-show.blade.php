@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Movie</title>
+        <title>User</title>
 
 
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -14,12 +14,11 @@
     </head>
     <body>
         @include('menu')
+
         <div class="container mx-auto px-4">
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <br>
-                        <h1 class="text-2xl">Titles</h1>
 @php
     $is_admin = false;
 @endphp
@@ -37,8 +36,8 @@
     @if ( $is_admin )
 
         <div class="text-sm">
-            <a href="{{action([App\Http\Controllers\TitleController::class, 'create'])}}"
-                class="text-sm text-green-700 underline">[Create]</a> new Title.
+            <a href="{{action([App\Http\Controllers\UserController::class, 'create'])}}"
+                class="text-sm text-green-700 underline">[Create]</a> new User.
         </div>
         <br />
 
@@ -48,11 +47,11 @@
 <div class="bg-green-100 border border-green-200 overflow-hidden rounded-md">
   <div class="px-4 py-5 sm:px-6">
     <h3 class="text-lg leading-6 font-medium text-gray-900">
-      {{$title['name']}}
+      {{$user['name']}}
     </h3>
 
     <p class="mt-1 max-w-2xl text-sm text-gray-500">
-     Id:{{$title['id']}}
+     Id:{{$user['id']}}
     </p>
 
     <div class="flex justify-end">
@@ -61,13 +60,14 @@
         @if ( $is_admin )
 
         <div class="text-sm">
-            <a href="{{action([App\Http\Controllers\TitleController::class, 'edit'], ['title'=>$title])}}"
+            <a href="{{action([App\Http\Controllers\UserController::class, 'edit'], ['user'=>$user])}}"
                 class="text-sm text-blue-700 underline">[Update]</a>
         </div>
         &nbsp;&nbsp;
+
         <form  class="text-sm font-medium"
-                onsubmit="return confirm('Do you really want to delete? ({{$title['name']}})');"
-                action="{{ action([App\Http\Controllers\TitleController::class, 'destroy'], ['title'=>$title])}}"
+                onsubmit="return confirm('Do you really want to delete? ({{$user['name']}})');"
+                action="{{ action([App\Http\Controllers\UserController::class, 'destroy'], ['user'=>$user])}}"
                 method="POST">
                 @method('DELETE')
                 @csrf
@@ -80,13 +80,13 @@
         @endif
 
         <div class="text-sm">
-                <a class=" text-blue-700 underline" href="{{ route('title.index') }}">[Back]</a>
+                <a class=" text-blue-700 underline" href="{{ route('user.index') }}">[Back]</a>
             </div>
          &nbsp;
     </div>
 
   </div>
-  <div class="border-t border-gray-400">
+  {{-- <div class="border-t border-gray-400">
     <dl>
       <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
          <dt class="text-sm font-medium text-gray-500">
@@ -102,14 +102,14 @@
             @foreach  ($title->genres()->get() as $genre )
                 @if ($counter > 0 ) @php $delim = "| ";@endphp @endif
 
-               {{-- {{$delim}}{{Str::of($genre->name)->trim()}} --}}
+
                   <a class=" text-blue-700 underline" href="{{ url('/').'/genre/'.$genre->id}}">{{$genre->name}}</a>
 
 
                 @php $counter++; @endphp
             @endforeach
         @else
-            {{-- {{ $title->genres()->get()->first()->name }} --}}
+
            <a class=" text-blue-700 underline" href="{{ url('/').'/genre/'.$title->genres()->get()->first()->id}}">{{$title->genres()->get()->first()->name}}</a>
 
         @endif
@@ -137,7 +137,7 @@
   </div>
 </div>
  @if(auth()->user())
- {{-- Add {{$title['name']}} to Watchlist: --}}
+
 
     @foreach  (auth()->user()->listings()->get() as $listing )
 <br />
@@ -149,19 +149,13 @@
         </form>
 
     @endforeach
-    {{-- <br />
-    <form action="/review" method="GET">
-        <button name="review" value="1"
-            class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">Write a review</button>
-    </form> --}}
+
 
 
 <br />
         <div class="text-base">
              <form action="/reviews/{{$title->id}}" method="POST">
-            {{-- <a href="{{action([App\Http\Controllers\ReviewController::class, 'addReview'])}}"
-                class="btn bg-green-500 hover:bg-greeen-700 text-white text-base font-bold py-1 px-2 rounded no-underline">Write a review</a> --}}
-                 {{-- class="text-sm text-green-700 underline">[Write a reviw]</a> --}}
+
 
  @csrf
 
@@ -174,30 +168,11 @@
 
 
 
- @endif
-{{-- A form that only shows when logged in, to write a review
-<div>
-  <h1 class="text-center m-12">Write a review for {{ $title->name }}</h1>
-  @if(auth()->user())
-  <form class="flex flex-col justify-center" action="/reviews" method="POST">
-    @csrf
+ @endif --}}
 
-    <input type="hidden" id="title_id" name="title_id" value="{{ $title->id }}">
-    <textarea class="w-1/2 mx-auto px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" name="body" rows="4" cols="100" type="text" placeholder="Enter review"></textarea>
-
-    <button class="w-36 mx-auto mt-4 bg-blue-600 text-gray-200 text-lg rounded hover:bg-blue-500 px-6 py-3 focus:outline-none" type="submit">Submit</button>
-
-  </form>
-</div>
-@else
-<h3 class="text-center m-12">To write a review about {{ $title->name }}, you have to <a class=" text-blue-700 underline" href="http://u05.test/register">Register</a> or be <a class=" text-blue-700 underline" href="http://u05.test/login">Logged in</a></h3>
-@endif
-
---}}
                         </div>
                     </div>
                 </div>
             </div>
-            @include('footer')
     </body>
 </html>
