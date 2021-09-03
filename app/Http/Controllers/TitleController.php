@@ -125,7 +125,6 @@ class TitleController extends Controller
      */
     public function update(Request $request, Title $title)
     {
-        //
         $request->validate([
             'name' => 'required',
         ]);

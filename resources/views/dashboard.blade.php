@@ -3,6 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
 
             {{ __('Dashboard') }}
+
         </h2>
     </x-slot>
 
@@ -11,134 +12,133 @@
 
         @if ( $userAuth->role->id == 1) <!-- 1 = Administrator -->
 
+            <div class="py-12">
+                <div class="-mt-8  max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-<div class="py-12">
-    <div class="-mt-8  max-w-7xl mx-auto sm:px-6 lg:px-8">
-
-        @if(session()->has('message'))
-            <div class="alert alert-success p-6 bg-green-50">
-                {{ session()->get('message') }}
-            </div>
-        @endif
-
-
-        <div class="bg-white my-6 overflow-hidden shadow-sm sm:rounded-lg">
-
-            <div class="p-6  border border-red-400">
-                <h1>Admin panels</h1>
-                <br />
-                    {{$userAuth->name}} - You're logged in with role "{{$userAuth->role->name}}"
-                <br />
-                    <p>You have admin rights - Admin panels follows...</p>
-                   <br />
-                   <p>{{$userAuth->name}}'s personal panels <a href="#pp">here</a></p>
-
-            </div>
-        </div>
-
-        <div class="bg-white e myt-6 overflow-hidden shadow-sm sm:rounded-lg">
-
-            <div class="p-6  border border-red-400">
-                <h2>Add new users</h2>
-                    <br />
+                    @if(session()->has('message'))
+                        <div class="alert alert-success p-6 bg-green-50">
+                            {{ session()->get('message') }}
+                        </div>
+                    @endif
 
 
-                <div class="text-sm">
-                    <a href="{{action([App\Http\Controllers\UserController::class, 'create'])}}"
-                        class="text-sm text-green-700 underline">[Create]</a> new User.
+                    <div class="bg-white my-6 overflow-hidden shadow-sm sm:rounded-lg">
+
+                        <div class="p-6  border border-red-400">
+                            <h1>Admin panels</h1>
+                            <br />
+                                {{$userAuth->name}} - You're logged in with role "{{$userAuth->role->name}}"
+                            <br />
+                                <p>You have admin rights - Admin panels follows...</p>
+                            <br />
+                            <p>{{$userAuth->name}}'s personal panels <a href="#pp">here</a></p>
+
+                        </div>
+                    </div>
+
+                    <div class="bg-white e myt-6 overflow-hidden shadow-sm sm:rounded-lg">
+
+                        <div class="p-6  border border-red-400">
+                            <h2>Add new users</h2>
+                                <br />
+
+
+                            <div class="text-sm">
+                                <a href="{{action([App\Http\Controllers\UserController::class, 'create'])}}"
+                                    class="text-sm text-green-700 underline">[Create]</a> new User.
+                            </div>
+                        <br />
+                        </div>
+
+                    </div>
+
+                    <div class="bg-white e my-6 overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="p-6  border border-red-400">
+                            <h2>Approval of reviews</h2>
+                                <br />
+
+                        @php $count = 0; @endphp
+
+                        @foreach ($reviews as $review)
+
+                            @if ( $review->approve == 1 )
+                                @continue
+                            @endif
+
+                            @php $count++ @endphp
+
+                            @if ( $count == 1 )
+                                <h4>List of all non-approved reviews below</h4>
+                                <br>
+                            @endif
+
+                            Review of "{{$review->title()->get()->first()->name}}"
+                            by {{$review->user()->get()->first()->name}}
+                            <br />
+                            <textarea>{{$review->body}}</textarea><br>
+                            <form action="/review/{{$review->id}}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <button  name="approve" value="1"
+                                        class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">
+                                        Approve review</button>
+                            </form>
+                            <br /><br /><hr /><br />
+
+                        @endforeach
+
+                            @if ( $count == 0 )
+                                <h4>No reviews to approve at the moment</h4>
+                            @endif
+
+                                <br />
+                            </div>
+                        </div>
+                        <div class="bg-white e myt-6 overflow-hidden shadow-sm sm:rounded-lg">
+
+                        <div class="p-6  border border-red-400">
+                            <h2>Assign administrator privileges</h2>
+                                <br />
+
+                        @php $count = 0; @endphp
+
+                        @foreach ($users as $u)
+
+                            @if ( $u->role_id == 1 )
+                                @continue
+                            @endif
+
+                            @php $count++ @endphp
+
+                            @if ( $count == 1 )
+                                <h4>List of all non-admin users</h4>
+                                <br>
+                            @endif
+
+                            User: {{$u->name}}
+                            <br />
+
+                            <form action="/user/{{$u->id}}/permit" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <button name="role_id" value="1"
+                                        class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">
+                                        Permit admin rights</button>
+                            </form>
+                            <br /><br /><hr /><br />
+
+                        @endforeach
+
+                            @if ( $count == 0 )
+                                <h4>No users to assign administrative rights to at the moment</h4>
+                            @endif
+
+                            <br />
+
+                        </div>
+                    </div>
                 </div>
-            <br />
             </div>
-
-        </div>
-
-        <div class="bg-white e my-6 overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6  border border-red-400">
-                <h2>Approval of reviews</h2>
-                    <br />
-
-               @php $count = 0; @endphp
-
-            @foreach ($reviews as $review)
-
-                @if ( $review->approve == 1 )
-                    @continue
-                @endif
-
-                @php $count++ @endphp
-
-                @if ( $count == 1 )
-                    <h4>List of all non-approved reviews below</h4>
-                    <br>
-                @endif
-
-                Review of "{{$review->title()->get()->first()->name}}"
-                by {{$review->user()->get()->first()->name}}
-                <br />
-                <textarea>{{$review->body}}</textarea><br>
-                <form action="/review/{{$review->id}}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <button  name="approve" value="1"
-                             class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">
-                             Approve review</button>
-                 </form>
-                <br /><br /><hr /><br />
-
-            @endforeach
-
-                @if ( $count == 0 )
-                    <h4>No reviews to approve at the moment</h4>
-                @endif
-
-                    <br />
-                </div>
-            </div>
-            <div class="bg-white e myt-6 overflow-hidden shadow-sm sm:rounded-lg">
-
-            <div class="p-6  border border-red-400">
-                <h2>Assign administrator privileges</h2>
-                    <br />
-
-               @php $count = 0; @endphp
-
-            @foreach ($users as $u)
-
-                @if ( $u->role_id == 1 )
-                    @continue
-                @endif
-
-                @php $count++ @endphp
-
-                @if ( $count == 1 )
-                    <h4>List of all non-admin users</h4>
-                    <br>
-                @endif
-
-                User: {{$u->name}}
-                <br />
-
-                <form action="/user/{{$u->id}}/permit" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <button name="role_id" value="1"
-                            class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">
-                            Permit admin rights</button>
-                 </form>
-                <br /><br /><hr /><br />
-
-            @endforeach
-
-                @if ( $count == 0 )
-                    <h4>No users to assign administrative rights to at the moment</h4>
-                @endif
-
-                <br />
-
-            </div>
-        </div>
-    </div>
-</div>
 
         @endif
         <br />

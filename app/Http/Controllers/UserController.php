@@ -21,10 +21,22 @@ class UserController extends Controller
     {
         //
         // echo(User::all());
+        $user = Auth::user();
+        if ($user) {
+            if ($user->role()->get()->first()->id == 1) { // 1 = Administrator
 
-        $users = User::all();
-        return view('users', compact('users'));
+                $users = User::all();
+                return view('users', compact('users'));
+            }
+            else{
+                return back();
+            }
+        }
+        else{
+              return back();
+        }
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -132,6 +144,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
+
         ]);
 
         $user->update($request->all());

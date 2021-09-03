@@ -1,78 +1,111 @@
 # u05-imdb-clon-u05-team-8 created by GitHub Classroom
 
-Team 8 - Laravel projekt med Breeze och Tailwind CSS installerat.
+Team 8 - IMDB Clone
 
-Instruktion nedan för att komma igång med en lokal version av repot.
-Vet inte om instruktionerna fungerar för alla - vi får uppdatera här vartefter.
+Implemented with Laravel 8 using Laravel [Breeze](https://laravel.com/docs/8.x/starter-kits#laravel-breeze) for authentication, registration and presenting a dashboard. Styled with Tailwind CSS.
+<br>
 
-## Instruktioner för att komma igång - Laravel med Vagrant/Homestead-box och inloggad till GitHub med SSH.
+## MODELS
 
--   1. Starta ett terminalfönster.
+These are the models used in this project.
 
--   2. cd till din code mapp
+-   User - A standard Laravel User augmented with a role.
+-   Role - Indicating whether the user is an Administrator or a regular User.
+-   Title - A title in the service, could be a Film, TV-show or e.g. a Video Game.
+-   Genre - Every title is connected to one or more genres like Comedy, Thriller, Drama etc.
+-   Listing - Users can create personal Lists in the system like a Watchlist or Wishlists.
+-   Listitem - Implements one row in a User List and connects the row to one Title.
+-   Review - Users can write Reviews of Titles. Reviews are published on the site when an Administator confirms the Review is OK to publish.
 
--   3. git clone git@github.com:chas-academy/u05-imdb-clon-u05-team-8.git
+<br>
 
--   4. cd till u05-imdb-clon-u05-team-8 //skapades i och med clone ovan
+## VIEWS
 
--   5. composer install
+These are the views used in this project.
 
--   6. npm install
+-   Users - A standard Laravel User augmented with a role.
+-   Titles - A title in the service, could be a Film, TV-show or e.g. Video Game.
+-   Genres - Every title is connected to one or more genres.
+-   Listings - Users can create personal Lists in the system like a Watchlist or Wishlists.
+-   Review - Users can write Reviews of Titles. Reviews are published on the site when an Administrator confirms the Review is OK to publish.
 
--   7. cp .env.example .env // kopierar ".env.example" till ".env"
+Views are written as Blade files (PHP) with semantic HTML.
 
--   8. php artisan key:generate
+There are two files included in every view (except the dashboard).
 
--   9. code . // starta vs code i projektmappen
+-   menu.blade.php - Included right after the starting body tag. Outputs a menu, a message and an error field when applicable.
+-   footer.blade.php - Included as the last element right before the closing body tag. Outputs the footer at the bottom of the page.
 
--   10. Ändra nedanstående i .env filen
-        DB_DATABASE=u05 // kan välja ett annat namn här för att inte krocka med andra databaser
-        DB_USERNAME=homestead
-        DB_PASSWORD=secret
+<br>
+## ROUTING
 
--   11. Starta ett nytt terminalfönster.
+### Endpoints
 
--   12. Gå till din Homestead-mapp i nya terminalfönstret.
+    /login - Signs in a user.
+    /register - Signs up user.
+    /logout - Logs off user.
+    /dashboard - Show the logged in User's dashboard and management panels.
+    /user - Shows all Users that are registered in the service, when logged in as an administrator.
+    /title - Shows all titles.
+    /listing - Shows logged in Users personal Lists
+    /reviews - Shows logged in Users personal Lists
 
--   13. vagrant up //kontrollera att Vagrant startar
+<br>
 
--   14. code . //start vs code
+<br>
 
--   15. Ändra i homestead.yaml under "sites:" - Mappa /public i din nyskapade projektmapp till en url exempelvis: u05.test
-        Eventuellt behöver du ändra under "folders:" i din homestead.yaml beroende på hur du strukturerat din utvecklingsmiljö tidigare.
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
--   16. Lägg till url:en (från punkt 15) i din hosts-fil.
+## About Laravel
 
--   17. vagrant reload --provision // starta om Vagrant från din Homestead mapp
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
--   18. Gå till adminer i din browser, logga in och skapa en databas (Create Database) med samma namn som du valde i .env-filen ovan.
+-   [Simple, fast routing engine](https://laravel.com/docs/routing).
+-   [Powerful dependency injection container](https://laravel.com/docs/container).
+-   Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+-   Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+-   Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+-   [Robust background job processing](https://laravel.com/docs/queues).
+-   [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
--   19. vagrant ssh // logga in till homestead-boxen
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
--   20. Gör cd till din projektmapp.
+## Learning Laravel
 
--   21. php artisan migrate //skapar databastabeller - jag har lagt till "title"
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
--   22. php artisan db:seed // skapar användare och tre filmtitlar
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
--   23. Gå till din url: http://u05.test/ (om du valde den url:en ovan under punkt 15).
-        Jag har lagt till några länkar på välkomstsidan för att kunna testa C-R-U-D mot Title-tabellen.
+## Laravel Sponsors
 
--   24. Gå tillbaka till terminalen med projektmappen, som startades under punkt 1.
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
--   25. git status
+### Premium Partners
 
--   26. git checkout -b testbranch
+-   **[Vehikl](https://vehikl.com/)**
+-   **[Tighten Co.](https://tighten.co)**
+-   **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+-   **[64 Robots](https://64robots.com)**
+-   **[Cubet Techno Labs](https://cubettech.com)**
+-   **[Cyber-Duck](https://cyber-duck.co.uk)**
+-   **[Many](https://www.many.co.uk)**
+-   **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+-   **[DevSquad](https://devsquad.com)**
+-   **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+-   **[OP.GG](https://op.gg)**
 
--   27. Skriv kod / Testa lokalt / Push till GitHub / Skapa Pull request.
+## Contributing
 
-### 2021-03-20 Heroku Deployment
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-    Jag har uppdaterat filer för att fungera med Heroku.
-    Gör så här:
+## Code of Conduct
 
--   Pusha en branch till GitHub som du vill testa med Heroku, t.ex. i mobilen.
--   Logga in till Heroku, skapa en pipeline, koppla den till vårt repo: u05-imdb-clon-u05-team-8.
--   Enable Review Apps på pipeline.
--   Skapa en Pull Request på din branch.
--   Gå till Heroku - Skapa en Review App från aktuell Pull Request.
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
