@@ -15,7 +15,7 @@ $html_title = "Users";
 <div class="text-sm">
     <a href="{{action([App\Http\Controllers\UserController::class, 'create'])}}" class="text-sm text-green-700 underline">[Create]</a> new User.
 </div>
-<br />
+
 
 @endif
 @foreach($users as $user)

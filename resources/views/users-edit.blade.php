@@ -49,4 +49,4 @@ $html_title = "Edit User";
         </p>
     </div>
 </div>
-@include ('footer');
+@include ('footer')

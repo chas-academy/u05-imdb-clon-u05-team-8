@@ -5,7 +5,6 @@ $html_title = "Create User";
 
 @include('header')
 
-
 <div class="mt-5 md:mt-0 md:col-span-2">
     <form action="{{ route('user.store') }}" method="POST">
         @csrf
@@ -46,7 +45,4 @@ $html_title = "Create User";
         </div>
     </form>
 </div>
-</div>
-</div>
-<br />
-@include ('footer');
+@include ('footer')

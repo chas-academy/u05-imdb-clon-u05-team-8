@@ -55,4 +55,4 @@ $html_title = "Genres";
 </div>
 <br /><br />
 @endforeach
-@include('footer');
+@include('footer')

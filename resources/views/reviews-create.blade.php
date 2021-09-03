@@ -20,4 +20,4 @@ $html_title = "Create Review";
 @else
 <h3 class="text-center m-12">To write a review about {{ $title->id }}, you have to <a class=" text-blue-700 underline" href="http://u05.test/register">Register</a> or be <a class=" text-blue-700 underline" href="http://u05.test/login">Logged in</a></h3>
 @endif
-@include('footer');
+@include('footer')

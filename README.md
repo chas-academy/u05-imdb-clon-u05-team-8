@@ -2,7 +2,8 @@
 
 Team 8 - IMDB Clone
 
-Implemented with Laravel 8 using Laravel [Breeze](https://laravel.com/docs/8.x/starter-kits#laravel-breeze) for authentication, registration and presenting a dashboard. Styled with Tailwind CSS.
+Implemented with Laravel 8 using Laravel [Breeze](https://laravel.com/docs/8.x/starter-kits#laravel-breeze) for authentication, registration and presenting a dashboard.
+Styled with [Tailwind](https://tailwindcss.com/) CSS.
 <br>
 
 ## MODELS
@@ -23,18 +24,18 @@ These are the models used in this project.
 
 These are the views used in this project.
 
--   Users - A standard Laravel User augmented with a role.
--   Titles - A title in the service, could be a Film, TV-show or e.g. Video Game.
--   Genres - Every title is connected to one or more genres.
--   Listings - Users can create personal Lists in the system like a Watchlist or Wishlists.
--   Review - Users can write Reviews of Titles. Reviews are published on the site when an Administrator confirms the Review is OK to publish.
+-   Users
+-   Titles
+-   Genres
+-   Listings
+-   Review
 
 Views are written as Blade files (PHP) with semantic HTML.
 
 There are two files included in every view (except the dashboard).
 
--   menu.blade.php - Included right after the starting body tag. Outputs a menu, a message and an error field when applicable.
--   footer.blade.php - Included as the last element right before the closing body tag. Outputs the footer at the bottom of the page.
+-   header.blade.php - Included at the top of view's code. Opens the HTMl document and outputs a menu, and a message or an error text when applicable.
+-   footer.blade.php - Included as the bottom of the view's code. Outputs the footer at the bottom of the page and closes the HTML document.
 
 <br>
 ## ROUTING

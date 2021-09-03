@@ -5,7 +5,6 @@ $html_title = "Show Title";
 
 @include('header')
 
-
 <!-- Display Create button for authenticated users with role Administrator -->
 @php
 global $is_admin;
@@ -16,7 +15,6 @@ global $is_admin;
 <div class="text-sm">
     <a href="{{action([App\Http\Controllers\TitleController::class, 'create'])}}" class="text-sm text-green-700 underline">[Create]</a> new Title.
 </div>
-<br />
 @endif
 
 <div class="bg-green-100 border border-green-200 overflow-hidden rounded-md">
@@ -138,10 +136,6 @@ global $is_admin;
     </form>
 
 </div>
-<br />
-
-
-
 @endif
 
 @include('footer')

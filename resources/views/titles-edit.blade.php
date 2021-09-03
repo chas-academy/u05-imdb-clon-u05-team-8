@@ -5,7 +5,6 @@ $html_title = "Edit Title";
 
 @include('header')
 
-
 <div class="mt-5  md:mt-0 md:col-span-2">
     <form action="{{ route('title.update', $title->id) }}" method="POST">
         @csrf
@@ -40,8 +39,6 @@ $html_title = "Edit Title";
 
         </div>
     </form>
-</div>
-</div>
 </div>
 
 <br />
@@ -103,4 +100,4 @@ $html_title = "Edit Title";
         </dl>
     </div>
 </div>
-@include('footer');
+@include('footer')

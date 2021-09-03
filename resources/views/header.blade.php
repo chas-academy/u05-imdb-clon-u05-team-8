@@ -93,19 +93,18 @@ global $html_title;
 
                     @endif
                 </div>
-                <div>
 
-                    @if( $errors->count() > 1 )
+                @if( $errors->count() > 1 )
 
-                    <ul class="list-disc no-underline">
-                        @foreach ($errors->all() as $error)
-                        <li>
-                            {{ $error }}
-                        </li>
-                        @endforeach
-                    </ul>
-                    @endif
-                </div>
+                <ul class="list-disc no-underline">
+                    @foreach ($errors->all() as $error)
+                    <li>
+                        {{ $error }}
+                    </li>
+                    @endforeach
+                </ul>
+                @endif
+
                 @endif
         </header>
 

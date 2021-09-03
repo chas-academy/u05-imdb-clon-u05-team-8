@@ -15,10 +15,8 @@ $html_title = "Show User";
 <div class="text-sm">
     <a href="{{action([App\Http\Controllers\UserController::class, 'create'])}}" class="text-sm text-green-700 underline">[Create]</a> new User.
 </div>
-<br />
 
 @endif
-
 <div class="bg-green-100 border border-green-200 overflow-hidden rounded-md">
     <div class="px-4 py-5 sm:px-6">
         <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -56,4 +54,4 @@ $html_title = "Show User";
         </div>
     </div>
 </div>
-@include('footer');
+@include('footer')

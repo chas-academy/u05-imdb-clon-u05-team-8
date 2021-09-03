@@ -2,10 +2,7 @@
 global $html_title;
 $html_title = "Create Title";
 @endphp
-
 @include('header')
-
-
 <div class="mt-5 md:mt-0 md:col-span-2">
     <form action="{{ route('title.store') }}" method="POST">
         @csrf
@@ -38,4 +35,4 @@ $html_title = "Create Title";
         </div>
     </form>
 </div>
-@include ('footer');
+@include ('footer')

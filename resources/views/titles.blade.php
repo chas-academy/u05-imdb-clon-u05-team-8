@@ -16,7 +16,7 @@ global $is_admin;
 <div class="text-sm">
     <a href="{{action([App\Http\Controllers\TitleController::class, 'create'])}}" class="text-sm text-green-700 underline">[Create]</a> new Title.
 </div>
-<br />
+
 
 @endif
 
