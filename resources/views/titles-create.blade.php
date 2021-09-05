@@ -4,7 +4,7 @@ $html_title = "Create Title";
 @endphp
 @include('header')
 <div class="mt-5 md:mt-0 md:col-span-2">
-    <form action="{{ route('title.store') }}" method="POST">
+    <form action="{{ route('titles.store') }}" method="POST">
         @csrf
 
         <div class="shadow border border-green-200 overflow-hidden sm:rounded-md">
@@ -27,7 +27,7 @@ $html_title = "Create Title";
                 </div>
                 &nbsp;&nbsp;
                 <div class="text-sm">
-                    <a class=" text-blue-700 underline" href="{{ route('title.index') }}">[Back]</a>
+                    <a class=" text-blue-700 underline" href="{{ route('titles.index') }}">[Back]</a>
                 </div>
                 &nbsp;
 

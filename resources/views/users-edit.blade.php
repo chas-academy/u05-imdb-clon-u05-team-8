@@ -7,7 +7,7 @@ $html_title = "Edit User";
 
 
 <div class="mt-5  md:mt-0 md:col-span-2">
-    <form action="{{ route('user.update', $user->id) }}" method="POST">
+    <form action="{{ route('users.update', $user->id) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -29,7 +29,7 @@ $html_title = "Edit User";
                 </div>
                 &nbsp;&nbsp;
                 <div class="text-sm">
-                    <a class=" text-blue-700 underline" href="{{ route('user.index') }}">[Back]</a>
+                    <a class=" text-blue-700 underline" href="{{ route('users.index') }}">[Back]</a>
                 </div>
                 &nbsp;&nbsp;&nbsp;
             </div>

@@ -90,13 +90,13 @@ $html_title = "Users";
                     @if ($counter > 0 ) @php $delim = "| ";@endphp @endif
 
                     {{-- {{$delim}}{{Str::of($title->name)->trim()}} --}}
-                    {{$delim}}<a class=" text-blue-700 underline" href="{{ url('/').'/title/'.$title->id}}">{{$title->name}}</a>
+                    {{$delim}}<a class=" text-blue-700 underline" href="{{ url('/').'/titles/'.$title->id}}">{{$title->name}}</a>
 
                     @php $counter++; @endphp
                     @endforeach
                     @else
                     {{-- {{ $user->titles()->get()->first()->name }} --}}
-                    <a class=" text-blue-700 underline" href="{{ url('/').'/title/'.$user->titles()->get()->first()->id}}">{{$user->titles()->get()->first()->name}}</a>
+                    <a class=" text-blue-700 underline" href="{{ url('/').'/titles/'.$user->titles()->get()->first()->id}}">{{$user->titles()->get()->first()->name}}</a>
 
                     @endif
                     @endif

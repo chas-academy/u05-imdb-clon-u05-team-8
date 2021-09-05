@@ -1,11 +1,5 @@
-<!-- close atgs opened in header.blade.php -->
-{{--
-</div>
-</div>
-</div>
-</div>
- --}}
 <br />
+<!-- Close section opened in header.blade.php -->
 </section>
 <footer class="flex-shrink mx-auto w-full max-w-5xl rounded-full px-6 py-3 bg-gray-800">
     <ul class="flex items-center justify-between">
@@ -23,7 +17,8 @@
         </li>
     </ul>
 </footer>
-<hr class="border-none" />
+<hr class="flex-shrink border-none" />
+
 </main>
 
 </body>

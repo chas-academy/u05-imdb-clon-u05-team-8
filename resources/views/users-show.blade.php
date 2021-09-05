@@ -48,7 +48,7 @@ $html_title = "Show User";
             @endif
 
             <div class="text-sm">
-                <a class=" text-blue-700 underline" href="{{ route('user.index') }}">[Back]</a>
+                <a class=" text-blue-700 underline" href="{{ route('users.index') }}">[Back]</a>
             </div>
             &nbsp;
         </div>

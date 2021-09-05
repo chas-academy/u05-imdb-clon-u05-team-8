@@ -58,7 +58,7 @@ global $html_title;
                         <a class="text-gray-300 hover:underline hover:text-gray-200" href="/">Top Movies</a>
                     </li>
                     <li class="lg:mr-14 mr-2 lg:text-2xl md:text-xl text-xs">
-                        <a class="text-gray-300 hover:underline hover:text-gray-200" href="/listing">Watchlists</a>
+                        <a class="text-gray-300 hover:underline hover:text-gray-200" href="/listings">Watchlists</a>
                     </li>
                 </ul>
             </nav>
@@ -104,14 +104,9 @@ global $html_title;
             </div>
             @endif
         </header>
-        <section class="max-w-5xl mx-auto flex-grow">
+        <!-- This section is a container for respective view -->
 
-            {{-- <div class="bg-red-500"> --}}
-            <!-- Start of section - will be closed in footer.blade.php -->
-            {{-- <div class="container px-4"> --}}
-            {{-- <div class="flex flex-col">
-                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"> --}}
+        <section class="max-w-5xl mx-auto flex-grow">
 
             <br />
             <h1>{{$html_title}}</h1>

@@ -6,7 +6,7 @@ $html_title = "Edit Title";
 @include('header')
 
 <div class="mt-5  md:mt-0 md:col-span-2">
-    <form action="{{ route('title.update', $title->id) }}" method="POST">
+    <form action="{{ route('titles.update', $title->id) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -31,7 +31,7 @@ $html_title = "Edit Title";
                 </div>
                 &nbsp;&nbsp;
                 <div class="text-sm">
-                    <a class=" text-blue-700 underline" href="{{ route('title.index') }}">[Back]</a>
+                    <a class=" text-blue-700 underline" href="{{ route('titles.index') }}">[Back]</a>
                 </div>
                 &nbsp;&nbsp;&nbsp;
 

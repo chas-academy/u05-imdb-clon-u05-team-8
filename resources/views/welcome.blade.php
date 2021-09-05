@@ -32,16 +32,16 @@ if(empty($id)){
 $appRoutes = array (
 
   /*   route, controller method  */
-  array("user","index()"), //index
-  array("genre","index()"), //index
-  array("title","index()"), //index
-  array("listing","index()"), //index
+  array("users","index()"), //index
+  array("genres","index()"), //index
+  array("titles","index()"), //index
+  array("listings","index()"), //index
   array("reviews","index()"), //index
   array("roles","index()"), //index
-  array("title/".$id,"show()"), //show
-  array("title/".$id."/edit", "edit() -> update() -> index()"), //edit
-  array("title/create","create() -> store() -> index()"), //create
-  array("title/".$id."/delete","destroy() -> index()"), //delete
+  array("titles/".$id,"show()"), //show
+  array("titles/".$id."/edit", "edit() -> update() -> index()"), //edit
+  array("titles/create","create() -> store() -> index()"), //create
+  array("titles/".$id."/delete","destroy() -> index()"), //delete
 
 );
 

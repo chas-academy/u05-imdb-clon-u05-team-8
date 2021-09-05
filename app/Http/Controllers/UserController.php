@@ -89,10 +89,10 @@ class UserController extends Controller
                                // $user->user_id = Auth::user()->id;
                 $user->save();
 
-                return redirect()->route('user.index')
+                return redirect()->route('users.index')
                 ->with('message', $request->input('name').' - created.');
             } else {
-                return redirect()->route('user.index')
+                return redirect()->route('users.index')
                 ->with('message', "You have to be logged in with administrative rights when creating users");
             }
         } else {
@@ -125,7 +125,7 @@ class UserController extends Controller
             if ($userAuth->role()->get()->first()->id == 1) {  // 1 = Administrator
                 return view('users-edit', compact('user'));
             } else {
-                return redirect()->route('user.index')
+                return redirect()->route('users.index')
                 ->with('message', "You have to be logged in with administrative rights to edit Users");
             }
         } else {
@@ -149,7 +149,7 @@ class UserController extends Controller
 
         $user->update($request->all());
 
-        return redirect()->route('user.index')
+        return redirect()->route('users.index')
                             ->with('message', $user->name.' - updated.');
     }
 
@@ -167,10 +167,10 @@ class UserController extends Controller
             if ($userA->role()->get()->first()->id == 1) {  // 1 = Administrator
                 User::destroy($user->id);
 
-                return redirect()->route('user.index')
+                return redirect()->route('users.index')
                             ->with('message', $user->name.' - removed.');
             } else {
-                return redirect()->route('user.index')
+                return redirect()->route('users.index')
                 ->with('message', "You have to be logged in with administrative rights when deleting records");
             }
         } else {

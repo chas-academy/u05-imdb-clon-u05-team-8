@@ -37,12 +37,12 @@ $html_title = "Genres";
                     @foreach ($genre->titles()->get() as $title )
                     @if ($counter > 0 ) @php $delim = "| ";@endphp @endif
                     {{-- {{$delim}}{{Str::of($title->name)->trim()}} --}}
-                    {{$delim}}<a class=" text-blue-700 underline" href="{{ url('/').'/title/'.$title->id}}">{{$title->name}}</a>
+                    {{$delim}}<a class=" text-blue-700 underline" href="{{ url('/').'/titles/'.$title->id}}">{{$title->name}}</a>
                     @php $counter++; @endphp
                     @endforeach
                     @else
                     {{-- {{ $genre->titles()->get()->first()->name }} --}}
-                    <a class=" text-blue-700 underline" href="{{ url('/').'/title/'.$genre->titles()->get()->first()->id}}">{{$genre->titles()->get()->first()->name}}</a>
+                    <a class=" text-blue-700 underline" href="{{ url('/').'/titles/'.$genre->titles()->get()->first()->id}}">{{$genre->titles()->get()->first()->name}}</a>
 
                     @endif
                     @endif

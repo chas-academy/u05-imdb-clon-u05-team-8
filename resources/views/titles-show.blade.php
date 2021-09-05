@@ -48,7 +48,7 @@ global $is_admin;
             @endif
 
             <div class="text-sm">
-                <a class=" text-blue-700 underline" href="{{ route('title.index') }}">[Back]</a>
+                <a class=" text-blue-700 underline" href="{{ route('titles.index') }}">[Back]</a>
             </div>
             &nbsp;
         </div>
@@ -71,14 +71,14 @@ global $is_admin;
                     @if ($counter > 0 ) @php $delim = "| ";@endphp @endif
 
                     {{-- {{$delim}}{{Str::of($genre->name)->trim()}} --}}
-                    <a class=" text-blue-700 underline" href="{{ url('/').'/genre/'.$genre->id}}">{{$genre->name}}</a>
+                    <a class=" text-blue-700 underline" href="{{ url('/').'/genres/'.$genre->id}}">{{$genre->name}}</a>
 
 
                     @php $counter++; @endphp
                     @endforeach
                     @else
                     {{-- {{ $title->genres()->get()->first()->name }} --}}
-                    <a class=" text-blue-700 underline" href="{{ url('/').'/genre/'.$title->genres()->get()->first()->id}}">{{$title->genres()->get()->first()->name}}</a>
+                    <a class=" text-blue-700 underline" href="{{ url('/').'/genres/'.$title->genres()->get()->first()->id}}">{{$title->genres()->get()->first()->name}}</a>
 
                     @endif
                     @endif
@@ -109,7 +109,7 @@ global $is_admin;
 
 @foreach (auth()->user()->listings()->get() as $listing )
 <br />
-<form action="/listing/{{$listing->id}}/title/{{$title->id}}" method="POST">
+<form action="/listings/{{$listing->id}}/titles/{{$title->id}}" method="POST">
     @csrf
     @method('PUT')
     <button name="listing" value="1" class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">Add to "{{$listing->name}}"</button>

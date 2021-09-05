@@ -81,10 +81,10 @@ class ListingController extends Controller
             $list->user_id = Auth::user()->id;
             $list->save();
 
-                return redirect()->route('listing.index')
+                return redirect()->route('listings.index')
                 ->with('message', $request->input('name').' - created.');
             } else {
-                return redirect()->route('listing.index')
+                return redirect()->route('listings.index')
                 ->with('message', "You have to be logged in when creating records");
             }
 

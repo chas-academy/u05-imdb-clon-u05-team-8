@@ -6,7 +6,7 @@ $html_title = "Create List";
 @include('header')
 
 <div class="mt-5 md:mt-0 md:col-span-2">
-    <form action="{{ route('listing.store') }}" method="POST">
+    <form action="{{ route('listings.store') }}" method="POST">
         @csrf
 
         <div class="shadow border border-green-200 overflow-hidden sm:rounded-md">
@@ -30,7 +30,7 @@ $html_title = "Create List";
                 </div>
                 &nbsp;&nbsp;
                 <div class="text-sm">
-                    <a class=" text-blue-700 underline" href="{{ route('listing.index') }}">[Back]</a>
+                    <a class=" text-blue-700 underline" href="{{ route('listings.index') }}">[Back]</a>
                 </div>
                 &nbsp;
 

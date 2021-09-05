@@ -9,6 +9,7 @@
 
     @auth
     <?php $userAuth = Auth::user(); ?>
+    @endauth
 
     @if ( $userAuth->role->id == 1)
     <!-- 1 = Administrator -->
@@ -76,7 +77,7 @@
                 by {{$review->user()->get()->first()->name}}
                 <br />
                 <textarea>{{$review->body}}</textarea><br>
-                <form action="/review/{{$review->id}}" method="POST">
+                <form action="/reviews/{{$review->id}}" method="POST">
                     @csrf
                     @method('PUT')
                     <button name="approve" value="1" class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">
@@ -119,7 +120,7 @@
                 User: {{$u->name}}
                 <br />
 
-                <form action="/user/{{$u->id}}/permit" method="POST">
+                <form action="/users/{{$u->id}}/permit" method="POST">
                     @csrf
                     @method('PUT')
                     <button name="role_id" value="1" class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">
@@ -193,7 +194,7 @@
 
                     <!--  Rename List -->
 
-                    <form class="my-1" action="/listing/{{$list->id}}" method="POST">
+                    <form class="my-1" action="/listings/{{$list->id}}" method="POST">
                         @csrf
                         @method('PUT')
 
@@ -242,7 +243,6 @@
             </div>
         </div>
         <br />
-
     </div>
-    @endauth
+    <br />
 </x-app-layout>

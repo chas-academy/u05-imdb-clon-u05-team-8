@@ -70,10 +70,10 @@ class TitleController extends Controller
                 $title->user_id = Auth::user()->id;
                 $title->save();
 
-                return redirect()->route('title.index')
+                return redirect()->route('titles.index')
                 ->with('message', $request->input('name').' - created.');
             } else {
-                return redirect()->route('title.index')
+                return redirect()->route('titles.index')
                 ->with('message', "You have to be logged in with administrative rights when creating records");
             }
         } else {
@@ -108,7 +108,7 @@ class TitleController extends Controller
             if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
                 return view('titles-edit', compact('title'));
             } else {
-                return redirect()->route('title.index')
+                return redirect()->route('titles.index')
                 ->with('message', "You have to be logged in with administrative rights to edit Titles");
             }
         } else {
@@ -131,7 +131,7 @@ class TitleController extends Controller
 
         $title->update($request->all());
 
-        return redirect()->route('title.index')
+        return redirect()->route('titles.index')
                             ->with('message', $title->name.' - updated.');
     }
 
@@ -149,10 +149,10 @@ class TitleController extends Controller
             if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
                 Title::destroy($title->id);
 
-                return redirect()->route('title.index')
+                return redirect()->route('titles.index')
                             ->with('message', $title->name.' - removed.');
             } else {
-                return redirect()->route('title.index')
+                return redirect()->route('titles.index')
                 ->with('message', "You have to be logged in with administrative rights when deleting records");
             }
         } else {

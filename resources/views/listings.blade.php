@@ -29,7 +29,7 @@ $html_title = "Lists";
     @php $counter=0 @endphp
     @foreach($list->listitems()->get() as $listitem)
 
-    {{++$counter}} : <a class=" text-blue-700 underline" href="{{ url('/').'/title/'.$listitem->title()->get()->first()->id}}">{{$listitem->title()->get()->first()->name}}</a>
+    {{++$counter}} : <a class=" text-blue-700 underline" href="{{ url('/').'/titles/'.$listitem->title()->get()->first()->id}}">{{$listitem->title()->get()->first()->name}}</a>
     <br />
 
     @endforeach

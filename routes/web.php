@@ -22,7 +22,7 @@ use App\Http\Controllers\ListitemController;
 Route::get('/', function () {
     return view('index', ['titles' => TitleController::allTitles(),
                           'genres' => GenreController::allGenres(),
-                          'review' => ReviewController::allReviews()]);
+                          'reviews' => ReviewController::allReviews()]);
 });
 
 Route::get('/welcome', function () {
@@ -32,23 +32,23 @@ Route::get('/welcome', function () {
 Route::resource('reviews', ReviewController::class);
 Route::post('/reviews/{title_id}', [ReviewController::class, 'addReview']);
 
-Route::resource('title', TitleController::class);
+Route::resource('titles', TitleController::class);
 
-Route::resource('listing', ListingController::class);
+Route::resource('listings', ListingController::class);
 
-Route::put('/listing/{id}/title/{title_id}', [ListingController::class, 'addTitleToListing']);
+Route::put('/listings/{id}/titles/{title_id}', [ListingController::class, 'addTitleToListing']);
 
-Route::resource('listitem', ListitemController::class);
+Route::resource('listitems', ListitemController::class);
 
-Route::put('/user/{id}/permit', [UserController::class, 'permit']);
+Route::put('/users/{id}/permit', [UserController::class, 'permit']);
 
-Route::resource('user', UserController::class);
+Route::resource('users', UserController::class);
 
 Route::get('/roles', [RoleController::class, 'index']);
 
-Route::resource('genre', GenreController::class);
+Route::resource('genres', GenreController::class);
 
-Route::resource('review', ReviewController::class);
+//Route::resource('review', ReviewController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard', ['titles'   => TitleController::allTitles(),
