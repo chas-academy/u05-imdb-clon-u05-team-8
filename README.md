@@ -49,7 +49,7 @@ There are two files included in every view (except the dashboard).
     /user - Shows all Users that are registered in the service, when logged in as an administrator.
     /title - Shows all titles.
     /listing - Shows logged in Users personal Lists
-    /reviews - Shows logged in Users personal Lists
+    /reviews - Shows all reviews
 
 <br>
 

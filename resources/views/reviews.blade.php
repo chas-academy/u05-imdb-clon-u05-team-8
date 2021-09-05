@@ -5,7 +5,6 @@ $html_title = "Reviews";
 
 @include('header')
 
-
 @if ($reviews->count())
 @foreach ($reviews as $review)
 @if($review->approve == true)
@@ -28,8 +27,9 @@ $html_title = "Reviews";
                 </p>
             </dt>
             <dd class="mt-1 lg:text-2xl text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                {{-- {{ $review->body }} --}}
+
                 {{$review->body}}
+
             </dd>
         </div>
     </dl>

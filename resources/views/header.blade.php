@@ -8,7 +8,6 @@ global $html_title;
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{$html_title}}</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -18,7 +17,7 @@ global $html_title;
 
             @if (Route::has('login'))
 
-            <div class="fixed border-l border-b border-bottom border-gray-300  bg-gray-800 top-0 right-0 px-4 py-2">
+            <div class="fixed border-l border-b rounded-lg border-bottom border-gray-300  bg-gray-800 top-0 right-0 px-4 py-2">
 
                 @auth
 
@@ -26,20 +25,16 @@ global $html_title;
                     <a href="{{ url('/dashboard') }}" class="text-sm text-gray-300 underline">Dashboard</a>
                     <span class="text-sm text-gray-300 no-underline">&thinsp;|&thinsp;</span>
 
-
                     @csrf
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="text-sm text-gray-300 underline">Logout</a>
                 </form>
 
-
                 @else
-
 
                 <a href="{{ route('login') }}" class="text-sm text-gray-300 underline">Login</a>
 
                 @if (Route::has('register'))
                 <span class="text-sm text-gray-300 no-underline">&thinsp;|&thinsp;</span>
-
                 <a href="{{ route('register') }}" class="text-sm text-gray-300 underline">Register</a>
                 @endif
 
@@ -81,7 +76,9 @@ global $html_title;
             @endif
 
             @if ($errors->any())
+
             <br />
+
             <div class="alert alert-danger max-w-5xl mx-auto rounded-full lg:text-2xl md:text-xl text-xs py-5 px-10 bg-red-50">
                 <div class="text-center">
                     <strong>There were some problems with your input.</strong>
@@ -104,30 +101,32 @@ global $html_title;
                     @endforeach
                 </ul>
                 @endif
-
-                @endif
+            </div>
+            @endif
         </header>
+        <section class="max-w-5xl mx-auto flex-grow">
 
-        <section class="max-w-5xl flex-grow mx-auto">
+            {{-- <div class="bg-red-500"> --}}
             <!-- Start of section - will be closed in footer.blade.php -->
-            <div class="container bg-red-800 px-4">
-                <div class="flex flex-col">
+            {{-- <div class="container px-4"> --}}
+            {{-- <div class="flex flex-col">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                            <br />
-                            <h1>{{$html_title}}</h1>
-                            @php
-                            global $is_admin;
-                            $is_admin = false;
-                            @endphp
+                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"> --}}
 
-                            @auth
-                            <!-- Only check role for Authenticated users -->
-                            @php
-                            $userAuth = Auth::user();
+            <br />
+            <h1>{{$html_title}}</h1>
+            @php
+            global $is_admin;
+            $is_admin = false;
+            @endphp
 
-                            if ($userAuth->role->id == 1) {
-                            $is_admin = true;
-                            }
-                            @endphp
-                            @endauth
+            @auth
+            <!-- Only check role for Authenticated users -->
+            @php
+            $userAuth = Auth::user();
+
+            if ($userAuth->role->id == 1) {
+            $is_admin = true;
+            }
+            @endphp
+            @endauth

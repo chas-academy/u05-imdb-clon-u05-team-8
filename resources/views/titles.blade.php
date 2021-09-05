@@ -22,8 +22,7 @@ global $is_admin;
 
 @foreach($titles as $title)
 
-
-<div class="bg-green-100 border border-green-200 overflow-hidden rounded-md">
+<div class="bg-gray-400 border border-gray-200 overflow-hidden rounded-md">
     <div class="px-4 py-5 sm:px-6">
         <h3 class="text-lg leading-6 font-medium text-gray-900">
             {{$title['name']}}</h3>
