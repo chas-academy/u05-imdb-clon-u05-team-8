@@ -194,7 +194,8 @@
 
                     <!--  Rename List -->
 
-                    <form class="my-1" action="/listings/{{$list->id}}" method="POST">
+                    <form id="{{$list->id}}" class="my-1" action="/listings/{{$list->id}}" method="POST">
+
                         @csrf
                         @method('PUT')
 

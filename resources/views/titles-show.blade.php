@@ -4,6 +4,8 @@ $html_title = "Show Title";
 @endphp
 
 @include('header')
+<br /><br />
+
 
 <!-- Display Create button for authenticated users with role Administrator -->
 @php
@@ -105,7 +107,6 @@ global $is_admin;
     </div>
 </div>
 @if(auth()->user())
-{{-- Add {{$title['name']}} to Watchlist: --}}
 
 @foreach (auth()->user()->listings()->get() as $listing )
 <br />
@@ -116,19 +117,11 @@ global $is_admin;
 </form>
 
 @endforeach
-{{-- <br />
-    <form action="/review" method="GET">
-        <button name="review" value="1"
-            class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">Write a review</button>
-    </form> --}}
 
 
 <br />
 <div class="text-base">
     <form action="/reviews/{{$title->id}}" method="POST">
-        {{-- <a href="{{action([App\Http\Controllers\ReviewController::class, 'addReview'])}}"
-        class="btn bg-green-500 hover:bg-greeen-700 text-white text-base font-bold py-1 px-2 rounded no-underline">Write a review</a> --}}
-        {{-- class="text-sm text-green-700 underline">[Write a reviw]</a> --}}
 
         @csrf
 

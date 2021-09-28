@@ -30,6 +30,7 @@ Route::get('/welcome', function () {
 });
 
 Route::resource('reviews', ReviewController::class);
+
 Route::post('/reviews/{title_id}', [ReviewController::class, 'addReview']);
 
 Route::resource('titles', TitleController::class);
@@ -40,15 +41,13 @@ Route::put('/listings/{id}/titles/{title_id}', [ListingController::class, 'addTi
 
 Route::resource('listitems', ListitemController::class);
 
-Route::put('/users/{id}/permit', [UserController::class, 'permit']);
-
 Route::resource('users', UserController::class);
+
+Route::put('/users/{id}/permit', [UserController::class, 'permit']);
 
 Route::get('/roles', [RoleController::class, 'index']);
 
 Route::resource('genres', GenreController::class);
-
-//Route::resource('review', ReviewController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard', ['titles'   => TitleController::allTitles(),

@@ -1,0 +1,4 @@
+<select>
+
+    {{ $content}}
+</select>

@@ -18,6 +18,7 @@ class ListitemsTableSeeder extends Seeder
         Listitem::create(array('listing_id'=>'1','title_id'=>'4'));
         Listitem::create(array('listing_id'=>'1','title_id'=>'5'));
         Listitem::create(array('listing_id'=>'1','title_id'=>'6'));
+        Listitem::create(array('listing_id'=>'1','title_id'=>'2'));
 
         Listitem::create(array('listing_id'=>'2','title_id'=>'1'));
         Listitem::create(array('listing_id'=>'2','title_id'=>'2'));

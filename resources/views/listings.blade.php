@@ -1,45 +1,63 @@
 @php
 global $html_title;
-$html_title = "Lists";
+$html_title = "Listings";
 @endphp
 
 @include('header')
-
-<!-- Display Create button for authenticated users  -->
-@if ( Auth::user() )
-
-<div class="text-sm">
-    <a href="{{action([App\Http\Controllers\ListingController::class, 'create'])}}" class="text-sm text-green-700 underline">[Create]</a> new Watchlist.
-</div>
-
-@endif
+<br /><br />
 
 @foreach($listings as $list)
-{{-- <div class="bg-green-400 border border-gray-200 min-w-full rounded-md ">
 
-    <div class="px-4 py-5 sm:px-6 w-full  bg-red-800"> --}}
+<h2 id="{{$list->id}}" class=" text-xs lg:text-xl md:text-base -mt-20 pt-20">
+    <span class="font-semibold lg:pr-4 md:pr-2 sm:pr-1">
+        {{$list->name}}&nbsp;
+        <a class="font-normal no-underline hover:underline" href="/dashboard/#{{$list->id}}">(Manage)</a></span>
+
+    <span>|</span>
+    <span class="lg:px-4 md:px-2 sm:px-1"><a class="no-underline hover:underline" href="#top">Top of Page</a></span>
+</h2>
+<hr />
+<br />
+@php $counter=0 @endphp
+
+<div class="grid grid-cols-1 gap-3 content-center md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-6">
 
 
-<div class="border w-80 mx-auto bg-red-700">
-
-    <h3 class="text-lg leading-6 font-medium text-gray-900">
-        {{$list->name}}
-    </h3>
-    <br />
-    @php $counter=0 @endphp
     @foreach($list->listitems()->get() as $listitem)
+    @php ++$counter; @endphp
 
-    {{++$counter}} : <a class=" text-blue-700 underline" href="{{ url('/').'/titles/'.$listitem->title()->get()->first()->id}}">{{$listitem->title()->get()->first()->name}}</a>
-    <br />
+    {{--
+
+
+        : <a class=" text-blue-700 underline" href="{{ url('/').'/titles/'.$listitem->title()->get()->first()->id}}">{{$listitem->title()->get()->first()->name}}</a>
+    <br /> --}}
+
+    <div class=" text-center text-xs lg:text-xl md:text-base">
+
+
+        <a class="" href=" {{ url('/').'/titles/'.$listitem->title()->get()->first()->id}}">
+
+
+            <img alt="Image of {{$listitem->title()->get()->first()->name}}" class="h-80 md:h-80 lg:h-80 w-auto mx-auto border-2 border-gray-400 hover:border hover:border-gray-800" src={{ URL::to('/posters/'.$listitem->title->poster)}} />
+
+        </a>
+        {{$listitem->title->name}}
+
+
+    </div>
+
+
 
     @endforeach
     @if ( $counter==0)
     No movies in this list.
     @endif
-
 </div>
-{{-- </div>
-</div> --}}
+
+
 <br />
+<br />
+
+
 @endforeach
 @include('footer')

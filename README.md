@@ -14,7 +14,7 @@ These are the models used in this project.
 -   Role - Indicating whether the user is an Administrator or a regular User.
 -   Title - A title in the service, could be a Film, TV-show or e.g. a Video Game.
 -   Genre - Every title is connected to one or more genres like Comedy, Thriller, Drama etc.
--   Listing - Users can create personal Lists in the system like a Watchlist or Wishlists.
+-   Listing - Users can create personal Lists in the system like a watchlist ora wishlists.
 -   Listitem - Implements one row in a User List and connects the row to one Title.
 -   Review - Users can write Reviews of Titles. Reviews are published on the site when an Administator confirms the Review is OK to publish.
 
@@ -34,7 +34,7 @@ Views are written as Blade files (PHP) with semantic HTML.
 
 There are two files included in every view (except the dashboard).
 
--   header.blade.php - Included at the top of view's code. Opens the HTMl document and outputs a menu, and a message or an error text when applicable.
+-   header.blade.php - Included at the top of view's code. Opens the HTML document and outputs a menu, and a message or an error text when applicable.
 -   footer.blade.php - Included as the bottom of the view's code. Outputs the footer at the bottom of the page and closes the HTML document.
 
 <br>
@@ -52,7 +52,6 @@ There are two files included in every view (except the dashboard).
     /reviews - Shows all reviews
 
 <br>
-
 <br>
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>

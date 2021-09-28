@@ -3,6 +3,7 @@ global $html_title;
 $html_title = "Create Review";
 @endphp
 @include('header')
+<br /><br />
 
 <div>
     <h1 class="text-center m-12">Write a review for {{ $title->id }}</h1>

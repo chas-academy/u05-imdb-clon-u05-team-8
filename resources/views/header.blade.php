@@ -12,16 +12,25 @@ global $html_title;
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <main class="h-full flex flex-col">
+    <main class="h-full flex flex-col container mx-auto max-w-5xl ">
+        <!-- max 102px wide -->
         <header class="flex-shrink">
 
-            @if (Route::has('login'))
+            @php
+            $add_fixed_mini_menu=false;
+            @endphp
+            @if ($add_fixed_mini_menu)
 
-            <div class="fixed border-l border-b rounded-lg border-bottom border-gray-300  bg-gray-800 top-0 right-0 px-4 py-2">
+            @if (Route::has('login') )
+
+            <div class="fixed top-0 right-0 border-l border-b rounded-lg border-bottom border-gray-300  bg-gray-400 px-4 py-2">
 
                 @auth
 
                 <form method="POST" action="{{ route('logout') }}">
+                    <a href="/" class="text-sm text-gray-300 underline">Home</a>
+                    <span class="text-sm text-gray-300 no-underline">&thinsp;|&thinsp;</span>
+
                     <a href="{{ url('/dashboard') }}" class="text-sm text-gray-300 underline">Dashboard</a>
                     <span class="text-sm text-gray-300 no-underline">&thinsp;|&thinsp;</span>
 
@@ -30,6 +39,10 @@ global $html_title;
                 </form>
 
                 @else
+                <!-- not authed -->
+
+                <a href="/" class="text-sm text-gray-300 underline">Home</a>
+                <span class="text-sm text-gray-300 no-underline">&thinsp;|&thinsp;</span>
 
                 <a href="{{ route('login') }}" class="text-sm text-gray-300 underline">Login</a>
 
@@ -40,34 +53,68 @@ global $html_title;
 
                 @endauth
             </div>
-
+            @endif
             @endif
 
-            <nav class="max-w-5xl mx-auto mt-12 rounded-full px-6 py-3 bg-gray-800">
+            <nav class="fixed mx-auto w-full  max-w-5xl mt-0 rounded-full px-1 py-3 bg-gray-800">
+
+
                 <ul class="flex items-center justify-between">
-                    <li class="lg:mr-14 mr-2 ml-2 lg:text-2xl md:text-xl text-xs">
+                    <li class="md:mr-10 mr-2 ml-2 md:ml-6 lg:text-2xl md:text-xl text-xs">
                         <a class="text-gray-300 hover:underline hover:text-gray-200" href="/">Home</a>
                     </li>
-                    <li class="lg:mr-14 mr-2 lg:text-2xl md:text-xl text-xs">
+                    <li class="md:mr-10 mr-2 lg:text-2xl md:text-xl text-xs">
                         <a class="text-gray-300 hover:underline hover:text-gray-200" href="/reviews">Reviews</a>
                     </li>
-                    <li class="lg:mr-14 mr-2 lg:text-2xl md:text-xl text-xs">
-                        <a class="text-gray-300 hover:underline hover:text-gray-200" href="/">New Movies</a>
+                    <li class="md:mr-10 mr-2 lg:text-2xl md:text-xl text-xs">
+                        <a class="text-gray-300 hover:underline hover:text-gray-200" href="/genres">Genres</a>
                     </li>
-                    <li class="lg:mr-14 mr-2 lg:text-2xl md:text-xl text-xs">
-                        <a class="text-gray-300 hover:underline hover:text-gray-200" href="/">Top Movies</a>
+                    <li class="md:mr-10 mr-2 lg:text-2xl md:text-xl text-xs">
+                        <a class="text-gray-300 hover:underline hover:text-gray-200" href="/listings">Listings</a>
                     </li>
-                    <li class="lg:mr-14 mr-2 lg:text-2xl md:text-xl text-xs">
-                        <a class="text-gray-300 hover:underline hover:text-gray-200" href="/listings">Watchlists</a>
+                    <!-- Authenticated Users Menu -->
+                    @auth
+                    <li class="md:mr-10 mr-2 lg:text-2xl md:text-xl text-xs">
+                        <a href="{{ url('/dashboard') }}" class=" text-gray-300 hover:underline hover:text-gray-200">Dashboard</a>
                     </li>
+
+                    <li class="md:mr-10 mr-2 lg:text-2xl md:text-xl text-xs">
+
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class=" text-gray-300 hover:underline hover:text-gray-200">Logout</a>
+                        </form>
+                    </li>
+
+                    @else
+                    <!-- Not Authenticated Users Menu -->
+
+                    <li class="md:mr-10 mr-2 lg:text-2xl md:text-xl text-xs">
+
+                        <a href="{{ route('login') }}" class="text-gray-300 hover:underline hover:text-gray-200">Login</a>
+                    </li>
+                    <li class="md:mr-10 mr-2 lg:text-2xl md:text-xl text-xs">
+
+                        @if (Route::has('register'))
+
+                        <a href="{{ route('register') }}" class="text-gray-300 hover:underline hover:text-gray-200">Register</a>
+
+                        @endif
+
+                    </li>
+
+                    @endauth
+
                 </ul>
             </nav>
 
-
+            <br />
+            <br />
             @if(session()->has('message'))
             <br />
 
-            <p class="alert alert-success max-w-5xl text-center mx-auto rounded-full lg:text-2xl md:text-xl text-xs px-10 py-3 bg-green-50">
+            <p class="alert alert-success  max-w-5xl text-center mx-auto rounded-full lg:text-2xl md:text-xl text-xs px-10 py-3 bg-green-50">
+
                 <span>
                     {{ session()->get('message') }}
                 </span>
@@ -80,6 +127,7 @@ global $html_title;
             <br />
 
             <div class="alert alert-danger max-w-5xl mx-auto rounded-full lg:text-2xl md:text-xl text-xs py-5 px-10 bg-red-50">
+
                 <div class="text-center">
                     <strong>There were some problems with your input.</strong>
                     @if( $errors->count() == 1 )
@@ -104,12 +152,16 @@ global $html_title;
             </div>
             @endif
         </header>
-        <!-- This section is a container for respective view -->
+        <!-- This section is a container for respective view  max-w-5xl mx-auto-->
 
-        <section class="max-w-5xl mx-auto flex-grow">
+
+        <section class="flex-grow px-6">
 
             <br />
-            <h1>{{$html_title}}</h1>
+            <br />
+
+            <h1 id="top" class="inline -mt-20 pt-20 underline">{{$html_title}}</h1>
+
             @php
             global $is_admin;
             $is_admin = false;

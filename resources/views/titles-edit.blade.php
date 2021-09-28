@@ -4,6 +4,9 @@ $html_title = "Edit Title";
 @endphp
 
 @include('header')
+<br /><br />
+
+
 
 <div class="mt-5  md:mt-0 md:col-span-2">
     <form action="{{ route('titles.update', $title->id) }}" method="POST">

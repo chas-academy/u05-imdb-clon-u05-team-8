@@ -25,10 +25,10 @@
         @apply text-base;
         @apply underline;
     }
-
+    /*
     a {
         @apply text-blue-600 underline;
-    }
+    } */
 
     ul {
         @apply list-inside;

@@ -3,6 +3,8 @@ global $html_title;
 $html_title = "Create Title";
 @endphp
 @include('header')
+<br /><br />
+
 <div class="mt-5 md:mt-0 md:col-span-2">
     <form action="{{ route('titles.store') }}" method="POST">
         @csrf

@@ -24,7 +24,7 @@ class ReviewController extends Controller
             'reviews' => $reviews
         ]);
     }
-    // Return all reviews witout a view
+    // Return all reviews without a view
     public static function allReviews()
     {
         return Review::all();

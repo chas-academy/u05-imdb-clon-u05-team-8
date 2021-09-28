@@ -7,6 +7,7 @@ $html_title = "Users";
 @endphp
 
 @include('header')
+<br /><br />
 
 
 <!-- Display Create button for authenticated users with role Administrator -->
