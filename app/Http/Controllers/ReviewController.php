@@ -115,9 +115,24 @@ class ReviewController extends Controller
         $review->update($request->all());
 
         return redirect()->route('dashboard')
-                              ->with('message', "Review of \"".$review->title->name."\" by ".$review->user->name.' - has been approved.');
+                              ->with('message', "Review of \"".$review->title->name."\" by ".$review->user->name.' - has been updated.');
     }
 
+    /**
+    * Approve the specified resource in storage.
+    *
+    * @param \Illuminate\Http\Request $request
+    * @param int $id
+    * @return \Illuminate\Http\Response
+    */
+    public function approve(Request $request, $id)
+    {
+      $review = Review::find($id);
+      $review->approve = 1;
+      $review->save();
+
+      return redirect()->route('dashboard')->with('message', "Review of \"".$review->title->name."\" by ".$review->user->name.' - has been approved.');
+    }
 
 
     /**

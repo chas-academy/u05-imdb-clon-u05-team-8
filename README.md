@@ -14,9 +14,9 @@ These are the models used in this project.
 -   Role - Indicating whether the user is an Administrator or a regular User.
 -   Title - A title in the service, could be a Film, TV-show or e.g. a Video Game.
 -   Genre - Every title is connected to one or more genres like Comedy, Thriller, Drama etc.
--   Listing - Users can create personal Lists in the system like a watchlist ora wishlists.
--   Listitem - Implements one row in a User List and connects the row to one Title.
--   Review - Users can write Reviews of Titles. Reviews are published on the site when an Administator confirms the Review is OK to publish.
+-   Listing - Users can create personal Lists in the system like a watchlist or wishlists.
+-   Listitem - Implements one row in a Listing and connects the row to one Title.
+-   Review - Users can write Reviews for Titles. Reviews are published on the site when an User with Role "Administator" confirms the Review is OK to publish.
 
 <br>
 
@@ -28,7 +28,7 @@ These are the views used in this project.
 -   Titles
 -   Genres
 -   Listings
--   Review
+-   Reviews
 
 Views are written as Blade files (PHP) with semantic HTML.
 
@@ -46,9 +46,9 @@ There are two files included in every view (except the dashboard).
     /register - Signs up user.
     /logout - Logs off user.
     /dashboard - Show the logged in User's dashboard and management panels.
-    /user - Shows all Users that are registered in the service, when logged in as an administrator.
-    /title - Shows all titles.
-    /listing - Shows logged in Users personal Lists
+    /users - Shows all Users that are registered in the service, when logged in as an administrator.
+    /titles - Shows all titles.
+    /listings - Shows logged in Users personal Lists
     /reviews - Shows all reviews
 
 <br>

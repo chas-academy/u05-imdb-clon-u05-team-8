@@ -119,7 +119,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-         $userAuth = Auth::user();
+        $userAuth = Auth::user();
 
         if ($userAuth) {
             if ($userAuth->role()->get()->first()->id == 1) {  // 1 = Administrator
@@ -149,8 +149,16 @@ class UserController extends Controller
 
         $user->update($request->all());
 
-        return redirect()->route('users.index')
+        if (strpos($request->server('HTTP_REFERER'), 'dashboard') !== false) {
+
+               return redirect()->route('dashboard')
+               ->with('message', "User \"".$request['oldname']."\" renamed to: \"" .$user->name. "\".");
+        }
+        else{
+            return redirect()->route('users.index')
                             ->with('message', $user->name.' - updated.');
+        }
+
     }
 
     /**
@@ -177,7 +185,7 @@ class UserController extends Controller
             return back()->with('message', "You have to have be logged in to delete Users");
         }
     }
-    // Return all titles
+    // Return all Users
     public static function allUsers()
     {
         return User::all();

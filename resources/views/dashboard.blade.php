@@ -73,11 +73,16 @@
                 <br>
                 @endif
 
-                Review of "{{$review->title()->get()->first()->name}}"
-                by {{$review->user()->get()->first()->name}}
+                {{-- Review of "{{$review->title()->get()->first()->name}}"
+                by {{$review->user()->get()->first()->name}} --}}
+
+                Review of "{{$review->title->name}}"
+                by {{$review->user->name}}
+
+
                 <br />
-                <textarea>{{$review->body}}</textarea><br>
-                <form action="/reviews/{{$review->id}}" method="POST">
+                <textarea class="border rounded">{{$review->body}}</textarea><br>
+                <form action="/reviews/{{$review->id}}/approve" method="POST">
                     @csrf
                     @method('PUT')
                     <button name="approve" value="1" class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">
@@ -166,10 +171,35 @@
                     Welcome {{$userAuth->name}}!
                     <br><br>
                     Logged in User's personal panels goes here: <br /><br />
-                    <ul class="list-disc">
-                        <li>Manage My Account (not implemented)</li>
-                        <li>Manage My Reviews (not implemented)</li>
-                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Manage User Account -->
+    <div id="lists" class="mt-6 max-w-5xl mx-auto ">
+
+        <div class="sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border border-green-400">
+
+                    <h1>Manage Account</h1>
+                    <br>
+
+                    <!--  Update User name for authenticatred User -->
+
+                    <form class="my-1" action="/users/{{$userAuth->id}}" method="POST">
+
+                        @csrf
+                        @method('PUT')
+
+                        <input type="hidden" name="oldname" value="{{$userAuth->name}}">
+
+                        <input class="border border-green-200 rounded p-2" type="text" name="name" value="{{$userAuth->name}}">
+
+                        <button class="my-1 bg-green-500 hover:bg-green-700 text-white  py-1 px-2 rounded">Update</button>
+
+                    </form>
                 </div>
             </div>
         </div>
@@ -200,7 +230,7 @@
                         @method('PUT')
 
                         <input type="hidden" name="oldname" value="{{$list->name}}">
-                        <input type="text" name="name" value="{{$list->name}}">
+                        <input class="border border-green-200 rounded p-2" type="text" name="name" value="{{$list->name}}">
                         <button class="my-1 bg-green-500 hover:bg-green-700 text-white  py-1 px-2 rounded">Rename</button>
 
                     </form>
@@ -225,7 +255,7 @@
                             <li>
                                 <span class="text-sm text-gray-700">
                                     {{$item->title()->get()->first()->name}}
-                                    <button type="submit" class="mx-1 focus:outline-none text-red-500  hover:bg-red-700 underline">[Delete]</button>
+                                    <button type="submit" class="mx-1 focus:outline-none text-red-500  hover:bg-red-700 underline">[Delete item]</button>
                                 </span>
                             </li>
                         </form>
@@ -245,5 +275,58 @@
         </div>
         <br />
     </div>
+    <!-- Manage Reviews -->
+    <div id="reviews" class="mt-6 max-w-5xl mx-auto ">
+        <div class="sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border border-green-400">
+
+                    <h1>Manage Reviews</h1>
+                    <br>
+                    @php
+
+                    $counter=0;
+                    $myReviews = $reviews->where('user_id',$userAuth->id );
+
+
+                    @endphp
+
+                    @foreach ($myReviews as $review)
+
+                    <hr /><br />
+                    @php $counter++; @endphp
+
+                    <!--  Update Review -->
+                    <h3>{{$review->title->name}}</h3>
+
+                    <form id="{{$review->id}}" class="my-1" action="/reviews/{{$review->id}}" method="POST">
+
+                        @csrf
+                        @method('PUT')
+
+                        <textarea readonly class="border border-blue-200 rounded p-2" type="hidden" name="oldbody" value="{{$review->body}}">{{$review->body}}</textarea>
+
+
+
+
+                        <textarea class="border border-green-200 rounded p-2" name="body" value="{{$review->body}}">{{$review->body}}</textarea>
+
+
+                        <button class="my-1 bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded">Update</button>
+
+                    </form>
+                    <br />
+
+                    @endforeach
+                    @if ( $counter==0)
+                    No reviews to manage for logged in user.
+                    @endif
+
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+
     <br />
 </x-app-layout>

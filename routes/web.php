@@ -45,6 +45,8 @@ Route::resource('users', UserController::class);
 
 Route::put('/users/{id}/permit', [UserController::class, 'permit']);
 
+Route::put('/reviews/{id}/approve', [ReviewController::class, 'approve']);
+
 Route::get('/roles', [RoleController::class, 'index']);
 
 Route::resource('genres', GenreController::class);
