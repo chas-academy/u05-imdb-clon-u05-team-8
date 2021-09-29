@@ -24,7 +24,8 @@ $html_title = "Genres";
 
 @if ( count($genre->titles()->get()) > 1)
 
-<h2 id="{{$genre->id}}" class=" text-xs lg:text-xl md:text-base -mt-20 pt-20">
+<h2 id="{{$genre->id}}" class=" text-sm sm:text-base md:text-base lg:text-lg -mt-20 pt-20">
+
     <span class="font-semibold lg:pr-4 md:pr-2 sm:pr-1">{{$genre->name}}</span>
 
     <span>|</span>
@@ -37,13 +38,14 @@ $html_title = "Genres";
     @if ($genre->titles()->get()->first())
 
     @foreach ($genre->titles()->get() as $title )
-    <div class="text-center text-xs md:text-base lg:text-xl">
+    <div class="text-center text-sm sm:text-base md:text-base lg:text-lg">
 
         <a class="" href=" {{ url('/').'/titles/'.$title->id}}">
 
             <img alt="Image of {{$title->name}}" class="h-80 md:h-80 lg:h-80 w-auto mx-auto border-2 border-gray-400 hover:border hover:border-gray-800" src={{ URL::to('/posters/'.$title->poster)}} />
         </a>
         {{$title->name}}
+        <br />
     </div>
     @endforeach
     @endif

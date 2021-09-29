@@ -20,7 +20,8 @@ $html_title = "Listings";
 
 @foreach($listings as $list)
 
-<h2 id="{{$list->id}}" class=" text-xs lg:text-xl md:text-base -mt-20 pt-20">
+<h2 id="{{$list->id}}" class="text-sm sm:text-base md:text-base lg:text-lg -mt-20 pt-20">
+
     <span class="font-semibold lg:pr-4 md:pr-2 sm:pr-1">
         {{$list->name}}&nbsp;
         <a class="font-normal no-underline hover:underline" href="/dashboard/#{{$list->id}}">(Manage)</a></span>
@@ -44,7 +45,8 @@ $html_title = "Listings";
         : <a class=" text-blue-700 underline" href="{{ url('/').'/titles/'.$listitem->title()->get()->first()->id}}">{{$listitem->title()->get()->first()->name}}</a>
     <br /> --}}
 
-    <div class=" text-center text-xs lg:text-xl md:text-base">
+    <div class=" text-center text-sm sm:text-base md:text-base lg:text-lg">
+
 
 
         <a class="" href=" {{ url('/').'/titles/'.$listitem->title()->get()->first()->id}}">
@@ -54,6 +56,7 @@ $html_title = "Listings";
 
         </a>
         {{$listitem->title->name}}
+        <br />
 
 
     </div>

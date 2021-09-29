@@ -6,7 +6,8 @@ $html_title = "Reviews";
 @include('header')
 <br /><br />
 
-<h2 class="text-xs lg:text-xl md:text-base -mt-20 pt-20">
+<h2 class="text-sm sm:text-base md:text-base lg:text-lg -mt-20 pt-20">
+
 
     <span class="font-semibold lg:pr-4 md:pr-2 sm:pr-1">Latest Reviews</span>
 
@@ -62,7 +63,8 @@ $html_title = "Reviews";
 
 {{-- Not yet approved reviews  --}}
 
-<h2 id="upcoming" class=" text-xs lg:text-xl md:text-base -mt-20 pt-20">
+<h2 id="upcoming" class=" text-sm sm:text-base md:text-base lg:text-lg -mt-20 pt-20">
+
 
     <span class="font-semibold lg:pr-4 md:pr-2 sm:pr-1">Upcoming reviews</span>
     <span>|</span>
