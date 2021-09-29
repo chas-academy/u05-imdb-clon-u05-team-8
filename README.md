@@ -10,11 +10,11 @@ Styled with [Tailwind](https://tailwindcss.com/) CSS.
 
 These are the models used in this project.
 
--   User - A standard Laravel User augmented with a role.
--   Role - Indicating whether the user is an Administrator or a regular User.
--   Title - A title in the service, could be a Film, TV-show or e.g. a Video Game.
--   Genre - Every title is connected to one or more genres like Comedy, Thriller, Drama etc.
--   Listing - Users can create personal Lists in the system like a watchlist or wishlists.
+-   User - A standard Laravel User augmented with a Role.
+-   Role - Indicating whether the User is an administrator or a regular User.
+-   Title - A Title in the service, could be a film, TV-show or e.g. a video game.
+-   Genre - Every Title is connected to one or more Genres like comedy, thriller, drama etc.
+-   Listing - Users can create personal Listings in the system like a watchlist or wishlists.
 -   Listitem - Implements one row in a Listing and connects the row to one Title.
 -   Review - Users can write Reviews for Titles. Reviews are published on the site when an User with Role "Administator" confirms the Review is OK to publish.
 
@@ -42,14 +42,14 @@ There are two files included in every view (except the dashboard).
 
 ### Endpoints
 
-    /login - Signs in a user.
-    /register - Signs up user.
-    /logout - Logs off user.
+    /login - Signs in a User.
+    /register - Signs up User.
+    /logout - Logs off User.
     /dashboard - Show the logged in User's dashboard and management panels.
     /users - Shows all Users that are registered in the service, when logged in as an administrator.
     /titles - Shows all titles.
-    /listings - Shows logged in Users personal Lists
-    /reviews - Shows all reviews
+    /listings - Shows logged in Users personal Lists.
+    /reviews - Shows all reviews.
 
 <br>
 <br>
