@@ -170,8 +170,7 @@ class ListingController extends Controller
 
            if( $item ){
 
-                return back()->with('message', "\"".$title->name."\" already exists in Watchlist \"".$list->name."\"");
-
+                return back()->with('message', "\"".$title->name."\" already exists in Listing \"".$list->name."\"");
            }
            else{
 
@@ -182,7 +181,7 @@ class ListingController extends Controller
                     ]
                 )) {
 
-                    return back()->with('message', "\"".$title->name."\" added to Watchlist \"".$list->name."\"");
+                    return back()->with('message', "\"".$title->name."\" added to Listing \"".$list->name."\"");
                 }
         }
     }

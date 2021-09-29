@@ -56,29 +56,44 @@ global $html_title;
             @endif
             @endif
 
-            <nav class="fixed mx-auto w-full  max-w-5xl mt-0 rounded-full px-1 py-3 bg-gray-800">
+            <nav class="fixed mx-auto w-full max-w-5xl mt-0 rounded-full px-1 py-3 bg-gray-800">
 
 
-                <ul class="flex items-center justify-between">
-                    <li class="md:mr-10 mr-2 ml-2 md:ml-6 lg:text-2xl md:text-xl text-xs">
-                        <a class="text-gray-300 hover:underline hover:text-gray-200" href="/">Home</a>
+
+                <ul class="flex items-center justify-evenly text-xs sm:text-lg md:text-xl lg:text-xl">
+
+                    <li class=" ">
+
+
+
+                        <a class=" text-gray-300 hover:underline hover:text-gray-200" href="/">Home</a>
                     </li>
-                    <li class="md:mr-10 mr-2 lg:text-2xl md:text-xl text-xs">
+                    <li class="">
+
+
                         <a class="text-gray-300 hover:underline hover:text-gray-200" href="/reviews">Reviews</a>
                     </li>
-                    <li class="md:mr-10 mr-2 lg:text-2xl md:text-xl text-xs">
+                    <li class="">
+
+
                         <a class="text-gray-300 hover:underline hover:text-gray-200" href="/genres">Genres</a>
                     </li>
-                    <li class="md:mr-10 mr-2 lg:text-2xl md:text-xl text-xs">
+                    <li class="">
+
+
                         <a class="text-gray-300 hover:underline hover:text-gray-200" href="/listings">Listings</a>
                     </li>
                     <!-- Authenticated Users Menu -->
                     @auth
-                    <li class="md:mr-10 mr-2 lg:text-2xl md:text-xl text-xs">
+                    <li class="">
+
+
                         <a href="{{ url('/dashboard') }}" class=" text-gray-300 hover:underline hover:text-gray-200">Dashboard</a>
                     </li>
 
-                    <li class="md:mr-10 mr-2 lg:text-2xl md:text-xl text-xs">
+                    <li class="">
+
+
 
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -89,11 +104,15 @@ global $html_title;
                     @else
                     <!-- Not Authenticated Users Menu -->
 
-                    <li class="md:mr-10 mr-2 lg:text-2xl md:text-xl text-xs">
+                    <li class="">
+
+
 
                         <a href="{{ route('login') }}" class="text-gray-300 hover:underline hover:text-gray-200">Login</a>
                     </li>
-                    <li class="md:mr-10 mr-2 lg:text-2xl md:text-xl text-xs">
+                    <li class="">
+
+
 
                         @if (Route::has('register'))
 

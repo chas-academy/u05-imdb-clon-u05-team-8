@@ -38,7 +38,7 @@ $html_title = "Create User";
                 </div>
                 &nbsp;&nbsp;
                 <div class="text-sm">
-                    <a class=" text-blue-700 underline" href="{{ route('titles.index') }}">[Back]</a>
+                    <a class=" text-blue-700 underline" href="{{ route('users.index') }}">[Back]</a>
                 </div>
                 &nbsp;
 

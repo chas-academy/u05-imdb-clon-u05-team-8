@@ -85,7 +85,8 @@
                 <form action="/reviews/{{$review->id}}/approve" method="POST">
                     @csrf
                     @method('PUT')
-                    <button name="approve" value="1" class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">
+                    <button name="approve" value="1" class="bg-green-500 hover:bg-green-700 text-white  font-medium   py-1 px-2 rounded">
+
                         Approve review</button>
                 </form>
                 <br /><br />
@@ -128,7 +129,8 @@
                 <form action="/users/{{$u->id}}/permit" method="POST">
                     @csrf
                     @method('PUT')
-                    <button name="role_id" value="1" class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">
+                    <button name="role_id" value="1" class="bg-green-500 hover:bg-green-700 text-white font-medium  py-1 px-2 rounded">
+
                         Permit admin rights</button>
                 </form>
                 <br /><br />
@@ -194,10 +196,9 @@
                         @method('PUT')
 
                         <input type="hidden" name="oldname" value="{{$userAuth->name}}">
-
                         <input class="border border-green-200 rounded p-2" type="text" name="name" value="{{$userAuth->name}}">
+                        <button class="my-1 bg-green-500 hover:bg-green-700 text-white  font-medium  py-1 px-2 rounded">Update</button>
 
-                        <button class="my-1 bg-green-500 hover:bg-green-700 text-white  py-1 px-2 rounded">Update</button>
 
                     </form>
                 </div>
@@ -231,7 +232,8 @@
 
                         <input type="hidden" name="oldname" value="{{$list->name}}">
                         <input class="border border-green-200 rounded p-2" type="text" name="name" value="{{$list->name}}">
-                        <button class="my-1 bg-green-500 hover:bg-green-700 text-white  py-1 px-2 rounded">Rename</button>
+                        <button class="my-1 bg-green-500 hover:bg-green-700 text-white  font-medium  py-1 px-2 rounded">Rename</button>
+
 
                     </form>
 
@@ -240,7 +242,8 @@
                         @csrf
                         @method('DELETE')
 
-                        <button type="submit" onclick="return confirm('Do you really want to delete this list? ({{$list->name}})');" class="mb-1 bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded">Delete List</button>
+                        <button type="submit" onclick="return confirm('Do you really want to delete this list? ({{$list->name}})');" class="mb-1 bg-red-500 hover:bg-red-700 text-white  font-medium  py-1 px-2 rounded">Delete List</button>
+
                     </form>
 
                     <!--  Delete Listitem -->
@@ -255,7 +258,8 @@
                             <li>
                                 <span class="text-sm text-gray-700">
                                     {{$item->title()->get()->first()->name}}
-                                    <button type="submit" class="mx-1 focus:outline-none text-red-500  hover:bg-red-700 underline">[Delete item]</button>
+                                    <button type="submit" class="mx-1 focus:outline-none text-red-500  hover:bg-red-700   font-medium  underline">[Delete item]</button>
+
                                 </span>
                             </li>
                         </form>
@@ -305,14 +309,9 @@
                         @method('PUT')
 
                         <textarea readonly class="border border-blue-200 rounded p-2" type="hidden" name="oldbody" value="{{$review->body}}">{{$review->body}}</textarea>
-
-
-
-
                         <textarea class="border border-green-200 rounded p-2" name="body" value="{{$review->body}}">{{$review->body}}</textarea>
+                        <button class="my-1 bg-green-500 hover:bg-green-700 text-white  font-medium  py-1 px-2 rounded">Update</button>
 
-
-                        <button class="my-1 bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded">Update</button>
 
                     </form>
                     <br />

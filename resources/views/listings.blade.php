@@ -4,6 +4,18 @@ $html_title = "Listings";
 @endphp
 
 @include('header')
+@if ( $listings->count() > 1)
+
+<label for="listings">&nbsp;-&thinsp;Choose a </label> {{-- window.location='{{ url('/').'/genres/'}}'+this.selectedIndex --}}
+<select class="border rounded" name="listings" id="listings" onchange="const url=location.href; location.href = ' #'+this.options[this.selectedIndex].value; history.replaceState(null,null,url); ">
+
+    <option disabled selected>listing</option>
+    @foreach($listings as $listing)
+    <option value="{{$listing['id']}}"> {{$listing['name']}}</option>
+    @endforeach
+</select>
+@endif
+
 <br /><br />
 
 @foreach($listings as $list)

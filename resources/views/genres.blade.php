@@ -8,13 +8,12 @@ $html_title = "Genres";
 
 @include('header')
 <label for="genres">&nbsp;-&thinsp;Choose a </label> {{-- window.location='{{ url('/').'/genres/'}}'+this.selectedIndex --}}
-<select name="genres" id="genres" onchange="const url=location.href; location.href = ' #'+this.options[this.selectedIndex].value; history.replaceState(null,null,url); ">
+<select class="border rounded" name="genres" id="genres" onchange="const url=location.href; location.href = ' #'+this.options[this.selectedIndex].value; history.replaceState(null,null,url); ">
+
 
     <option disabled selected>genre</option>
     @foreach($genres as $genre)
     @if ( count($genre->titles()->get()) > 1)
-
-
     <option value="{{$genre['id']}}"> {{$genre['name']}}</option>
     @endif
     @endforeach

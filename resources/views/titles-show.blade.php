@@ -1,10 +1,13 @@
 @php
 global $html_title;
-$html_title = "Show Title";
+$html_title = $title['name'];
+
 @endphp
 
 @include('header')
-<br /><br />
+<br><br>
+<hr>
+<br />
 
 
 <!-- Display Create button for authenticated users with role Administrator -->
@@ -12,7 +15,57 @@ $html_title = "Show Title";
 global $is_admin;
 @endphp
 
+
+
+<div class="container grid grid-cols-1 gap-2 sm:grid sm:grid-cols-2 ">
+
+    <div class="sm:order-2"> <a class="" href=" {{ url('/').'/titles/'.$title->id}}">
+
+
+            <img alt="Image of {{$title->name}}" class="h-80 md:h-80 lg:h-80 w-auto mx-auto border-2 border-gray-400 hover:border hover:border-gray-800" src={{ URL::to('/posters/'.$title->poster)}} />
+        </a>
+
+    </div>
+    <div class="sm:order-1">
+
+
+        <div class="px-4">
+
+            <b>Title:</b> {{ $title->name }}
+            <br />
+            <b>Release date:</b> {{ $title->publ_date }}
+            <br />
+            <b>Reviewer:</b> {{$title->user->name}}
+            <br />
+            <b>Review created:</b> {{ date_format($title->created_at,"Y-m-d H:i") }}
+
+        </div>
+    </div>
+
+
+    <div class="sm:order-3 sm:col-span-2">
+
+        <div class="p-4">
+
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab aliquid totam consectetur vel, aut ullam suscipit vitae laudantium! Nostrum omnis iure nisi deserunt praesentium, assumenda officiis esse magni dolor magnam?
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, non ducimus hic, nihil deserunt earum consequatur ea architecto iusto ipsa doloribus nostrum nobis repellat vero sint debitis exercitationem ipsam? Voluptate.
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, non ducimus hic, nihil deserunt earum consequatur ea architecto iusto ipsa doloribus nostrum nobis repellat vero sint debitis exercitationem ipsam? Voluptate.
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, non ducimus hic, nihil deserunt earum consequatur ea architecto iusto ipsa doloribus nostrum nobis repellat vero sint debitis exercitationem ipsam? Voluptate.
+
+
+
+
+        </div>
+    </div>
+
+</div>
+
+@if ( false )
+
+
+
 @if ( $is_admin )
+
 
 <div class="text-sm">
     <a href="{{action([App\Http\Controllers\TitleController::class, 'create'])}}" class="text-sm text-green-700 underline">[Create]</a> new Title.
@@ -42,7 +95,7 @@ global $is_admin;
                 @method('DELETE')
                 @csrf
                 <span class=" text-sm text-gray-700">
-                    <button type="submit" class="focus:outline-none   text-red-700 underline">[Delete]</button>
+                    <button type="submit" class="focus:outline-none text-red-700 underline">[Delete]</button>
                 </span>
             </form>
             &nbsp;&nbsp;
@@ -50,7 +103,8 @@ global $is_admin;
             @endif
 
             <div class="text-sm">
-                <a class=" text-blue-700 underline" href="{{ route('titles.index') }}">[Back]</a>
+                <a class=" text-blue-700 underline" href="{{ url()->previous() }}">[Back]</a>
+
             </div>
             &nbsp;
         </div>
@@ -108,15 +162,19 @@ global $is_admin;
 </div>
 @if(auth()->user())
 
-@foreach (auth()->user()->listings()->get() as $listing )
-<br />
-<form action="/listings/{{$listing->id}}/titles/{{$title->id}}" method="POST">
-    @csrf
-    @method('PUT')
-    <button name="listing" value="1" class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">Add to "{{$listing->name}}"</button>
-</form>
+<div class="flex flex-row flex-wrap justify-start">
 
-@endforeach
+    @foreach (auth()->user()->listings()->get() as $listing )
+
+
+    <form class="mr-2 my-2" action="/listings/{{$listing->id}}/titles/{{$title->id}}" method="POST">
+        @csrf
+        @method('PUT')
+        <button name="listing" class="bg-green-500 hover:bg-green-700 text-white font-medium py-1 px-2 rounded">Add to "{{$listing->name}}"</button>
+    </form>
+    @endforeach
+</div>
+
 
 
 <br />
@@ -125,10 +183,12 @@ global $is_admin;
 
         @csrf
 
-        <button name="listing" value="1" class="bg-green-500 hover:bg-greeen-700 text-white font-bold py-1 px-2 rounded">Add Review</button>
+        <button name="listing" class="bg-green-500 hover:bg-green-700 text-white font-medium py-1 px-2 rounded">Add a Review</button>
+
     </form>
 
 </div>
+@endif
 @endif
 
 @include('footer')
