@@ -4,20 +4,36 @@ $html_title = "Listings";
 @endphp
 
 @include('header')
-@if ( $listings->count() > 1)
+<br />
+<br />
 
-<label for="listings">&nbsp;-&thinsp;Choose a </label> {{-- window.location='{{ url('/').'/genres/'}}'+this.selectedIndex --}}
-<select class="border rounded" name="listings" id="listings" onchange="const url=location.href; location.href = ' #'+this.options[this.selectedIndex].value; history.replaceState(null,null,url); ">
+<div class="flex flex-wrap justify-start content-center">
 
-    <option disabled selected>listing</option>
-    @foreach($listings as $listing)
-    <option value="{{$listing['id']}}"> {{$listing['name']}}</option>
-    @endforeach
-</select>
-@endif
 
-<br /><br />
+    @if ( $listings->count() > 1)
+    <div>
+        <label class="my-1" for="listings">Select a </label> {{-- window.location='{{ url('/').'/genres/'}}'+this.selectedIndex --}}
+        <select class="border rounded mx-2 my-1" name="listings" id="listings" onchange="const url=location.href; location.href = ' #'+this.options[this.selectedIndex].value; history.replaceState(null,null,url); ">
 
+            <option disabled selected>listing</option>
+            @foreach($listings as $listing)
+            <option value="{{$listing['id']}}"> {{$listing['name']}}</option>
+            @endforeach
+        </select>
+    </div>
+    @endif
+    <div class="text-base  sm:ml-auto">
+
+        <form action="{{action([App\Http\Controllers\ListingController::class, 'create'])}}" method="get">
+            {{-- @csrf --}}
+            <button name="listing" class="bg-green-500 hover:bg-green-700 text-white font-medium my-1 px-2 rounded">Create a new Listing</button>
+        </form>
+    </div>
+</div>
+{{-- sm:ml-auto --}}
+
+<br />
+@php $first=true; @endphp
 @foreach($listings as $list)
 
 <h2 id="{{$list->id}}" class="text-sm sm:text-base md:text-base lg:text-lg -mt-20 pt-20">
@@ -25,15 +41,19 @@ $html_title = "Listings";
     <span class="font-semibold lg:pr-4 md:pr-2 sm:pr-1">
         {{$list->name}}&nbsp;
         <a class="font-normal no-underline hover:underline" href="/dashboard/#{{$list->id}}">(Manage)</a></span>
-
+    @if( !$first)
     <span>|</span>
     <span class="lg:px-4 md:px-2 sm:px-1"><a class="no-underline hover:underline" href="#top">Top of Page</a></span>
+    @endif
+    @php $first=false; @endphp
+
 </h2>
 <hr />
 <br />
 @php $counter=0 @endphp
 
-<div class="grid grid-cols-1 gap-3 content-center md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-6">
+<div class="grid grid-cols-1 gap-3 content-center sm:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-6">
+
 
 
     @foreach($list->listitems()->get() as $listitem)

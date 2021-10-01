@@ -9,26 +9,21 @@ $html_title = $title['name'];
 <hr>
 <br />
 
-
 <!-- Display Create button for authenticated users with role Administrator -->
 @php
 global $is_admin;
 @endphp
 
-
-
 <div class="container grid grid-cols-1 gap-2 sm:grid sm:grid-cols-2 ">
 
-    <div class="sm:order-2"> <a class="" href=" {{ url('/').'/titles/'.$title->id}}">
-
+    <div class="sm:order-2">
+        <a class="" href=" {{ url('/').'/titles/'.$title->id}}">
 
             <img alt="Image of {{$title->name}}" class="h-80 md:h-80 lg:h-80 w-auto mx-auto border-2 border-gray-400 hover:border hover:border-gray-800" src={{ URL::to('/posters/'.$title->poster)}} />
         </a>
 
     </div>
     <div class="sm:order-1">
-
-
         <div class="px-4">
 
             <b>Title:</b> {{ $title->name }}
@@ -182,9 +177,7 @@ global $is_admin;
     <form action="/reviews/{{$title->id}}" method="POST">
 
         @csrf
-
         <button name="listing" class="bg-green-500 hover:bg-green-700 text-white font-medium py-1 px-2 rounded">Add a Review</button>
-
     </form>
 
 </div>

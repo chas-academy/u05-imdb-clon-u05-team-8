@@ -50,9 +50,17 @@ $html_title = "Reviews";
         {{ $review->body }}
 
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae dolorum quidem voluptates quaerat eaque, id asperiores sint odit? Eos esse odio harum error aliquid recusandae repellendus nobis earum minus incidunt.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae dolorum quidem voluptates quaerat eaque, id asperiores sint odit? Eos esse odio harum error aliquid recusandae repellendus nobis earum minus incidunt.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae dolorum quidem voluptates quaerat eaque, id asperiores sint odit? Eos esse odio harum error aliquid recusandae repellendus nobis earum minus incidunt.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae dolorum quidem voluptates quaerat eaque,
+            id asperiores sint odit? Eos esse odio harum error aliquid recusandae repellendus nobis earum minus incidunt.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae dolorum quidem voluptates quaerat eaque,
+            id asperiores sint odit? Eos esse odio harum error aliquid recusandae repellendus nobis earum minus incidunt.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae dolorum quidem voluptates quaerat eaque,
+            id asperiores sint odit? Eos esse odio harum error aliquid recusandae repellendus nobis earum minus incidunt.
+        </p>
         </p>
     </div>
 </div>

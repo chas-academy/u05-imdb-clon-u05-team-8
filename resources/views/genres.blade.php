@@ -7,8 +7,11 @@ $html_title = "Genres";
 @endphp
 
 @include('header')
-<label for="genres">&nbsp;-&thinsp;Choose a </label> {{-- window.location='{{ url('/').'/genres/'}}'+this.selectedIndex --}}
-<select class="border rounded" name="genres" id="genres" onchange="const url=location.href; location.href = ' #'+this.options[this.selectedIndex].value; history.replaceState(null,null,url); ">
+<br /><br />
+
+<label for="genres">Select a </label> {{-- window.location='{{ url('/').'/genres/'}}'+this.selectedIndex --}}
+<select class="border rounded mx-2 my-1" name="genres" id="genres" onchange="const url=location.href; location.href = ' #'+this.options[this.selectedIndex].value; history.replaceState(null,null,url); ">
+
 
 
     <option disabled selected>genre</option>
@@ -33,7 +36,8 @@ $html_title = "Genres";
 </h2>
 <hr />
 <br />
-<div class="grid grid-cols-1 gap-2 content-center md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-6 ">
+<div class="grid grid-cols-1 gap-2 content-center  sm:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-6 ">
+
 
     @if ($genre->titles()->get()->first())
 

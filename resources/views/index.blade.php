@@ -21,7 +21,8 @@ $html_title = "Home";
 
 <hr />
 <br />
-<div class="grid grid-cols-1 gap-3 content-center md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-6 ">
+<div class="grid grid-cols-1 gap-3 content-center sm:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-6 ">
+
 
     @foreach($titles->slice(0,6) as $title)
 
@@ -52,7 +53,8 @@ $html_title = "Home";
 
 <hr />
 <br />
-<div class="grid grid-cols-1 gap-2 content-center md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-6 ">
+<div class="grid grid-cols-1 gap-2 content-center  sm:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-6 ">
+
 
 
     @foreach($titles->slice(2,10) as $title)
@@ -87,7 +89,8 @@ $html_title = "Home";
 <hr />
 <br />
 
-<div class="grid grid-cols-1 gap-3 content-center md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-6 ">
+<div class="grid grid-cols-1 gap-3 content-center  sm:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-6 ">
+
 
 
     @foreach($titles->sortDesc() as $title)

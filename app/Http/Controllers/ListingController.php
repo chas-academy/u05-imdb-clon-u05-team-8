@@ -32,7 +32,7 @@ class ListingController extends Controller
         }
 
          else {
-            return back()->with('message', "Please login to see your Watchlists");
+            return back()->with('message', "Please login to see your Listings");
         }
 
 
@@ -54,7 +54,7 @@ class ListingController extends Controller
                 return view('listings-create', compact('listing'));
 
         } else {
-            return back()->with('message', "You have to have be logged in to create new Titles");
+            return back()->with('message', "You have to have be logged in to create new Listings");
         }
     }
 
