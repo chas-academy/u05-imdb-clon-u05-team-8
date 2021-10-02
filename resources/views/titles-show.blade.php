@@ -54,6 +54,37 @@ global $is_admin;
     </div>
 
 </div>
+<hr>
+@if(auth()->user())
+
+<div class="flex flex-row flex-wrap justify-start">
+
+    @foreach (auth()->user()->listings()->get() as $listing )
+
+
+    <form class="mr-2 my-2" action="/listings/{{$listing->id}}/titles/{{$title->id}}" method="POST">
+        @csrf
+        @method('PUT')
+        <button name="listing" class="bg-green-500 hover:bg-green-700 text-white  py-1 px-2 rounded">Add to "{{$listing->name}}"</button>
+    </form>
+    @endforeach
+</div>
+
+<br />
+<hr />
+<br />
+<div class="text-base">
+    <form action="/reviews/{{$title->id}}" method="POST">
+
+        @csrf
+        <button name="listing" class="bg-green-500 hover:bg-green-700 text-white  py-1 px-2 rounded">Add a Review</button>
+    </form>
+
+</div>
+@endif
+
+
+@include('footer')
 
 @if ( false )
 
@@ -155,33 +186,4 @@ global $is_admin;
         </dl>
     </div>
 </div>
-@if(auth()->user())
-
-<div class="flex flex-row flex-wrap justify-start">
-
-    @foreach (auth()->user()->listings()->get() as $listing )
-
-
-    <form class="mr-2 my-2" action="/listings/{{$listing->id}}/titles/{{$title->id}}" method="POST">
-        @csrf
-        @method('PUT')
-        <button name="listing" class="bg-green-500 hover:bg-green-700 text-white font-medium py-1 px-2 rounded">Add to "{{$listing->name}}"</button>
-    </form>
-    @endforeach
-</div>
-
-
-
-<br />
-<div class="text-base">
-    <form action="/reviews/{{$title->id}}" method="POST">
-
-        @csrf
-        <button name="listing" class="bg-green-500 hover:bg-green-700 text-white font-medium py-1 px-2 rounded">Add a Review</button>
-    </form>
-
-</div>
 @endif
-@endif
-
-@include('footer')

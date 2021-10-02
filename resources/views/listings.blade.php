@@ -26,14 +26,12 @@ $html_title = "Listings";
 
         <form action="{{action([App\Http\Controllers\ListingController::class, 'create'])}}" method="get">
             {{-- @csrf --}}
-            <button name="listing" class="bg-green-500 hover:bg-green-700 text-white font-medium my-1 px-2 rounded">Create a new Listing</button>
+            <button name="listing" class="bg-green-500 hover:bg-green-700 text-white font-medium my-1 sm:my-0 px-2 rounded">Create a new Listing</button>
         </form>
     </div>
 </div>
-{{-- sm:ml-auto --}}
-
 <br />
-@php $first=true; @endphp
+@php $first=false; /* use when no top-of-page at t-o-p. */ @endphp
 @foreach($listings as $list)
 
 <h2 id="{{$list->id}}" class="text-sm sm:text-base md:text-base lg:text-lg -mt-20 pt-20">
@@ -66,14 +64,8 @@ $html_title = "Listings";
     <br /> --}}
 
     <div class=" text-center text-sm sm:text-base md:text-base lg:text-lg">
-
-
-
         <a class="" href=" {{ url('/').'/titles/'.$listitem->title()->get()->first()->id}}">
-
-
             <img alt="Image of {{$listitem->title()->get()->first()->name}}" class="h-80 md:h-80 lg:h-80 w-auto mx-auto border-2 border-gray-400 hover:border hover:border-gray-800" src={{ URL::to('/posters/'.$listitem->title->poster)}} />
-
         </a>
         {{$listitem->title->name}}
         <br />

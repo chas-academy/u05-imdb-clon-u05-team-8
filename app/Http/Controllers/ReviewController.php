@@ -112,8 +112,9 @@ class ReviewController extends Controller
      */
     public function update(Request $request, Review $review)
     {
+
         $review->update($request->all());
- $review->approve = 0;
+        $review->approve = 0;
         return redirect()->route('dashboard')
                               ->with('message', "Review of \"".$review->title->name."\" by ".$review->user->name.' - has been updated, and has to be approved again.');
     }
