@@ -68,6 +68,7 @@ class ReviewController extends Controller
         if (Auth::check()) {
             $review = new Review;
             $review->body = $request->body;
+            $review->approve = 0;
             $review->user_id = Auth::user()->id;
             $review->title_id = $request->title_id;
             $review->save();
@@ -135,6 +136,21 @@ class ReviewController extends Controller
       return redirect()->route('dashboard')->with('message', "Review of \"".$review->title->name."\" by ".$review->user->name.' - has been approved.');
     }
 
+ /**
+    * Approve the specified resource in storage.
+    *
+    * @param \Illuminate\Http\Request $request
+    * @param int $id
+    * @return \Illuminate\Http\Response
+    */
+    public function reviews(Request $request, $id)
+    {
+      $review = Review::find($id);
+      $review->approve = 1;
+      $review->save();
+
+      return redirect()->route('dashboard')->with('message', "Review of \"".$review->title->name."\" by ".$review->user->name.' - has been approved.');
+    }
 
     /**
      * Remove the specified resource from storage.

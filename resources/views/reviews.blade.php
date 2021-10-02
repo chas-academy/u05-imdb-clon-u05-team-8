@@ -80,8 +80,15 @@ $html_title = "Reviews";
 </h2>
 <hr />
 <br />
-@foreach ($reviews as $review)
-@if($review->approve == false)
+@php 
+
+$notApproved = $reviews->where('approve','0');
+
+@endphp
+@if ($notApproved->count() > 0)
+
+@foreach ($notApproved as $review)
+{{-- @if($review->approve == false) --}}
 <div class="border border-gray-100 container flex flex-col sm:flex-row sm:flex-wrap">
     <div class="border border-gray-100 p-4 ">
 
@@ -115,12 +122,15 @@ $html_title = "Reviews";
         </p>
     </div>
 </div>
+
 <br />
 <br />
 
-@endif
+
 @endforeach
-
+@else
+ There are no upcoming reviews.
+@endif
 @else
 <p>
     There are no reviews yet

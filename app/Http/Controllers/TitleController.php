@@ -21,6 +21,20 @@ class TitleController extends Controller
         return view('titles', compact('titles'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function reviews( $id)
+    {
+      $title = Title::find($id);
+      $reviews = $title->reviews()->get();
+
+     
+       return view('reviews', compact( 'reviews'));
+
+    }
 
     /**
      * Show the form for creating a new resource.

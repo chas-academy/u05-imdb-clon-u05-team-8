@@ -75,7 +75,6 @@ class UserController extends Controller
         ]);
 
 
-
         $user = Auth::user();
 
         if ($user) {

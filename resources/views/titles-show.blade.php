@@ -5,7 +5,26 @@ $html_title = $title['name'];
 @endphp
 
 @include('header')
-<br><br>
+<div class="flex flex-wrap justify-start content-center">
+
+    @if ( $title->reviews->count() > 0)
+  
+        <div class="text-base  sm:ml-auto">
+{{-- <form action="https://google.com">
+    <input type="submit" value="Go to Google" />
+</form>
+
+method="get"
+ --}}
+            <form action="\titles\{{$title->id}}\reviews" >
+                {{-- @csrf --}}
+                <button value="" class="bg-green-500 hover:bg-green-700 text-white  my-1 sm:my-0 px-2 rounded">View all Reviews</button>
+            </form>
+        </div>
+    @endif
+
+</div>
+<br />
 <hr>
 <br />
 
