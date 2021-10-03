@@ -132,7 +132,8 @@ global $html_title;
             @if(session()->has('message'))
             <br />
 
-            <p class="alert alert-success  max-w-5xl text-center mx-auto rounded-full lg:text-2xl md:text-xl text-xs px-10 py-1 bg-green-50">
+            <p class="alert alert-success  max-w-5xl text-center mx-auto rounded-fulltext-xs sm:text-lg md:text-xl lg:text-xl px-10 py-1 bg-green-50">
+
 
                 <span>
                     {{ session()->get('message') }}
@@ -145,10 +146,11 @@ global $html_title;
 
             <br />
 
-            <div class="alert alert-danger max-w-5xl mx-auto rounded-full lg:text-2xl md:text-xl text-xs py-1 px-10 bg-red-50">
+            <div class="alert alert-danger max-w-5xl mx-auto rounded-full text-xs sm:text-lg md:text-xl lg:text-xl py-1 px-10 bg-red-50">
+
 
                 <div class="text-center">
-                    <strong>There were some problems with your input.</strong>
+                    <b>There were some problems with your input.</b>
                     @if( $errors->count() == 1 )
 
                     <p>

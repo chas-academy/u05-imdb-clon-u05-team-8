@@ -8,19 +8,19 @@ $html_title = $title['name'];
 <div class="flex flex-wrap justify-start content-center">
 
     @if ( $title->reviews->count() > 0)
-  
-        <div class="text-base  sm:ml-auto">
-{{-- <form action="https://google.com">
+
+    <div class="text-base  sm:ml-auto">
+        {{-- <form action="https://google.com">
     <input type="submit" value="Go to Google" />
 </form>
 
 method="get"
  --}}
-            <form action="\titles\{{$title->id}}\reviews" >
-                {{-- @csrf --}}
-                <button value="" class="bg-green-500 hover:bg-green-700 text-white  my-1 sm:my-0 px-2 rounded">View all Reviews</button>
-            </form>
-        </div>
+        <form action="\titles\{{$title->id}}\reviews">
+            {{-- @csrf --}}
+            <button value="" class="bg-green-500 hover:bg-green-700 text-white  my-1 sm:my-0 px-2 rounded">View all Reviews</button>
+        </form>
+    </div>
     @endif
 
 </div>
@@ -84,7 +84,7 @@ global $is_admin;
     <form class="mr-2 my-2" action="/listings/{{$listing->id}}/titles/{{$title->id}}" method="POST">
         @csrf
         @method('PUT')
-        <button name="listing" class="bg-green-500 hover:bg-green-700 text-white  py-1 px-2 rounded">Add to "{{$listing->name}}"</button>
+        <button name="listing" class="bg-green-500 hover:bg-green-700 text-white  px-2 rounded">Add to "{{$listing->name}}"</button>
     </form>
     @endforeach
 </div>
@@ -96,7 +96,7 @@ global $is_admin;
     <form action="/reviews/{{$title->id}}" method="POST">
 
         @csrf
-        <button name="listing" class="bg-green-500 hover:bg-green-700 text-white  py-1 px-2 rounded">Add a Review</button>
+        <button name="listing" class="bg-green-500 hover:bg-green-700 text-white  px-2 rounded">Add a Review</button>
     </form>
 
 </div>

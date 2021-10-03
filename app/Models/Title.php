@@ -18,6 +18,7 @@ class Title extends Model
     */
     protected $fillable = [
         'name',
+        'rate',
         'user_id',
         'publ_date',
 

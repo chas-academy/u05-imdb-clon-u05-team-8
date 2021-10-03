@@ -50,14 +50,15 @@ $html_title = "Home";
     <span>|</span>
     <span class="lg:px-4 md:px-2 sm:px-1"><a class="no-underline hover:underline" href="#top">Top of Page</a></span>
 </h2>
-
+@php $topRated = $titles->sortByDesc('rate');@endphp
 <hr />
 <br />
 <div class="grid grid-cols-1 gap-2 content-center  sm:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-6 ">
 
 
 
-    @foreach($titles->slice(2,10) as $title)
+    @foreach($topRated as $title)
+
 
     <div class="text-center text-sm sm:text-base md:text-base lg:text-lg">
 

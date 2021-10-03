@@ -16,7 +16,8 @@ class CreateTitlesTable extends Migration
         Schema::create('titles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('poster');
+            $table->integer('rate')->default(0);
+            $table->string('poster')->default("#");
             $table->date('publ_date')->default('1999-12-31');
 
             $table->foreignId('user_id')

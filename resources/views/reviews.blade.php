@@ -19,11 +19,14 @@ $html_title = "Reviews";
 <br />
 
 @if ($reviews->count())
-@php $sortedReviews = $reviews->sortByDesc('created_at') @endphp
+@php $sortedReviews = $reviews->where('approve','1')->sortByDesc('created_at') @endphp
+
+@if ($sortedReviews->count() )
+
 
 @foreach ( $sortedReviews as $review)
 
-@if($review->approve == true)
+{{-- @if($review->approve == true) --}}
 <div class="border border-gray-100 container flex flex-col sm:flex-row sm:flex-wrap">
     <div class="border border-gray-100 p-4 ">
 
@@ -66,8 +69,16 @@ $html_title = "Reviews";
 </div>
 <br />
 <br />
-@endif
 @endforeach
+@else
+<p>
+    There are no reviews yet
+</p>
+<br />
+<br />
+
+
+@endif
 
 {{-- Not yet approved reviews  --}}
 
@@ -80,7 +91,7 @@ $html_title = "Reviews";
 </h2>
 <hr />
 <br />
-@php 
+@php
 
 $notApproved = $reviews->where('approve','0');
 
@@ -129,11 +140,14 @@ $notApproved = $reviews->where('approve','0');
 
 @endforeach
 @else
- There are no upcoming reviews.
+<p>
+    There are no upcoming reviews at the moment.
+</p>
 @endif
 @else
 <p>
-    There are no reviews yet
+    There are no reviews yet.
 </p>
 @endif
+<br />
 @include('footer')

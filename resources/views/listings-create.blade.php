@@ -18,7 +18,7 @@ $html_title = "Create List";
                     <div class="col-span-6 sm:col-span-3">
 
                         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                        <input type="text" name="name" id="name" value="" autocomplete="" placeholder="Enter Watchlist name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded">
+                        <input type="text" name="name" id="name" value="" autocomplete="" placeholder="Enter name of listing" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded">
 
 
                     </div>

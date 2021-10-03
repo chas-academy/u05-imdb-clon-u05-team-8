@@ -40,9 +40,9 @@
                 </div>
             </div>
 
-            <div class="bg-white e myt-6 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white my-6 overflow-hidden shadow-sm sm:rounded-lg">
 
-                <div class="p-6  border border-red-400">
+                <div class="p-6 border border-red-400">
                     <h2>Add new users</h2>
                     <br />
 
@@ -55,7 +55,22 @@
 
             </div>
 
-            <div class="bg-white e my-6 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white  my-6 overflow-hidden shadow-sm sm:rounded-lg">
+
+                <div class="p-6  border border-red-400">
+                    <h2>Add new titles</h2>
+                    <br />
+
+
+                    <div class="text-sm">
+                        <a href="{{action([App\Http\Controllers\TitleController::class, 'create'])}}" class="text-sm text-green-700 underline">[Create]</a> new Title.
+                    </div>
+                    <br />
+                </div>
+
+            </div>
+
+            <div class="bg-white  my-6 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6  border border-red-400">
                     <h2>Approval of reviews</h2>
                     <br />
