@@ -24,6 +24,36 @@
                 {{ session()->get('message') }}
             </div>
             @endif
+            @if ($errors->any())
+
+            <br />
+
+            <div class="alert alert-danger max-w-5xl mx-auto rounded-full text-xs sm:text-lg md:text-xl lg:text-xl py-1 px-10 bg-red-50">
+
+
+                <div class="text-center">
+                    <b>There were some problems with your input.</b>
+                    @if( $errors->count() == 1 )
+
+                    <p>
+                        {{ $errors->first() }}
+                    </p>
+
+                    @endif
+                </div>
+
+                @if( $errors->count() > 1 )
+
+                <ul class="list-disc no-underline">
+                    @foreach ($errors->all() as $error)
+                    <li>
+                        {{ $error }}
+                    </li>
+                    @endforeach
+                </ul>
+                @endif
+            </div>
+            @endif
 
 
             <div class="bg-white my-6 overflow-hidden shadow-sm sm:rounded-lg">
@@ -43,12 +73,19 @@
             <div class="bg-white my-6 overflow-hidden shadow-sm sm:rounded-lg">
 
                 <div class="p-6 border border-red-400">
-                    <h2>Add new users</h2>
+                    <h2>Manage Users</h2>
                     <br />
+                    <form action="{{ route('users.index') }}">
 
+                        <label for="gsearch">Search Users:</label>
+                        <input class="border p-1" type="search" id="usearch" placeholder="User name" name="usearch">
+                        <input class="border py-1 bg-green-500 hover:bg-green-700 text-white  px-2 rounded" value="Search" type="submit">
 
-                    <div class="text-sm">
-                        <a href="{{action([App\Http\Controllers\UserController::class, 'create'])}}" class="text-sm text-green-700 underline">[Create]</a> new User.
+                    </form>
+
+                    <br />
+                    <div class="">
+                        <a href="{{action([App\Http\Controllers\UserController::class, 'create'])}}" class="border py-1   bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline">Create a new User</a>
                     </div>
                     <br />
                 </div>
@@ -58,12 +95,22 @@
             <div class="bg-white  my-6 overflow-hidden shadow-sm sm:rounded-lg">
 
                 <div class="p-6  border border-red-400">
-                    <h2>Add new titles</h2>
+                    <h2>Manage Titles</h2>
+
                     <br />
+                    <form action="{{ route('titles.index') }}">
+
+                        <label for="gsearch">Search Titles:</label>
+                        <input class="border p-1" type="search" id="tsearch" placeholder="Title name" name="tsearch">
+                        <input class="border py-1  bg-green-500 hover:bg-green-700 text-white px-2 rounded" value="Search" type="submit">
 
 
-                    <div class="text-sm">
-                        <a href="{{action([App\Http\Controllers\TitleController::class, 'create'])}}" class="text-sm text-green-700 underline">[Create]</a> new Title.
+                    </form>
+
+                    <br />
+                    <div class="">
+                        <a href="{{action([App\Http\Controllers\TitleController::class, 'create'])}}" class="border  py-1  bg-green-500 hover:bg-green-700 text-white px-2 rounded no-underline">Create a new Title</a>
+
                     </div>
                     <br />
                 </div>
@@ -90,19 +137,14 @@
                     <br>
                     @endif
 
-                    {{-- Review of "{{$review->title()->get()->first()->name}}"
-                    by {{$review->user()->get()->first()->name}} --}}
-
                     Review of "{{$review->title->name}}"
                     by {{$review->user->name}}
-
-
                     <br />
                     <textarea class="border rounded">{{$review->body}}</textarea><br>
                     <form action="/reviews/{{$review->id}}/approve" method="POST">
                         @csrf
                         @method('PUT')
-                        <button name="approve" value="1" class="bg-green-500 hover:bg-green-700 text-white  font-medium   py-1 px-2 rounded">
+                        <button name="approve" value="1" class="bg-green-500 hover:bg-green-700 text-white   py-1 px-2 rounded">
 
                             Approve review</button>
                     </form>
@@ -119,50 +161,7 @@
                 </div>
             </div>
 
-            <div class="bg-white e myt-6 overflow-hidden shadow-sm sm:rounded-lg">
 
-                <div class="p-6  border border-red-400">
-                    <h2>Assign administrator privileges</h2>
-                    <br />
-
-                    @php $count = 0; @endphp
-
-                    @foreach ($users as $u)
-
-                    @if ( $u->role_id == 1 )
-                    @continue
-                    @endif
-
-                    @php $count++ @endphp
-
-                    @if ( $count == 1 )
-                    <h4>List of all non-admin users</h4>
-                    <br>
-                    @endif
-
-                    User: {{$u->name}}
-                    <br />
-
-                    <form action="/users/{{$u->id}}/permit" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <button name="role_id" value="1" class="bg-green-500 hover:bg-green-700 text-white font-medium  py-1 px-2 rounded">
-
-                            Permit admin rights</button>
-                    </form>
-                    <br /><br />
-                    <hr /><br />
-
-                    @endforeach
-
-                    @if ( $count == 0 )
-                    <h4>No users to assign administrative rights to at the moment</h4>
-                    @endif
-
-                    <br />
-
-                </div>
-            </div>
         </div>
         @endif
         <!-- Personal panels starts here -->
@@ -214,7 +213,7 @@
 
                             <input type="hidden" name="oldname" value="{{$userAuth->name}}">
                             <input class="border border-green-200 rounded p-2" type="text" name="name" value="{{$userAuth->name}}">
-                            <button class="my-1 bg-green-500 hover:bg-green-700 text-white  font-medium  py-1 px-2 rounded">Update</button>
+                            <button class="my-1 bg-green-500 hover:bg-green-700 text-white   py-1 px-2 rounded">Update</button>
 
 
                         </form>
@@ -249,7 +248,7 @@
 
                             <input type="hidden" name="oldname" value="{{$list->name}}">
                             <input class="border border-green-200 rounded p-2" type="text" name="name" value="{{$list->name}}">
-                            <button class="my-1 bg-green-500 hover:bg-green-700 text-white  font-medium  py-1 px-2 rounded">Rename</button>
+                            <button class="my-1 bg-green-500 hover:bg-green-700 text-white    py-1 px-2 rounded">Rename</button>
 
 
                         </form>
@@ -269,13 +268,13 @@
                             @foreach ($list->listitems()->get() as $item)
 
                             @php $name = $item->title()->get()->first()->name @endphp
-                            <form id="{{$item->id}}" class="text-sm font-medium" onsubmit="return confirm('Do you really want to delete this list item? ({{$name}})');" action="{{ action([App\Http\Controllers\ListitemController::class, 'destroy'], ['listitem'=>$item])}}" method="POST">
+                            <form id="{{$item->id}}" class="text-sm " onsubmit="return confirm('Do you really want to delete this list item? ({{$name}})');" action="{{ action([App\Http\Controllers\ListitemController::class, 'destroy'], ['listitem'=>$item])}}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <li>
                                     <span class="text-sm text-gray-700">
                                         {{$item->title()->get()->first()->name}}
-                                        <button type="submit" class="mx-1 focus:outline-none text-red-500  hover:bg-red-700   font-medium  underline">[Delete item]</button>
+                                        <button type="submit" class="mx-1 focus:outline-none text-red-500  hover:bg-red-700    underline">[Delete item]</button>
 
                                     </span>
                                 </li>
@@ -327,7 +326,7 @@
 
                             <textarea readonly class="border border-blue-200 rounded p-2 text-gray-400" name="oldbody" value="{{$review->body}}">{{$review->body}}</textarea>
                             <textarea class="border border-green-200 rounded p-2" name="body" value="{{$review->body}}">{{$review->body}}</textarea>
-                            <button class="my-1 bg-green-500 hover:bg-green-700 text-white  font-medium  py-1 px-2 rounded">Update</button>
+                            <button class="my-1 bg-green-500 hover:bg-green-700 text-white   py-1 px-2 rounded">Update</button>
 
 
                         </form>

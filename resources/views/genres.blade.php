@@ -12,8 +12,6 @@ $html_title = "Genres";
 <label for="genres">Select a </label> {{-- window.location='{{ url('/').'/genres/'}}'+this.selectedIndex --}}
 <select class="border rounded mx-2 my-1" name="genres" id="genres" onchange="const url=location.href; location.href = ' #'+this.options[this.selectedIndex].value; history.replaceState(null,null,url); ">
 
-
-
     <option disabled selected>genre</option>
     @foreach($genres as $genre)
     @if ( count($genre->titles()->get()) > 1)

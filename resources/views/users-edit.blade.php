@@ -13,8 +13,8 @@ $html_title = "Edit User";
         @csrf
         @method('PUT')
 
-        <div class="shadow border border-green-200  overflow-hidden sm:rounded-md">
-            <div class="px-4 py-5 bg-white sm:p-6">
+        <div class="shadow border bg-gray-300 border-gray-600  overflow-hidden sm:rounded-md">
+            <div class="px-4 py-5 sm:p-6">
                 <div class="grid grid-cols-6 gap-6">
 
                     <div class="col-span-6 sm:col-span-3">
@@ -26,14 +26,13 @@ $html_title = "Edit User";
             </div>
             <div class="flex justify-end">
 
-                <div class="text-sm">
-                    <button type="submit" class=" focus:outline-none text-green-700 underline">[Save]</button>
-                </div>
-                &nbsp;&nbsp;
-                <div class="text-sm">
-                    <a class=" text-blue-700 underline" href="{{ route('users.index') }}">[Back]</a>
-                </div>
-                &nbsp;&nbsp;&nbsp;
+
+                <button type="submit" class=" border py-1 m-1  bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline">Save</button>
+
+
+                <a class=" border py-1 m-1  bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline" href="{{ route('dashboard') }}">Back</a>
+
+
             </div>
         </div>
     </form>
@@ -41,7 +40,7 @@ $html_title = "Edit User";
 
 <br />
 
-<div class="bg-green-100 border border-green-200 overflow-hidden rounded-md">
+<div class="bg-gray-300 border border-gray-600 overflow-hidden rounded-md">
     <div class="px-4 py-5 sm:px-6">
         <h3 class="text-lg leading-6 font-medium text-gray-900">
             {{$user['name']}}

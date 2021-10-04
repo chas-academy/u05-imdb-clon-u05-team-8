@@ -14,11 +14,10 @@ global $is_admin;
 @endphp
 
 @if ( $is_admin )
-
+{{--
 <div class="text-sm">
     <a href="{{action([App\Http\Controllers\TitleController::class, 'create'])}}" class="text-sm text-green-700 underline">[Create]</a> new Title.
-</div>
-
+</div> --}}
 
 @endif
 
@@ -33,32 +32,32 @@ global $is_admin;
             Published: {{$title->publ_date}}
         </p>
 
-        <div class="flex justify-end">
+        <div class="flex flex-wrap justify-end">
 
-            <div class="text-sm">
-                <a href="{{action([App\Http\Controllers\TitleController::class, 'show'], ['title'=>$title])}}" class="text-sm text-grey-700 underline">[Read]</a>
-            </div>
+
+            <a href="{{action([App\Http\Controllers\TitleController::class, 'show'], ['title'=>$title])}}" class="border py-1 m-1 bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline">Read</a>
+
+
 
             <!-- Display Edit and Delete buttons for authenticated users with role Administrator -->
 
             @if ( $is_admin )
 
-            &nbsp;&nbsp;
-            <div class="text-sm">
-                <a href="{{action([App\Http\Controllers\TitleController::class, 'edit'], ['title'=>$title])}}" class="text-sm text-blue-700 underline">[Update]</a>
-            </div>
-            &nbsp;&nbsp;
+            <a href="{{action([App\Http\Controllers\TitleController::class, 'edit'], ['title'=>$title])}}" class="border py-1 m-1  bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline">Update</a>
 
-            <form class="text-sm font-medium" onsubmit="return confirm('Do you really want to delete? ({{$title['name']}})');" action="{{ action([App\Http\Controllers\TitleController::class, 'destroy'], ['title'=>$title])}}" method="POST">
+
+
+            <form class="" onsubmit="return confirm('Do you really want to delete? ({{$title['name']}})');" action="{{ action([App\Http\Controllers\TitleController::class, 'destroy'], ['title'=>$title])}}" method="POST">
                 @method('DELETE')
                 @csrf
-                <span class=" text-sm text-gray-700">
-                    <button type="submit" class="focus:outline-none   text-red-700 underline">[Delete]</button>
-                </span>
+
+                <button type="submit" class="border py-1 m-1 bg-red-500 hover:bg-red-700 text-white  px-2 rounded no-underline">Delete</button>
+
+
             </form>
 
             @endif
-            <!-- end if admin -->
+
 
         </div>
 

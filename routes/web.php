@@ -46,6 +46,7 @@ Route::resource('listitems', ListitemController::class);
 Route::resource('users', UserController::class);
 
 Route::put('/users/{id}/permit', [UserController::class, 'permit']);
+Route::put('/users/{id}/revoke', [UserController::class, 'revoke']);
 
 Route::put('/reviews/{id}/approve', [ReviewController::class, 'approve']);
 

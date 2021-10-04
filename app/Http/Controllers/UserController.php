@@ -17,24 +17,33 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        // echo(User::all());
+
         $user = Auth::user();
         if ($user) {
             if ($user->role()->get()->first()->id == 1) { // 1 = Administrator
+                            if($request->usearch != null ){
 
-                $users = User::all();
-                return view('users', compact('users'));
-            }
-            else{
+                                $users = User::where('name','LIKE', '%'.$request->usearch.'%')->get();
+
+                                if ($users->count()> 0)
+                                    return view('users', compact('users'));
+                                else
+                                    return back()->with('message', "No Users found for ".$request->usearch);
+
+                            }
+                            else{
+                                $users = User::all();
+                                return view('users', compact('users'));
+                            }
+            } else {
                 return back();
             }
+        } else {
+            return back();
         }
-        else{
-              return back();
-        }
+
     }
 
 
@@ -71,7 +80,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'email:rfc,dns',
-             'password' => 'required',
+            'password' => 'required',
         ]);
 
 
@@ -88,10 +97,10 @@ class UserController extends Controller
                                // $user->user_id = Auth::user()->id;
                 $user->save();
 
-                return redirect()->route('users.index')
+                return redirect()->route('dashboard')
                 ->with('message', $request->input('name').' - created.');
             } else {
-                return redirect()->route('users.index')
+                return redirect()->route('dashboard')
                 ->with('message', "You have to be logged in with administrative rights when creating users");
             }
         } else {
@@ -148,15 +157,15 @@ class UserController extends Controller
 
         $user->update($request->all());
 
-        if (strpos($request->server('HTTP_REFERER'), 'dashboard') !== false) {
+        // if (strpos($request->server('HTTP_REFERER'), 'dashboard') !== false) {
 
-               return redirect()->route('dashboard')
-               ->with('message', "User \"".$request['oldname']."\" renamed to: \"" .$user->name. "\".");
-        }
-        else{
-            return redirect()->route('users.index')
+        //        return redirect()->route('dashboard')
+        //        ->with('message', "User \"".$request['oldname']."\" renamed to: \"" .$user->name. "\".");
+        // }
+        // else{
+            return redirect()->route('dashboard')
                             ->with('message', $user->name.' - updated.');
-        }
+        // }
 
     }
 
@@ -172,26 +181,71 @@ class UserController extends Controller
 
         if ($userA) {
             if ($userA->role()->get()->first()->id == 1) {  // 1 = Administrator
+
+                if( $user->id == $userA->id ){
+
+                      return redirect()->route('dashboard')
+                      ->withErrors(['user' => 'Cannot remove logged in user - '.$user->name]);
+                }
                 User::destroy($user->id);
 
-                return redirect()->route('users.index')
+                return redirect()->route('dashboard')
                             ->with('message', $user->name.' - removed.');
             } else {
-                return redirect()->route('users.index')
+                return redirect()->route('dashboard')
                 ->with('message', "You have to be logged in with administrative rights when deleting records");
             }
         } else {
             return back()->with('message', "You have to have be logged in to delete Users");
         }
     }
+
     // Return all Users
     public static function allUsers()
     {
-        return User::all();
+        $userA = Auth::user();
+
+        if ($userA) {
+            if ($userA->role()->get()->first()->id == 1) { // 1 = Administrator
+
+                return User::all();
+            }
+        }
+        else{
+             return back();
+        }
     }
 
-
+    // permit admin rights
     public function permit(Request $request, $id)
+    {
+        $userA = Auth::user();
+
+        if ($userA) {
+            if ($userA->role()->get()->first()->id == 1) { // 1 = Administrator
+
+                $user = User::find($id);
+
+                $request->validate([
+                    'role_id' => 'required',
+                ]);
+
+                $user->role_id = 1;
+                $user->save();
+
+                return redirect()->route('dashboard')
+                      ->with('message', "User \"".$user->name.
+                        "\" - has been assigned administrative privileges.");
+            }
+        }
+        else{
+              return back();
+        }
+
+    }
+
+    // revoke admin rights
+    public function revoke(Request $request, $id)
     {
         $user = User::find($id);
 
@@ -199,11 +253,11 @@ class UserController extends Controller
             'role_id' => 'required',
         ]);
 
-        $user->role_id = 1;
+        $user->role_id = 2;
         $user->save();
 
         return redirect()->route('dashboard')
-                ->with('message', "User \"".$user->name.
-                "\" - has been assigned administrative privileges.");
+        ->with('message', "User \"".$user->name.
+        "\" - has been denied administrative privileges.");
     }
 }

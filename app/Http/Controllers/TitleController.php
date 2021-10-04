@@ -15,10 +15,36 @@ class TitleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $titles = Title::all();
-        return view('titles', compact('titles'));
+
+        $user = Auth::user();
+        if ($user) {
+
+            if ($user->role()->get()->first()->id == 1) { // 1 = Administrator
+
+                if($request->tsearch != null ){
+
+                    $titles = Title::where('name','LIKE', '%'.$request->tsearch.'%')->get();
+
+                    if ($titles->count()> 0)
+                        return view('titles', compact('titles'));
+                    else
+                        return back()->with('message', "No Titles found for ".$request->tsearch);
+                }
+                else{
+
+                    $titles = Title::all();
+                    return view('titles', compact('titles'));
+                }
+            } else {
+                return back();
+            }
+        } else {
+
+            return back();
+        }
+
     }
 
     /**
@@ -31,7 +57,7 @@ class TitleController extends Controller
       $title = Title::find($id);
       $reviews = $title->reviews()->get();
 
-     
+
        return view('reviews', compact( 'reviews'));
 
     }
@@ -84,10 +110,10 @@ class TitleController extends Controller
                 $title->user_id = Auth::user()->id;
                 $title->save();
 
-                return redirect()->route('titles.index')
+                return redirect()->route('dashboard')
                 ->with('message', $request->input('name').' - created.');
             } else {
-                return redirect()->route('titles.index')
+                return redirect()->route('dashboard')
                 ->with('message', "You have to be logged in with administrative rights when creating records");
             }
         } else {
@@ -122,7 +148,7 @@ class TitleController extends Controller
             if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
                 return view('titles-edit', compact('title'));
             } else {
-                return redirect()->route('titles.index')
+                return redirect()->route('dashboard')
                 ->with('message', "You have to be logged in with administrative rights to edit Titles");
             }
         } else {
@@ -145,7 +171,7 @@ class TitleController extends Controller
 
         $title->update($request->all());
 
-        return redirect()->route('titles.index')
+        return redirect()->route('dashboard')
                             ->with('message', $title->name.' - updated.');
     }
 
@@ -163,10 +189,10 @@ class TitleController extends Controller
             if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
                 Title::destroy($title->id);
 
-                return redirect()->route('titles.index')
+                return redirect()->route('dashboard')
                             ->with('message', $title->name.' - removed.');
             } else {
-                return redirect()->route('titles.index')
+                return redirect()->route('dashboard')
                 ->with('message', "You have to be logged in with administrative rights when deleting records");
             }
         } else {
