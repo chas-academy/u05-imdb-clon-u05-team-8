@@ -14,7 +14,7 @@ $html_title = "Genres";
 
     <option disabled selected>genre</option>
     @foreach($genres as $genre)
-    @if ( count($genre->titles()->get()) > 1)
+    @if ( count($genre->titles()->get()) >= 1)
     <option value="{{$genre['id']}}"> {{$genre['name']}}</option>
     @endif
     @endforeach
@@ -23,7 +23,7 @@ $html_title = "Genres";
 <br />
 @foreach($genres as $genre)
 
-@if ( count($genre->titles()->get()) > 1)
+@if ( count($genre->titles()->get()) >= 1)
 
 <h2 id="{{$genre->id}}" class=" text-sm sm:text-base md:text-base lg:text-lg -mt-20 pt-20">
 

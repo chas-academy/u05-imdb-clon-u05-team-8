@@ -24,5 +24,7 @@ class GenresTableSeeder extends Seeder
         Genre::create(array('name' => 'Romance', 'user_id' => '1',));
         Genre::create(array('name' => 'Thriller','user_id' => '1',));
         Genre::create(array('name' => 'Western', 'user_id' => '1',));
+        Genre::create(array('name' => 'Scifi', 'user_id' => '1',));
+
     }
 }

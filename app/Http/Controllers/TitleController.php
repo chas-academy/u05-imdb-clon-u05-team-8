@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Title;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Genre;
 use Illuminate\Support\Facades\Auth;
 
 class TitleController extends Controller
@@ -18,10 +19,10 @@ class TitleController extends Controller
     public function index(Request $request)
     {
 
-        $user = Auth::user();
-        if ($user) {
 
-            if ($user->role()->get()->first()->id == 1) { // 1 = Administrator
+        if (Auth::user()) {
+
+            if (Auth::user()->role()->get()->first()->id == 1) { // 1 = Administrator
 
                 if($request->tsearch != null ){
 
@@ -69,14 +70,14 @@ class TitleController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
 
-        if ($user) {
-            if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
 
-                $title = Title::all();
+        if (Auth::user()) {
+            if (Auth::user()->role()->get()->first()->id == 1) { // 1 = Administrator
 
-                return view('titles-create', compact('title'));
+                // $title = Title::all();
+                    $genres = Genre::all();
+                return view('titles-create', compact('genres'));
             } else {
                 return back()->with('message', "You have to have administrative rights to create new Titles");
             }
@@ -95,10 +96,16 @@ class TitleController extends Controller
     public function store(Request $request)
     {
 
+
         if ( Auth::user()) {
             if ( Auth::user()->role()->get()->first()->id == 1) { // 1 = Administrator
 
-               Title::create( $request->validate(['name' => 'required','user_id' => 'required', ]));
+                $title = Title::create( $request->validate(['name' => 'required','user_id' => 'required','genres'=>'required' ]));
+                $title->genres()->attach($request->genres);
+
+                // $genre = Genre::find($request->genres);
+                // $title->genres()->attach($request->genres);
+                // $genre->titles()->attach($title->id);
 
                 return redirect()->route('dashboard')
                 ->with('message', $request->input('name').' - created.');
@@ -197,4 +204,5 @@ class TitleController extends Controller
     {
         return Title::all();
     }
+
 }
