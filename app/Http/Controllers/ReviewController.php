@@ -39,13 +39,10 @@ class ReviewController extends Controller
          $user = Auth::user();
 
         if ($user) {
-           // if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
-
-                //$title = Title::all();
 
                 return view('reviews-create');//, compact('title')
-
         } else {
+
             return back()->with('message', "You have to have be logged in to write Reviews");
         }
     }
@@ -58,20 +55,10 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'body' => 'required',
-          //'user_id' =>'required',
-        ]);
-
-        // Title::create($request->all());
 
         if (Auth::check()) {
-            $review = new Review;
-            $review->body = $request->body;
-            $review->approve = 0;
-            $review->user_id = Auth::user()->id;
-            $review->title_id = $request->title_id;
-            $review->save();
+
+           Review::create( $request->validate([ 'body' => 'required', 'user_id' =>'required','title_id'=>'required' ,]));
 
             return redirect('reviews')
                 ->with('message', 'Review created! Waiting for an admin to approve it');
@@ -174,10 +161,8 @@ class ReviewController extends Controller
          $user = Auth::user();
 
         if ($user) {
-           // if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
 
                 $title = Title::where('id',$title_id)->get()->first();
-
                 return view('reviews-create', compact('title'));// ['title' => $title]);
 
         } else {

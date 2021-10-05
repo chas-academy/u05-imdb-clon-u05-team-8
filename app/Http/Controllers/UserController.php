@@ -77,24 +77,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'email:rfc,dns',
-            'password' => 'required',
-        ]);
+        if (Auth::user()){
+
+            if (Auth::user()->role()->get()->first()->id == 1) { // 1 = Administrator
 
 
-        $user = Auth::user();
+                $user = User::create( $request->validate([
+                'name' => 'required',
+                'email' => 'email:rfc,dns',
+                'password' => 'required',
+                ]));
 
-        if ($user) {
-            if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
-                $user = new User;
-                $user->name = $request->name;
-                $user->email = $request->email;
                 $user->password = Hash::make($request->password);
-                $user->role_id = 2;
-
-                               // $user->user_id = Auth::user()->id;
                 $user->save();
 
                 return redirect()->route('dashboard')
@@ -247,6 +241,19 @@ class UserController extends Controller
     // revoke admin rights
     public function revoke(Request $request, $id)
     {
+
+        $userA = Auth::user();
+        if ($userA) {
+            if ($userA->role()->get()->first()->id == 1) { // 1 = Administrator
+
+                if( $id == $userA->id ){
+
+                    return redirect()->route('dashboard')->withErrors(['user' => 'Cannot revoke logged in user -
+                    '.$userA->name]);
+                }
+            }
+        }
+
         $user = User::find($id);
 
         $request->validate([

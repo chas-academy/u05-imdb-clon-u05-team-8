@@ -99,7 +99,7 @@ $notApproved = $reviews->where('approve','0');
 @if ($notApproved->count() > 0)
 
 @foreach ($notApproved as $review)
-{{-- @if($review->approve == false) --}}
+
 <div class="border border-gray-100 container flex flex-col sm:flex-row sm:flex-wrap">
     <div class="border border-gray-100 p-4 ">
 

@@ -23,7 +23,7 @@ class CreateReviewsTable extends Migration
       ->onDelete('cascade');
 
             // 0 is false, 1 is true
-            $table->boolean('approve')->nullable();
+            $table->boolean('approve')->default(false);
 
             $table->text('body');
 

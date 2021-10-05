@@ -94,25 +94,17 @@ class TitleController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
 
-        ]);
+        if ( Auth::user()) {
+            if ( Auth::user()->role()->get()->first()->id == 1) { // 1 = Administrator
 
-
-
-        $user = Auth::user();
-
-        if ($user) {
-            if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
-                $title = new Title;
-                $title->name = $request->name;
-                $title->user_id = Auth::user()->id;
-                $title->save();
+               Title::create( $request->validate(['name' => 'required','user_id' => 'required', ]));
 
                 return redirect()->route('dashboard')
                 ->with('message', $request->input('name').' - created.');
+
             } else {
+
                 return redirect()->route('dashboard')
                 ->with('message', "You have to be logged in with administrative rights when creating records");
             }

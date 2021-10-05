@@ -12,8 +12,10 @@ $html_title = "Create a Title";
         <div class="grid grid-cols-6 gap-6">
 
             <div class="col-span-6 sm:col-span-3">
+                <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
 
                 <label for="name" class="block font-medium text-gray-700">Title</label>
+
                 <input type="text" name="name" id="name" value="" autocomplete="" placeholder=" Enter Title name" class="border block w-full  border-gray-400 rounded">
 
             </div>
@@ -24,16 +26,8 @@ $html_title = "Create a Title";
 
 
             <button type="submit" class=" bg-green-500 hover:bg-green-700 text-white mt-1 py-1  px-2 rounded">Save</button>
-
-
-
-            &nbsp;&nbsp;
-
+            &nbsp;
             <a class="bg-green-500 hover:bg-green-700 text-white no-underline mt-1 py-1 px-2 rounded" href=" {{ url()->previous() }}">Back</a>
-
-
-
-
 
         </div>
     </form>

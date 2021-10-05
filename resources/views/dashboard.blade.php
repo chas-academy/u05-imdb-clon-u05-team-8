@@ -1,5 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
+
+
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
 
             {{ __('Dashboard') }}
@@ -28,7 +30,7 @@
 
             <br />
 
-            <div class="alert alert-danger max-w-5xl mx-auto rounded-full text-xs sm:text-lg md:text-xl lg:text-xl py-1 px-10 bg-red-50">
+            <div class="alert alert-danger max-w-5xl mx-auto rounded-full text-xs sm:text-lg md:text-xl lg:text-xl py-1 px-10 bg-red-100">
 
 
                 <div class="text-center">

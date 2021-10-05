@@ -9,7 +9,6 @@ $html_title = "Listings";
 
 <div class="flex flex-wrap justify-start content-center">
 
-
     @if ( $listings->count() > 1)
     <div>
         <label class="my-1" for="listings">Select a </label> {{-- window.location='{{ url('/').'/genres/'}}'+this.selectedIndex --}}
@@ -30,7 +29,19 @@ $html_title = "Listings";
         </form>
     </div>
 </div>
+
 <br />
+
+@if ($listings->count() == 0)
+<hr>
+<br>
+No listings
+@else
+
+
+
+
+
 @php $first=false; /* use when no top-of-page at t-o-p. */ @endphp
 @foreach($listings as $list)
 
@@ -47,6 +58,7 @@ $html_title = "Listings";
 
 </h2>
 <hr />
+
 <br />
 @php $counter=0 @endphp
 
@@ -87,4 +99,5 @@ $html_title = "Listings";
 
 
 @endforeach
+@endif
 @include('footer')

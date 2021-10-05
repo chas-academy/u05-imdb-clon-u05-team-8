@@ -24,7 +24,7 @@ class ListingController extends Controller
 
         $user = Auth::user();
         if ($user) {
-            $listings =  Listing::where('user_id', $user->id)
+            $listings = Listing::where('user_id', $user->id)
                ->orderBy('name')
                ->get();
 
@@ -66,28 +66,17 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
-       $request->validate([
 
-            'name' => 'required',
-        ]);
+        if ( Auth::user()) {
 
-        $user = Auth::user();
+            Listing::create($request->validate(['name' => 'required','user_id' => 'required' ]));
 
-        if ($user) {
-
-
-            $list = new Listing;
-            $list->name = $request->name;
-            $list->user_id = Auth::user()->id;
-            $list->save();
-
-                return redirect()->route('listings.index')
+            return redirect()->route('listings.index')
                 ->with('message', $request->input('name').' - created.');
-            } else {
+        } else {
                 return redirect()->route('listings.index')
                 ->with('message', "You have to be logged in when creating records");
-            }
-
+        }
     }
 
     /**
