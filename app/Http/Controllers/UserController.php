@@ -24,13 +24,12 @@ class UserController extends Controller
             if (Auth::user()->role()->get()->first()->id == 1) { // 1 = Administrator
                 if($request->usearch != null ){
 
-                    $users = User::where(\DB::raw('LOWER(name)'),'LIKE', '%'.$request->usearch.'%')->get();
+                    $users = User::where(\DB::raw('LOWER(name)'),'LIKE', '%'.strtolower($request->usearch).'%')->get();
 
                     if ($users->count()> 0)
                         return view('users', compact('users'));
                     else
                         return back()->with('message', "No Users found for ".$request->usearch);
-
                 }
                 else{
                     $users = User::all();

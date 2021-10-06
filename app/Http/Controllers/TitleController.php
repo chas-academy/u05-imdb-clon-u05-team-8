@@ -19,7 +19,7 @@ class TitleController extends Controller
     {
         if($request->tsearch != null ){
 
-            $titles = Title::where(\DB::raw('LOWER(name)'),'LIKE', '%'.$request->tsearch.'%')->get();
+            $titles = Title::where(\DB::raw('LOWER(name)'),'LIKE', '%'.strtolower($request->tsearch).'%')->get();
 
             if ($titles->count() > 0)
                 return view('titles', compact('titles'));
