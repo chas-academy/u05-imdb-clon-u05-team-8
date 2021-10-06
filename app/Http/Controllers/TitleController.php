@@ -87,7 +87,7 @@ class TitleController extends Controller
                 $title = Title::create( $request->validate(['name' => 'required','user_id' => 'required','genres'=>'required' ]));
                 $title->genres()->attach($request->genres);
 
-                return back()->with('message', $request->input('name').' - created.');
+                return redirect()->route('titles.show',[$title])->with('message', $request->input('name').' - created.');
 
             } else {
 
@@ -147,7 +147,7 @@ class TitleController extends Controller
 
         $title->update($request->all());
 
-        return back()->with('message', $title->name.' - updated.');
+        return redirect()->route('titles.show',$title)->with('success', $title->name.' - updated.');
     }
 
     /**
@@ -164,7 +164,8 @@ class TitleController extends Controller
             if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
                 Title::destroy($title->id);
 
-                return back()->with('message', $title->name.' - removed.');
+                 return redirect()->route('titles.index')->with('message', $title->name.' - deleted.');
+
             } else {
                 return back()->with('message', "You have to be logged in with administrative rights when deleting
                 records");

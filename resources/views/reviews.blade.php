@@ -39,7 +39,8 @@ $html_title = "Reviews";
     <div class="p-4">
 
         <b>Title:</b> {{ $review->title->name }}
-        <br />
+        <br /> <br />
+
         <b>Release date:</b> {{ $review->title->publ_date }}
         <br />
         <b>Reviewer:</b> {{$review->user->name}}
@@ -117,7 +118,8 @@ $notApproved = $reviews->where('approve','0');
         <br />
         <b>Reviewer:</b> {{$review->user->name}}
         <br />
-        <b>Review created:</b> {{ $review->created_at }}
+        <b>Review created:</b> {{ date_format($review->created_at,"Y-m-d H:i") }}
+
     </div>
 
     <div class="md:col-span-2 p-4">

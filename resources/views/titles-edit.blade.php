@@ -22,7 +22,6 @@ $html_title = "Edit Title";
                         <label for="name" class="block text-sm font-medium text-gray-700">Title</label>
                         <input type="text" name="name" id="name" value="{{ $title->name }}" autocomplete="" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded">
 
-
                     </div>
 
                 </div>
@@ -30,8 +29,8 @@ $html_title = "Edit Title";
             <div class="flex flex-wrap justify-end">
 
                 <button type="submit" class="border py-1 m-1 bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline">Save</button>
-                {{-- <a class="border py-1  m-1 bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline" href="{{  url()->previous()  }}">Back</a> --}}
 
+                <a class="border py-1  m-1 bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline" href="{{ url()->previous() }}">Back</a>
 
             </div>
         </div>
@@ -81,7 +80,8 @@ $html_title = "Edit Title";
                     Published
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    2020-01-01
+                    {{$title['publ_date']}}
+
                 </dd>
             </div>
 

@@ -41,12 +41,11 @@ global $is_admin;
         <div class="px-4">
 
             <b>Title:</b> {{ $title->name }}
-            <br />
+            <br /><br />
+
             <b>Release date:</b> {{ $title->publ_date }}
             <br />
-            <b>Reviewer:</b> {{$title->user->name}}
-            <br />
-            <b>Review created:</b> {{ date_format($title->created_at,"Y-m-d H:i") }}
+            <b>Title added:</b> {{ date_format($title->created_at,"Y-m-d H:i") }}
 
         </div>
     </div>
@@ -71,6 +70,8 @@ global $is_admin;
 <hr>
 @if(auth()->user())
 
+@if(auth()->user()->listings()->count() > 0 )
+
 <div class="flex flex-row flex-wrap justify-start">
 
     @foreach (auth()->user()->listings()->get() as $listing )
@@ -85,16 +86,18 @@ global $is_admin;
 </div>
 
 <br />
+@endif
 <hr />
-<br />
-<div class="text-base">
-    <form action="/reviews/{{$title->id}}" method="POST">
 
-        @csrf
-        <button name="listing" class="bg-green-500 hover:bg-green-700 text-white  px-2 rounded">Add a Review</button>
-    </form>
 
-</div>
+<form class="mr-2 my-2" action="/reviews/{{$title->id}}" method="POST">
+
+
+    @csrf
+    <button name="listing" class="bg-green-500 hover:bg-green-700 text-white  px-2 rounded">Add a Review</button>
+</form>
+
+
 @endif
 
 
