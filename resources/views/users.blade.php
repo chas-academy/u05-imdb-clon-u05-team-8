@@ -87,6 +87,7 @@ $html_title = "Users";
 
 
             </form>
+            <a class="border py-1  m-1 bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline" href="{{ route('dashboard') }}">Back</a>
 
             @endif
             <!-- end if admin -->

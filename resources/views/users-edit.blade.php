@@ -6,8 +6,6 @@ $html_title = "Edit User";
 @include('header')
 <br /><br />
 
-
-
 <div class="mt-5  md:mt-0 md:col-span-2">
     <form action="{{ route('users.update', $user->id) }}" method="POST">
         @csrf
@@ -26,13 +24,8 @@ $html_title = "Edit User";
             </div>
             <div class="flex justify-end">
 
-
                 <button type="submit" class=" border py-1 m-1  bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline">Save</button>
-
-
                 <a class=" border py-1 m-1  bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline" href="{{ route('dashboard') }}">Back</a>
-
-
             </div>
         </div>
     </form>

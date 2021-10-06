@@ -30,7 +30,8 @@ $html_title = "Edit Title";
             <div class="flex flex-wrap justify-end">
 
                 <button type="submit" class="border py-1 m-1 bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline">Save</button>
-                <a class="border py-1  m-1 bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline" href="{{ route('dashboard') }}">Back</a>
+                {{-- <a class="border py-1  m-1 bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline" href="{{  url()->previous()  }}">Back</a> --}}
+
 
             </div>
         </div>

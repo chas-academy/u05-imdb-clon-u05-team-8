@@ -24,10 +24,9 @@ $html_title = "Genres";
 
         <div class="flex justify-end">
 
-            <div class="text-sm">
-                <a class=" text-blue-700 underline" href="{{ route('genres.index') }}">[Back]</a>
-            </div>
-            &nbsp;
+            <a class="border py-1 m-1  bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline" href="{{  url()->previous()  }}">Back</a>
+
+
         </div>
 
     </div>
@@ -58,14 +57,6 @@ $html_title = "Genres";
 
                     @endif
                     @endif
-                </dd>
-            </div>
-            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="text-sm font-medium text-gray-500">
-                    Genre created
-                </dt>
-                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    2020-01-01
                 </dd>
             </div>
 

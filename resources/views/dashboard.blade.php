@@ -17,8 +17,6 @@
         @if ( $userAuth->role->id == 1)
         <!-- 1 = Administrator -->
 
-        {{-- <div class="py-12"> --}}
-
         <div class="mt-6 max-w-5xl mx-auto sm:px-6 lg:px-8">
 
             @if(session()->has('message'))
@@ -79,13 +77,15 @@
                     <br />
                     <form action="{{ route('users.index') }}">
 
-                        <label for="gsearch">Search Users:</label>
+                        <label for="usearch">Search Users:</label>
                         <input class="border p-1" type="search" id="usearch" placeholder="User name" name="usearch">
                         <input class="border py-1 bg-green-500 hover:bg-green-700 text-white  px-2 rounded" value="Search" type="submit">
 
                     </form>
-
                     <br />
+                    <hr />
+                    <br />
+
                     <div class="">
                         <a href="{{action([App\Http\Controllers\UserController::class, 'create'])}}" class="border py-1   bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline">Create a new User</a>
                     </div>
@@ -102,17 +102,16 @@
                     <br />
                     <form action="{{ route('titles.index') }}">
 
-                        <label for="gsearch">Search Titles:</label>
+                        <label for="tsearch">Search Titles:</label>
                         <input class="border p-1" type="search" id="tsearch" placeholder="Title name" name="tsearch">
                         <input class="border py-1  bg-green-500 hover:bg-green-700 text-white px-2 rounded" value="Search" type="submit">
 
-
                     </form>
-
+                    <br />
+                    <hr />
                     <br />
                     <div class="">
                         <a href="{{action([App\Http\Controllers\TitleController::class, 'create'])}}" class="border  py-1  bg-green-500 hover:bg-green-700 text-white px-2 rounded no-underline">Create a new Title</a>
-
                     </div>
                     <br />
                 </div>
@@ -310,7 +309,6 @@
                         $counter=0;
                         $myReviews = $reviews->where('user_id',$userAuth->id );
 
-
                         @endphp
 
                         @foreach ($myReviews as $review)
@@ -326,10 +324,9 @@
                             @csrf
                             @method('PUT')
 
-                            <textarea readonly class="border border-blue-200 rounded p-2 text-gray-400" name="oldbody" value="{{$review->body}}">{{$review->body}}</textarea>
-                            <textarea class="border border-green-200 rounded p-2" name="body" value="{{$review->body}}">{{$review->body}}</textarea>
-                            <button class="my-1 bg-green-500 hover:bg-green-700 text-white   py-1 px-2 rounded">Update</button>
-
+                            <textarea readonly class="border border-blue-200 rounded p-2 text-gray-400" name="oldbody" value="{{$review->body}}">{{$review->body}}</textarea><br />
+                            <textarea class="border border-green-200 rounded p-2" name="body" value="{{$review->body}}">{{$review->body}}</textarea><br />
+                            <button class=" bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded">Update</button>
 
                         </form>
                         <br />

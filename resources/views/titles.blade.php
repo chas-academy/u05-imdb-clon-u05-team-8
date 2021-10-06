@@ -6,20 +6,9 @@ $html_title = "Titles";
 @include('header')
 <br /><br />
 
-
-
-<!-- Display Create button for authenticated users with role Administrator -->
 @php
 global $is_admin;
 @endphp
-
-@if ( $is_admin )
-{{--
-<div class="text-sm">
-    <a href="{{action([App\Http\Controllers\TitleController::class, 'create'])}}" class="text-sm text-green-700 underline">[Create]</a> new Title.
-</div> --}}
-
-@endif
 
 @foreach($titles as $title)
 
@@ -29,7 +18,7 @@ global $is_admin;
             {{$title['name']}}</h3>
         <p class="mt-1 max-w-2xl text-sm text-gray-500">
             Id: {{$title['id']}}<br />
-            Published: {{$title->publ_date}}
+            Release date: {{$title->publ_date}}
         </p>
 
         <div class="flex flex-wrap justify-end">
@@ -45,8 +34,6 @@ global $is_admin;
 
             <a href="{{action([App\Http\Controllers\TitleController::class, 'edit'], ['title'=>$title])}}" class="border py-1 m-1  bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline">Update</a>
 
-
-
             <form class="" onsubmit="return confirm('Do you really want to delete? ({{$title['name']}})');" action="{{ action([App\Http\Controllers\TitleController::class, 'destroy'], ['title'=>$title])}}" method="POST">
                 @method('DELETE')
                 @csrf
@@ -55,12 +42,11 @@ global $is_admin;
 
 
             </form>
-
             @endif
+            <a class="border py-1 m-1  bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline" href="{{  url()->previous()  }}">Back</a>
 
 
         </div>
-
     </div>
     <div class="border-t border-gray-400">
         <dl>
@@ -89,17 +75,6 @@ global $is_admin;
 
                     @endif
                     @endif
-                </dd>
-            </div>
-
-
-
-            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt class="text-sm font-medium text-gray-500">
-                    Added to database by:
-                </dt>
-                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {{$title->user->name}}&nbsp;({{$title->user->role->name}})
                 </dd>
             </div>
 

@@ -20,23 +20,22 @@ class UserController extends Controller
     public function index(Request $request)
     {
 
-        $user = Auth::user();
-        if ($user) {
-            if ($user->role()->get()->first()->id == 1) { // 1 = Administrator
-                            if($request->usearch != null ){
+        if (Auth::user()) {
+            if (Auth::user()->role()->get()->first()->id == 1) { // 1 = Administrator
+                if($request->usearch != null ){
 
-                                $users = User::where('name','LIKE', '%'.$request->usearch.'%')->get();
+                    $users = User::where(\DB::raw('LOWER(name)'),'LIKE', '%'.$request->usearch.'%')->get();
 
-                                if ($users->count()> 0)
-                                    return view('users', compact('users'));
-                                else
-                                    return back()->with('message', "No Users found for ".$request->usearch);
+                    if ($users->count()> 0)
+                        return view('users', compact('users'));
+                    else
+                        return back()->with('message', "No Users found for ".$request->usearch);
 
-                            }
-                            else{
-                                $users = User::all();
-                                return view('users', compact('users'));
-                            }
+                }
+                else{
+                    $users = User::all();
+                    return view('users', compact('users'));
+                }
             } else {
                 return back();
             }
@@ -54,9 +53,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        if ($user) {
-            if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
+
+        if (Auth::user()) {
+            if (Auth::user()->role()->get()->first()->id == 1) { // 1 = Administrator
 
                 $user = User::all();
 
@@ -93,6 +92,7 @@ class UserController extends Controller
 
                 return redirect()->route('dashboard')
                 ->with('message', $request->input('name').' - created.');
+
             } else {
                 return redirect()->route('dashboard')
                 ->with('message', "You have to be logged in with administrative rights when creating users");
@@ -121,10 +121,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $userAuth = Auth::user();
 
-        if ($userAuth) {
-            if ($userAuth->role()->get()->first()->id == 1) {  // 1 = Administrator
+        if (Auth::user()) {
+            if (Auth::user()->role()->get()->first()->id == 1) { // 1 = Administrator
                 return view('users-edit', compact('user'));
             } else {
                 return redirect()->route('users.index')
@@ -151,15 +150,9 @@ class UserController extends Controller
 
         $user->update($request->all());
 
-        // if (strpos($request->server('HTTP_REFERER'), 'dashboard') !== false) {
-
-        //        return redirect()->route('dashboard')
-        //        ->with('message', "User \"".$request['oldname']."\" renamed to: \"" .$user->name. "\".");
-        // }
-        // else{
             return redirect()->route('dashboard')
                             ->with('message', $user->name.' - updated.');
-        // }
+
 
     }
 
@@ -171,12 +164,12 @@ class UserController extends Controller
      */
     public function destroy(User $user )
     {
-        $userA = Auth::user();
 
-        if ($userA) {
-            if ($userA->role()->get()->first()->id == 1) {  // 1 = Administrator
 
-                if( $user->id == $userA->id ){
+        if (Auth::user()) {
+            if (Auth::user()->role()->get()->first()->id == 1) { // 1 = Administrator
+
+                if( $user->id == Auth::user()->id ){
 
                       return redirect()->route('dashboard')
                       ->withErrors(['user' => 'Cannot remove logged in user - '.$user->name]);
@@ -197,10 +190,10 @@ class UserController extends Controller
     // Return all Users
     public static function allUsers()
     {
-        $userA = Auth::user();
 
-        if ($userA) {
-            if ($userA->role()->get()->first()->id == 1) { // 1 = Administrator
+
+        if (Auth::user()) {
+            if (Auth::user()->role()->get()->first()->id == 1) { // 1 = Administrator
 
                 return User::all();
             }
@@ -213,10 +206,8 @@ class UserController extends Controller
     // permit admin rights
     public function permit(Request $request, $id)
     {
-        $userA = Auth::user();
-
-        if ($userA) {
-            if ($userA->role()->get()->first()->id == 1) { // 1 = Administrator
+        if ( Auth::user()) {
+            if ( Auth::user()->role()->get()->first()->id == 1) { // 1 = Administrator
 
                 $user = User::find($id);
 
@@ -242,14 +233,13 @@ class UserController extends Controller
     public function revoke(Request $request, $id)
     {
 
-        $userA = Auth::user();
-        if ($userA) {
-            if ($userA->role()->get()->first()->id == 1) { // 1 = Administrator
+        if (Auth::user()) {
+            if (Auth::user()->role()->get()->first()->id == 1) { // 1 = Administrator
 
-                if( $id == $userA->id ){
+                if( $id == Auth::user()->id ){
 
                     return redirect()->route('dashboard')->withErrors(['user' => 'Cannot revoke logged in user -
-                    '.$userA->name]);
+                    '.Auth::user()->name]);
                 }
             }
         }
@@ -260,7 +250,7 @@ class UserController extends Controller
             'role_id' => 'required',
         ]);
 
-        $user->role_id = 2;
+        $user->role_id = 2; //User
         $user->save();
 
         return redirect()->route('dashboard')

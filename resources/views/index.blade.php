@@ -6,7 +6,15 @@ global $html_title;
 $html_title = "Home";
 @endphp
 @include('header')
-<br /><br />
+<br />
+<br />
+<form action="{{ route('titles.index') }}">
+
+    <label for="tsearch">Search Titles:</label>
+    <input class="border p-1" type="search" id="tsearch" placeholder="Title name" name="tsearch">
+    <input class="border py-1  bg-green-500 hover:bg-green-700 text-white px-2 rounded" value="Search" type="submit">
+</form>
+<br />
 <h2 class="text-sm sm:text-base md:text-base lg:text-lg -mt-20 pt-20">
 
 
@@ -45,7 +53,8 @@ $html_title = "Home";
 
 <h2 id="toprated" class="text-sm sm:text-base md:text-base lg:text-lg -mt-20 pt-20">
 
-    <span class="font-semibold lg:px-4 md:px-2 sm:px-1">Top Rated Movies</span>
+    <span class="font-semibold lg:pr-4 md:pr-2 sm:pr-1">Top Rated Movies</span>
+
 
     <span>|</span>
     <span class="lg:px-4 md:px-2 sm:px-1"><a class="no-underline hover:underline" href="#top">Top of Page</a></span>
@@ -78,7 +87,7 @@ $html_title = "Home";
 </div>
 <br />
 <br />
-<h2 id="newtvshows" class=" text-sm sm:text-base md:text-base lg:text-lg -mt-20 pt-20">
+<h2 id="newtvshows" class="text-sm sm:text-base md:text-base lg:text-lg -mt-20 pt-20">
 
 
     <span class="font-semibold lg:pr-4 md:pr-2 sm:pr-1">New TV-shows</span>

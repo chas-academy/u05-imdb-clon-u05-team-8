@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -18,34 +17,24 @@ class TitleController extends Controller
      */
     public function index(Request $request)
     {
+        if($request->tsearch != null ){
 
+            $titles = Title::where(\DB::raw('LOWER(name)'),'LIKE', '%'.$request->tsearch.'%')->get();
 
-        if (Auth::user()) {
-
-            if (Auth::user()->role()->get()->first()->id == 1) { // 1 = Administrator
-
-                if($request->tsearch != null ){
-
-                    $titles = Title::where('name','LIKE', '%'.$request->tsearch.'%')->get();
-
-                    if ($titles->count()> 0)
-                        return view('titles', compact('titles'));
-                    else
-                        return back()->with('message', "No Titles found for ".$request->tsearch);
-                }
-                else{
-
-                    $titles = Title::all();
-                    return view('titles', compact('titles'));
-                }
-            } else {
-                return back();
-            }
-        } else {
-
-            return back();
+            if ($titles->count() > 0)
+                return view('titles', compact('titles'));
+            else
+                return back()->with('message', "No Titles found for: \"".$request->tsearch."\"");
         }
+        else{
 
+            $titles = Title::all();
+            if($titles->count() > 0 )
+                return view('titles', compact('titles'));
+            else
+              return back()->with('message', "No Titles found.");
+
+        }
     }
 
     /**
@@ -55,12 +44,9 @@ class TitleController extends Controller
      */
     public function reviews( $id)
     {
-      $title = Title::find($id);
-      $reviews = $title->reviews()->get();
-
-
-       return view('reviews', compact( 'reviews'));
-
+        $title = Title::find($id);
+        $reviews = $title->reviews()->get();
+        return view('reviews', compact( 'reviews'));
     }
 
     /**
@@ -71,12 +57,10 @@ class TitleController extends Controller
     public function create()
     {
 
-
         if (Auth::user()) {
             if (Auth::user()->role()->get()->first()->id == 1) { // 1 = Administrator
 
-                // $title = Title::all();
-                    $genres = Genre::all();
+                $genres = Genre::all();
                 return view('titles-create', compact('genres'));
             } else {
                 return back()->with('message', "You have to have administrative rights to create new Titles");
@@ -103,17 +87,12 @@ class TitleController extends Controller
                 $title = Title::create( $request->validate(['name' => 'required','user_id' => 'required','genres'=>'required' ]));
                 $title->genres()->attach($request->genres);
 
-                // $genre = Genre::find($request->genres);
-                // $title->genres()->attach($request->genres);
-                // $genre->titles()->attach($title->id);
-
-                return redirect()->route('dashboard')
-                ->with('message', $request->input('name').' - created.');
+                return back()->with('message', $request->input('name').' - created.');
 
             } else {
 
-                return redirect()->route('dashboard')
-                ->with('message', "You have to be logged in with administrative rights when creating records");
+                return back()->with('message', "You have to be logged in with administrative rights when creating
+                records");
             }
         } else {
             return back()->with('message', "You have to have be logged in to store Titles");
@@ -128,10 +107,9 @@ class TitleController extends Controller
      */
     public function show(Title $title)
     {
-        return view('titles-show', compact('title'));
+
+            return view('titles-show', compact('title'));
     }
-
-
 
     /**
      * Show the form for editing the specified resource.
@@ -141,14 +119,13 @@ class TitleController extends Controller
      */
     public function edit(Title $title)
     {
-        $user = Auth::user();
 
-        if ($user) {
-            if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
+
+        if (Auth::user()) {
+            if (Auth::user()->role()->get()->first()->id == 1) { // 1 = Administrator
                 return view('titles-edit', compact('title'));
             } else {
-                return redirect()->route('dashboard')
-                ->with('message', "You have to be logged in with administrative rights to edit Titles");
+                return back()->with('message', "You have to be logged in with administrative rights to edit Titles");
             }
         } else {
             return back()->with('message', "You have to have be logged in to edit Titles");
@@ -170,8 +147,7 @@ class TitleController extends Controller
 
         $title->update($request->all());
 
-        return redirect()->route('dashboard')
-                            ->with('message', $title->name.' - updated.');
+        return back()->with('message', $title->name.' - updated.');
     }
 
     /**
@@ -188,11 +164,10 @@ class TitleController extends Controller
             if ($user->role()->get()->first()->id == 1) {  // 1 = Administrator
                 Title::destroy($title->id);
 
-                return redirect()->route('dashboard')
-                            ->with('message', $title->name.' - removed.');
+                return back()->with('message', $title->name.' - removed.');
             } else {
-                return redirect()->route('dashboard')
-                ->with('message', "You have to be logged in with administrative rights when deleting records");
+                return back()->with('message', "You have to be logged in with administrative rights when deleting
+                records");
             }
         } else {
             return back()->with('message', "You have to have be logged in to delete Titles");
@@ -204,5 +179,4 @@ class TitleController extends Controller
     {
         return Title::all();
     }
-
 }
