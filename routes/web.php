@@ -31,7 +31,7 @@ Route::get('/welcome', function () {
 
 Route::resource('reviews', ReviewController::class);
 
-//Route::post('/reviews/{review_id}', [ReviewController::class, 'addReview']);
+Route::post('/reviews/{review_id}', [ReviewController::class, 'addReview']);
 
 Route::resource('titles', TitleController::class);
 

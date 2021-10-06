@@ -22,9 +22,8 @@ class ListingController extends Controller
     {
 
 
-        $user = Auth::user();
-        if ($user) {
-            $listings = Listing::where('user_id', $user->id)
+        if (Auth::user()) {
+            $listings = Listing::where('user_id', Auth::user()->id)
                ->orderBy('name')
                ->get();
 
@@ -45,11 +44,10 @@ class ListingController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
 
-        if ($user) {
+        if (Auth::user()) {
 
-                $listing = Listing::where('user_id',$user->id);
+                $listing = Listing::where('user_id',Auth::user()->id);
 
                 return view('listings-create', compact('listing'));
 
@@ -118,8 +116,7 @@ class ListingController extends Controller
 
         $listing->update($request->all());
 
-        return redirect()->route('dashboard')
-                            ->with('message', "List \"".$request['oldname']."\" renamed to: \"" .$listing->name. "\".");
+        return redirect()->route('dashboard')->with('message', "List \"".$request['oldname']."\" renamed to: \"" .$listing->name. "\".");
     }
 
     /**
@@ -130,12 +127,12 @@ class ListingController extends Controller
      */
     public function destroy(Listing $listing)
     {
-        $user = Auth::user();
+
         $name = $listing->name;
 
-        if ($user) {
+        if (Auth::user()) {
             Listing::destroy($listing->id);
-            //   return redirect()->back()->with('message', $title->name.' - removed.');
+
             return redirect()->route('dashboard')
                             ->with('message', $name.' - removed.');
         } else {

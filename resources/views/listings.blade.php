@@ -25,7 +25,8 @@ $html_title = "Listings";
 
         <form action="{{action([App\Http\Controllers\ListingController::class, 'create'])}}" method="get">
             {{-- @csrf --}}
-            <button name="listing" class="bg-green-500 hover:bg-green-700 text-white font-medium my-1 sm:my-0 px-2 rounded">Create a new Listing</button>
+            <button name="listing" class="bg-green-500 hover:bg-green-700 text-white font-medium my-1 sm:my-0 py-1 px-2  rounded">Create a new Listing</button>
+
         </form>
     </div>
 </div>

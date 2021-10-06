@@ -104,7 +104,7 @@ class ReviewController extends Controller
         $review->update($request->all());
         $review->approve = 0;
         return redirect()->route('dashboard')
-                              ->with('message', "Review of \"".$review->title->name."\" by ".$review->user->name.' - has been updated, and has to be approved again.');
+                              ->with('message', "Review of \"".$review->title->name."\" by ".$review->user->name.' - has been updated, and has to be approved.');
     }
 
     /**
@@ -123,21 +123,6 @@ class ReviewController extends Controller
       return redirect()->route('dashboard')->with('message', "Review of \"".$review->title->name."\" by ".$review->user->name.' - has been approved.');
     }
 
- /**
-    * Approve the specified resource in storage.
-    *
-    * @param \Illuminate\Http\Request $request
-    * @param int $id
-    * @return \Illuminate\Http\Response
-    */
-    public function reviews(Request $request, $id)
-    {
-      $review = Review::find($id);
-      $review->approve = 1;
-      $review->save();
-
-      return redirect()->route('dashboard')->with('message', "Review of \"".$review->title->name."\" by ".$review->user->name.' - has been approved.');
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -158,12 +143,11 @@ class ReviewController extends Controller
      */
     public function addReview($title_id)
     {
-         $user = Auth::user();
 
-        if ($user) {
+        if (Auth::user()) {
 
                 $title = Title::where('id',$title_id)->get()->first();
-                return view('reviews-create', compact('title'));// ['title' => $title]);
+                return view('reviews-create', compact('title'));
 
         } else {
             return back()->with('message', "You have to have be logged in to write Reviews");

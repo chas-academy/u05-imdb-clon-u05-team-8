@@ -26,14 +26,12 @@ $html_title = "Create List";
 
                 </div>
             </div>
-            <div class="flex justify-start content-start align-bottom">
+            <div class="flex flex-wrap justify-end">
 
-                &nbsp;
 
-                <button type="submit" class=" bg-green-500 hover:bg-green-700 text-white mt-1 py-1  px-2 rounded">Save</button>
-                &nbsp;
+                <button type="submit" class=" bg-green-500 hover:bg-green-700 text-white mt-1 mx-1 py-1  px-2 rounded">Save</button>
 
-                <a class="bg-green-500 hover:bg-green-700 text-white no-underline mt-1 py-1 px-2 rounded" href=" {{ url()->previous() }}">Back</a>
+                <a class="bg-green-500 hover:bg-green-700 text-white no-underline mt-1 mx-1 py-1 px-2 rounded" href=" {{ url()->previous() }}">Back</a>
 
 
 

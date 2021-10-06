@@ -83,14 +83,12 @@ class ListitemController extends Controller
      */
     public function destroy(Listitem $listitem)
     {
-        $user = Auth::user();
+
         $name = $listitem->title()->get()->first()->name;
 
-        if ($user) {
+        if (Auth::user()) {
             Listitem::destroy($listitem->id);
-            //   return redirect()->back()->with('message', $title->name.' - removed.');
-            return redirect()->route('dashboard')
-                            ->with('message', $name.' - removed from List.');
+            return redirect()->route('dashboard')->with('message', $name.' - removed from List.');
         } else {
             return back()->with('message', "You have to have be logged in to delete Listitems");
         }
