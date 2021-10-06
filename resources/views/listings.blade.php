@@ -25,7 +25,7 @@ $html_title = "Listings";
 
         <form action="{{action([App\Http\Controllers\ListingController::class, 'create'])}}" method="get">
             {{-- @csrf --}}
-            <button name="listing" class="bg-green-500 hover:bg-green-700 text-white font-medium my-1 sm:my-0 py-1 px-2  rounded">Create a new Listing</button>
+            <button name="listing" class="bg-green-500 hover:bg-green-700 text-white  my-1 sm:my-0 py-1 px-2  rounded">Create a new Listing</button>
 
         </form>
     </div>
@@ -38,8 +38,6 @@ $html_title = "Listings";
 <br>
 No listings
 @else
-
-
 
 
 
@@ -65,16 +63,9 @@ No listings
 
 <div class="grid grid-cols-1 gap-3 content-center sm:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-6">
 
-
-
     @foreach($list->listitems()->get() as $listitem)
     @php ++$counter; @endphp
 
-    {{--
-
-
-        : <a class=" text-blue-700 underline" href="{{ url('/').'/titles/'.$listitem->title()->get()->first()->id}}">{{$listitem->title()->get()->first()->name}}</a>
-    <br /> --}}
 
     <div class=" text-center text-sm sm:text-base md:text-base lg:text-lg">
         <a class="" href=" {{ url('/').'/titles/'.$listitem->title()->get()->first()->id}}">
@@ -82,11 +73,7 @@ No listings
         </a>
         {{$listitem->title->name}}
         <br />
-
-
     </div>
-
-
 
     @endforeach
     @if ( $counter==0)

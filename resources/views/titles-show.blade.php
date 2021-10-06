@@ -61,9 +61,6 @@ global $is_admin;
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, non ducimus hic, nihil deserunt earum consequatur ea architecto iusto ipsa doloribus nostrum nobis repellat vero sint debitis exercitationem ipsam? Voluptate.
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, non ducimus hic, nihil deserunt earum consequatur ea architecto iusto ipsa doloribus nostrum nobis repellat vero sint debitis exercitationem ipsam? Voluptate.
 
-
-
-
         </div>
     </div>
 

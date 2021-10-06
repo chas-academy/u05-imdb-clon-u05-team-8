@@ -79,7 +79,7 @@ $html_title = "Users";
 
 
 
-            <form class="" onsubmit="return confirm('Do you really want to delete? ({{$user['name']}})');" action="{{ action([App\Http\Controllers\UserController::class, 'destroy'], ['user'=>$user])}}" method="POST">
+            <form class="" onsubmit="return confirm('Do you really want to delete? ({{$user['name']}})');" action="{{ action([App\Http\Controllers\UserController::class, 'destroy'], [$user])}}" method="POST">
                 @method('DELETE')
                 @csrf
 

@@ -255,7 +255,7 @@
                         </form>
 
                         <!--  Delete List (and all list items) -->
-                        <form id="remove-{{$list->id}}" action="{{ action([App\Http\Controllers\ListingController::class, 'destroy'], ['listing'=>$list])}}" method="POST">
+                        <form id="remove-{{$list->id}}" action="{{ action([App\Http\Controllers\ListingController::class, 'destroy'], [$list])}}" method="POST">
                             @csrf
                             @method('DELETE')
 
@@ -269,7 +269,7 @@
                             @foreach ($list->listitems()->get() as $item)
 
                             @php $name = $item->title()->get()->first()->name @endphp
-                            <form id="{{$item->id}}" class="text-sm " onsubmit="return confirm('Do you really want to delete this list item? ({{$name}})');" action="{{ action([App\Http\Controllers\ListitemController::class, 'destroy'], ['listitem'=>$item])}}" method="POST">
+                            <form id="{{$item->id}}" class="text-sm " onsubmit="return confirm('Do you really want to delete this list item? ({{$name}})');" action="{{ action([App\Http\Controllers\ListitemController::class, 'destroy'], [$item])}}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <li>

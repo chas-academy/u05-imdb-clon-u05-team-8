@@ -34,7 +34,7 @@ global $is_admin;
 
             <a href="{{action([App\Http\Controllers\TitleController::class, 'edit'], ['title'=>$title])}}" class="border py-1 m-1  bg-green-500 hover:bg-green-700 text-white  px-2 rounded no-underline">Update</a>
 
-            <form class="" onsubmit="return confirm('Do you really want to delete? ({{$title['name']}})');" action="{{ action([App\Http\Controllers\TitleController::class, 'destroy'], ['title'=>$title])}}" method="POST">
+            <form class="" onsubmit="return confirm('Do you really want to delete? ({{$title['name']}})');" action="{{ action([App\Http\Controllers\TitleController::class, 'destroy'], [$title])}}" method="POST">
                 @method('DELETE')
                 @csrf
 
