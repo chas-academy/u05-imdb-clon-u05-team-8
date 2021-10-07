@@ -48,7 +48,8 @@ No listings
 
     <span class="font-semibold lg:pr-4 md:pr-2 sm:pr-1">
         {{$list->name}}&nbsp;
-        <a class="font-normal no-underline hover:underline" href=" {{ url('/')."/dashboard/#".$list->id}}">(Manage)</a></span>
+        <a class="font-normal no-underline hover:underline" href="{{ url('/dashboard#').$list->id }}">(Manage)</a></span>
+
 
     @if( !$first)
     <span>|</span>
